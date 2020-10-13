@@ -1,16 +1,26 @@
 
+module.exports = function(sequelize, Datatypes){
 
-// unit_count:{
-//     type: Sequelize.INTEGER,
-//     allowNull: true
-// },
+    const inventory = sequelize.define("inventory_item",  {
+        unit_count:{
+            type: Sequelize.INTEGER,
+            allowNull: false
+        }, 
+        item_count:{
+            type: Sequelize.INTEGER,
+            allowNull: false
+        }, 
+        total_value:{
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+        inventory_date:{
+            type: Sequelize.DATE,
+            allowNull: false
+        },  
+    },{
+        timestamps: false,         
+    });
+    return item
 
-const itemModels = require("./itemModels");
-
-
-// item.associate = function(models)    {
-    item.belongsToMany(models.user, {
-        through: "useritem"
-        foreignKey: "itemId"
-    })
 }

@@ -30,7 +30,7 @@ module.exports = function(sequelize, Datatypes){
             type: Sequelize.STRING,
             allowNull: false
         },
-        item_count_par:{
+        item_par:{
             type: Sequelize.INTEGER,
             allowNull: false
         },
@@ -50,7 +50,7 @@ module.exports = function(sequelize, Datatypes){
             foreignKey: "itemId"
         })
     }
-
     return item
 
 }
+
