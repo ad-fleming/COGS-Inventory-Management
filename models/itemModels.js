@@ -3,7 +3,6 @@ module.exports = function(sequelize, Datatypes){
 
     const Item = sequelize.define("Item",  {
         unit_name:{
-<<<<<<< HEAD
             type: DataTypes.STRING,
             allowNull: false
         }, 
@@ -33,37 +32,6 @@ module.exports = function(sequelize, Datatypes){
         },
         item_count_par:{
             type: DataTypes.INTEGER,
-=======
-            type: Datatypes.STRING,
-            allowNull: false
-        }, 
-        unit_category:{
-            type: Datatypes.STRING,
-            allowNull: false
-        }, 
-        unit_distributor:{
-            type: Datatypes.STRING,
-            allowNull: false
-        },
-        unit_price:{
-            type: Datatypes.INTEGER,   // change to decimal?
-            allowNull: false
-        },  
-        unit_par:{
-            type: Datatypes.DECIMAL (10,2),
-            allowNull: true
-        },
-        items_per_unit:{
-            type: Datatypes.INTEGER,
-            allowNull: false
-        },
-        item_count_type:{               // possibly replace with measurement?
-            type: Datatypes.STRING,
-            allowNull: false
-        },
-        item_count_par:{
-            type: Datatypes.INTEGER,
->>>>>>> 264d9b60a69ab24ed57cbc22be733682d0fc6e89
             allowNull: false
         },
         // users_id: {
@@ -76,19 +44,12 @@ module.exports = function(sequelize, Datatypes){
         timestamps: false,            // CAN REMOVE once not using seed data
     });
     Item.associate = function (models){
-        Item.belongsToMany(models.user, {
-<<<<<<< HEAD
-            through: "useritem"
-            foreignKey: "itemId"
+        Item.hasMany(models.Inventory_item), 
+        Item.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false,
+            }
         })
     }
-=======
-            through: "useritem",
-            foreignKey: "itemId"
-        })
-    }
-
->>>>>>> 264d9b60a69ab24ed57cbc22be733682d0fc6e89
     return Item
-
 }
