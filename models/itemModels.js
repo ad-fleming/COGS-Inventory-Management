@@ -43,13 +43,13 @@ module.exports = function(sequelize, Datatypes){
     },{
         timestamps: false,            // CAN REMOVE once not using seed data
     });
-    // Item.associate = function (models){
-    //     Item.hasMany(models.Inventory_item), 
-    //     Item.belongsTo(models.User, {
-    //         foreignKey: {
-    //             allowNull: false,
-    //         }
-    //     })
-    // }
+    Item.associate = function (models){
+        Item.hasMany(models.Inventory_item), 
+        Item.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false,
+            }
+        })
+    }
     return Item
 }

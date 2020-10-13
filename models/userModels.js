@@ -18,11 +18,11 @@ module.exports = function(sequelize, Datatypes){
     },{
         timestamps: false,            
     });
-    // User.associate = function (models){
-    //     User.hasOne(models.Item, {
-    //         onDelete: "Cascade"
-    //     });
-    // }
+    User.associate = function (models){
+        User.hasOne(models.Item, {
+            onDelete: "Cascade"
+        });
+    }
     return User
 }
 

@@ -25,12 +25,12 @@ module.exports = function(sequelize, Datatypes){
     },{
         timestamps: false,            // CAN REMOVE once not using seed data
     });
-    // Inventory_item.associate = function (models){
-    //     Inventory_item.belongsTo(models.User, {
-    //         foreignKey: {
-    //             allowNull: false,
-    //         },
-    //     });
-    // };
+    Inventory_item.associate = function (models){
+        Inventory_item.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false,
+            },
+        });
+    };
     return Inventory_item
 }
