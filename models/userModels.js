@@ -1,5 +1,5 @@
 module.exports = function(sequelize, Datatypes){
-    const user = sequelize.define("User",  {
+    const user = sequelize.define("user",  {
     account_name: {
         type: Sequelize.STRING,
         allowNull: false},
@@ -24,6 +24,6 @@ module.exports = function(sequelize, Datatypes){
             foreignKey: "userId"
         });
     }
-    return User
+    return user
 }
 
