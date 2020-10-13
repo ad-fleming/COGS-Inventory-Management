@@ -31,6 +31,14 @@ app.set("view engine", "handlebars");
 // ROUTES WILL GO HERE
 // *******************
 
+//  VIEWS
+app.get("/", (req, res) =>  {
+  res.render("index");
+});
+
+// API
+app.get("/api/config",)
+
 // THIS ONE DROPS THE TABLES
 // db.sequelize.sync({force:true}).then(function() {
 // THIS ONE DOESN'T DROP TABLES
