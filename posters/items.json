@@ -1,0 +1,44 @@
+{
+    "unit_name": "Citrus Grove",
+    "unit_category": "Beer",
+    "unit_distributor": "Beer Boy",
+    "unit_price": 48,
+    "unit_par": 2,
+    "items_per_unit": 24,
+    "item_count_type": "individual",
+    "item_count_par": 0,
+    "UserId": 1
+    },
+{
+        "unit_name": "Budlight",
+        "unit_category": "Beer",
+        "unit_distributor": "Beer Girl Depot",
+        "unit_price": 46,
+        "unit_par": 1,
+        "items_per_unit": 24,
+        "item_count_type": "individual",
+        "item_count_par": 0,
+        "UserId": 1
+        },
+{
+    "unit_name": "Golden Apples",
+    "unit_category": "Produce",
+    "unit_distributor": "Johnny's Produce",
+    "unit_price": 35,
+    "unit_par": 0,
+    "items_per_unit": 88,
+    "item_count_type": "individual",
+    "item_count_par": 48,
+    "UserId": 1
+    },
+{
+    "unit_name": "Marschino Cherries",
+    "unit_category": "Produce",
+    "unit_distributor": "Johnny's Produce",
+    "unit_price": 200,
+    "unit_par": 0,
+    "items_per_unit": 1,
+    "item_count_type": "individual",
+    "item_count_par": 10,
+    "UserId": 1
+    },
