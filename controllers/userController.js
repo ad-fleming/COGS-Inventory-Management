@@ -31,9 +31,12 @@ router.post("/api/users", (req, res)    =>  {
             data: newItem,
             message: "It's alive! It's alive!"
         })
-    }).catch((err)  =>  (
+    }).catch((err)  =>  {
         res.status(500).json({        
             error: true,
             data: err,
             message: "You have failed the new user!"})
+    })
 })
+
+module.exports = router;
