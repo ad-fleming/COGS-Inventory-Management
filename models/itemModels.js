@@ -3,35 +3,35 @@ module.exports = function(sequelize, Datatypes){
 
     const Item = sequelize.define("Item",  {
         unit_name:{
-            type: DataTypes.STRING,
+            type: Datatypes.STRING,
             allowNull: false
         }, 
         unit_category:{
-            type: DataTypes.STRING,
+            type: Datatypes.STRING,
             allowNull: false
         }, 
         unit_distributor:{
-            type: DataTypes.STRING,
+            type: Datatypes.STRING,
             allowNull: false
         },
         unit_price:{
-            type: DataTypes.INTEGER,   // change to decimal?
+            type: Datatypes.INTEGER,   // change to decimal?
             allowNull: false
         },  
         unit_par:{
-            type: DataTypes.DECIMAL (10,2),
+            type: Datatypes.DECIMAL (10,2),
             allowNull: true
         },
         items_per_unit:{
-            type: DataTypes.INTEGER,
+            type: Datatypes.INTEGER,
             allowNull: false
         },
         item_count_type:{               // possibly replace with measurement?
-            type: DataTypes.STRING,
+            type: Datatypes.STRING,
             allowNull: false
         },
         item_count_par:{
-            type: DataTypes.INTEGER,
+            type: Datatypes.INTEGER,
             allowNull: false
         },
         // users_id: {
