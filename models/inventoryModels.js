@@ -1,7 +1,7 @@
 
 module.exports = function(sequelize, Datatypes){
 
-    const Inventory_item = sequelize.define("inventory_item",  {
+    const Inventory_item = sequelize.define("Inventory_item",  {
         unit_count:{
             type: Datatypes.INTEGER,   // change to decimal?
             allowNull: false
