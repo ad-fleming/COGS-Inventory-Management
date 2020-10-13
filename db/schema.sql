@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS `lego_tracker_db`;
-CREATE DATABASE `lego_tracker_db`;
+DROP DATABASE IF EXISTS `cogs_db`;
+CREATE DATABASE `cogs_db`;
 
-USE lego_tracker_db;
+USE cogs_db;
