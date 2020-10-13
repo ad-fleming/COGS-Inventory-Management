@@ -3,7 +3,8 @@ const express = require("express");
 const exphbs= require("express-handlebars");
 const handlebars = require ("handlebars");
 const {allowInsecurePrototypeAccess} = require("@handlebars/allow-prototype-access");
-
+const itemController = require("./controllers/itemController");
+const userController = require("./controllers/userController");
 
 // Sets up the Express APP 
 // =======================
@@ -36,8 +37,15 @@ app.get("/", (req, res) =>  {
   res.render("index");
 });
 
+app.use(userController);
+app.use(itemController);
+
 // API
-app.get("/api/config",)
+app.get("/api/config",(req, res)  =>  {
+  res.json({
+    success: true,
+  })
+})
 
 // THIS ONE DROPS THE TABLES
 // db.sequelize.sync({force:true}).then(function() {
