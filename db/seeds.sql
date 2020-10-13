@@ -34,7 +34,7 @@ unit_price int NOT NULL,
 unit_par int,
 items_per_unit INT,
 item_count_type VARCHAR(100),
-item_par INT,
+item__count_par INT,
 users_id INT,
 items_id INT,
 PRIMARY KEY (id)
