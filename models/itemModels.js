@@ -1,37 +1,37 @@
 //  INITIAL INVENTORY CREATION
 module.exports = function(sequelize, Datatypes){
 
-    const item = sequelize.define("inventory_item",  {
+    const Item = sequelize.define("Item",  {
         unit_name:{
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         }, 
         unit_category:{
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         }, 
         unit_distributor:{
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         unit_price:{
-            type: Sequelize.INTEGER,   // change to decimal?
+            type: DataTypes.INTEGER,   // change to decimal?
             allowNull: false
         },  
         unit_par:{
-            type: Sequelize.DECIMAL (10,2),
+            type: DataTypes.DECIMAL (10,2),
             allowNull: true
         },
         items_per_unit:{
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         item_count_type:{               // possibly replace with measurement?
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         item_count_par:{
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         // users_id: {
@@ -44,13 +44,12 @@ module.exports = function(sequelize, Datatypes){
     },{
         timestamps: false,            // CAN REMOVE once not using seed data
     });
-    item.associate = function (models){
-        item.belongsToMany(models.user, {
+    Item.associate = function (models){
+        Item.belongsToMany(models.user, {
             through: "useritem"
             foreignKey: "itemId"
         })
     }
-
-    return item
+    return Item
 
 }

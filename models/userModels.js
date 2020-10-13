@@ -1,25 +1,25 @@
 module.exports = function(sequelize, Datatypes){
-    const user = sequelize.define("User",  {
+    const User = sequelize.define("User",  {
     account_name: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false},
     email: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false},
     name: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false},
     password: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false},
     inventory_id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: true},
     },{
         timestamps: false,            // CAN REMOVE once not using seed data
     });
-    user.associate = function (models){
-        user.belongsToMany(models.item, {
+    User.associate = function (models){
+        User.belongsToMany(models.item, {
             through:"userItem",// <----------- be careful to call this whatever is being exported (ESPECIALLY WHEN DIFFERENT FROM MODEL FILE NAME)
             foreignKey: "userId"
         });
