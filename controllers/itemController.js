@@ -34,7 +34,7 @@ router.post("/api/items", (req, res)    =>  {
     }).catch((err)  =>  {
         res.status(500).json({
             error: true,
-            data: newItem,
+            data: err,
             message:"You did not create an item! LOSER!"
         })  
     })
