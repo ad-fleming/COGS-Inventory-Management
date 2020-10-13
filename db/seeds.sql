@@ -5,6 +5,7 @@ CREATE DATABASE cogs_db;
 USE cogs_db;
 
 create table users (
+id INTEGER NOT NULL auto-increment,
 account_name varchar(100),
 email varchar(100),
 name varchar(100),
@@ -16,6 +17,7 @@ PRIMARY KEY (id)
 SELECT * FROM inventory_item;
 
 CREATE TABLE inventory_item (
+  id INTEGER NOT NULL auto-increment,
   unit_count integer,
   item_count integer,
   total_value integer,
@@ -24,9 +26,10 @@ CREATE TABLE inventory_item (
   PRIMARY KEY (id)
 );
 
-SELECT * FROM item;
+SELECT * FROM items;
  
-create table item (
+create table items (
+id INTEGER NOT NULL auto-increment,
 unit_name VARCHAR(100),
 unit_category VARCHAR(100),
 unit_distributor VARCHAR(100),
@@ -34,7 +37,7 @@ unit_price int NOT NULL,
 unit_par int,
 items_per_unit INT,
 item_count_type VARCHAR(100),
-item__count_par INT,
+item_count_par INT,
 users_id INT,
 items_id INT,
 PRIMARY KEY (id)
