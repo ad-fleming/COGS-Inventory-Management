@@ -1,0 +1,25 @@
+
+    {
+        "account_name": "Proof Syrup",
+        "name": "Ryan Stanley",
+        "password": "12354",
+        "email": "ryan@proof.com"
+    },
+    {
+    "account_name": "Reggie's Wine",
+    "name": "Pamela Leblonde",
+    "password": "lalala",
+    "email": "pamela@pammymail.com"
+    },
+    {
+    "account_name": "Danny's Tire",
+    "name": "Danielle Radcliffe",
+    "password": "gooniesneverdie",
+    "email": "danny@dannystire.com"
+    },
+    {
+    "account_name": "Wine Store",
+    "name": "Marcos Tefela",
+    "password": "Turran",
+    "email": "wineMarcos@winestore.com"
+    }

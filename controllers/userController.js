@@ -6,6 +6,7 @@ const db = require ("../models");
 
 router.get("/user", (req, res)  =>  {
     db.User.findAll().then(allUsers =>  {
+        
         res.render(`all-users`);
     })
 })
@@ -25,10 +26,10 @@ router.get("user/new", (req, res)   =>  {
 // API ROUTES
 
 router.post("/api/users", (req, res)    =>  {
-    db.User.create(req, body).then(newUser  =>  {
+    db.User.create(req.body).then(newUser  =>  {
         res.json({
             error: false,
-            data: newItem,
+            data: newUser,
             message: "It's alive! It's alive!"
         })
     }).catch((err)  =>  {
