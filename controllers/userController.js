@@ -26,18 +26,24 @@ router.get("user/new", (req, res)   =>  {
 // API ROUTES
 
 router.post("/api/users", (req, res)    =>  {
-    db.User.create(req.body).then(newUser  =>  {
-        res.json({
-            error: false,
-            data: newUser,
-            message: "It's alive! It's alive!"
+    const newUser = {
+        account_name: req.body.account_name,
+        email: req.body.email,
+        name: req.body.name,
+        password: req.body.password
+    }
+
+    db.User.create(newUser)
+        .then((newUser)=>{
+            console.log(newUser);
+            res.json({
+                message: "created new user",
+                success: true
+            })
         })
-    }).catch((err)  =>  {
-        res.status(500).json({        
-            error: true,
-            data: err,
-            message: "You have failed the new user!"})
-    })
+        .catch((err)=>{
+            console.log(err);
+        })
 })
 
 module.exports = router;
