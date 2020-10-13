@@ -1,7 +1,7 @@
 
 module.exports = function(sequelize, Datatypes){
 
-    const inventory_item = sequelize.define("inventory_item",  {
+    const Inventory_item = sequelize.define("Inventory_item",  {
         unit_count:{
             type: Sequelize.INTEGER,   // change to decimal?
             allowNull: false
@@ -14,21 +14,25 @@ module.exports = function(sequelize, Datatypes){
             type: Sequelize.INTEGER,
             allowNull: false
         },
-        inventory_date:{               // possibly replace with measurement?
+        inventory_date:{               
             type: Sequelize.DATE,
             allowNull: false
         },
+        // items_id:{               
+        //     type: Sequelize.INTEGER,         this is necessary as seed data
+        //     allowNull: false
+        // },
     },{
         timestamps: false,            // CAN REMOVE once not using seed data
     });
-    inventory_item.associate = function (models){
-        inventory_item.belongsToMany(models.user, {
+    Inventory_item.associate = function (models){
+        Inventory_item.belongsToMany(models.user, {
             through: "useritem"
             foreignKey: "itemId"
         })
     }
 
-    return inventory_item
+    return Inventory_item
 
 
     // trying to push this change

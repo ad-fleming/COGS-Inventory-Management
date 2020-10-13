@@ -1,7 +1,7 @@
 //  INITIAL INVENTORY CREATION
 module.exports = function(sequelize, Datatypes){
 
-    const item = sequelize.define("inventory_item",  {
+    const Item = sequelize.define("Inventory_item",  {
         unit_name:{
             type: Sequelize.STRING,
             allowNull: false
@@ -37,20 +37,19 @@ module.exports = function(sequelize, Datatypes){
         // users_id: {
         //     type: Sequelize.INTEGER,
         //     allowNull: true},
-        // items_id: {
+        // inventory_id: {
         //     type: Sequelize.INTEGER,
         //     allowNull: true},
-        // INVENTORY TABLE id should be auto-incrementing, but only used as a reference, should not necessarily be more than one reference table for MVP
     },{
         timestamps: false,            // CAN REMOVE once not using seed data
     });
-    item.associate = function (models){
-        item.belongsToMany(models.user, {
+    Item.associate = function (models){
+        Item.belongsToMany(models.user, {
             through: "useritem"
             foreignKey: "itemId"
         })
     }
 
-    return item
+    return Item
 
 }

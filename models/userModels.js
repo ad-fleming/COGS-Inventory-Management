@@ -1,5 +1,5 @@
 module.exports = function(sequelize, Datatypes){
-    const user = sequelize.define("user",  {
+    const User = sequelize.define("User",  {
     account_name: {
         type: Sequelize.STRING,
         allowNull: false},
@@ -12,18 +12,18 @@ module.exports = function(sequelize, Datatypes){
     password: {
         type: Sequelize.STRING,
         allowNull: false},
-    inventory_id: {
-        type: Sequelize.INTEGER,
-        allowNull: true},
+    // items_id: {
+    //     type: Sequelize.INTEGER,             this is necessary as a seed
+    //     allowNull: true},
     },{
-        timestamps: false,            // CAN REMOVE once not using seed data
+        timestamps: false,            
     });
-    user.associate = function (models){
-        user.belongsToMany(models.item, {
+    User.associate = function (models){
+        User.belongsToMany(models.item, {
             through:"userItem",// <----------- be careful to call this whatever is being exported (ESPECIALLY WHEN DIFFERENT FROM MODEL FILE NAME)
             foreignKey: "userId"
         });
     }
-    return user
+    return User
 }
 
