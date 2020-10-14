@@ -82,13 +82,26 @@ router.post("/api/users", (req, res)    =>  {
 
 // UPDATE A USER
 router.put("/api/users/", (req, res) =>  {
-    db.Post.update(req.body,{
+    db.User.update(req.body,{
         where: {
             id: req.body.id
         }
     })
     .then(function(dbUser)  {
         res.json(dbUser)
+    })
+})
+
+// DELETE A USER
+router.delete("/api/users/:id", (req, res)  =>  {
+    db.User.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(dbUser)    {
+        res.json(dbUser)
+    }).catch((err)=>{
+        console.log(err);
     })
 })
 
