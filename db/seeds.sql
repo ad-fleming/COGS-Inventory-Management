@@ -14,6 +14,9 @@ items_id int,
 PRIMARY KEY (id)
 );
 
+SELECT * FROM Inventories;
+SELECT * FROM Items;
+SELECT * FROM Users;
 
 create table items (
 id INTEGER auto_increment NOT NULL,
@@ -25,18 +28,17 @@ unit_par int,
 items_per_unit INT,
 item_count_type VARCHAR(100),
 item_count_par INT,
-inventory_id INT,
-users_id INT, 
+InventoryId INT,
 PRIMARY KEY (id)
 );
 
-CREATE TABLE inventory_items (
+CREATE TABLE inventories (
   id INTEGER auto_increment NOT NULL, 
   unit_count integer,
   item_count integer,
   total_value integer,
   inventory_date date,
-  items_id int,
+  ItemId int,
   PRIMARY KEY (id)
 );
 
@@ -55,39 +57,31 @@ INSERT INTO users (account_name, password, email, name) VALUES ("American Bar", 
 
 SELECT * FROM users;
 SELECT * FROM items;
+SELECT * FROM inventories;
 
 -- SEED DATA FOR ITEMS  
-INSERT INTO items (unit_name, unit_category, unit_distributor, unit_price, unit_par, items_per_unit, item_count_type, item_count_par, users_id) 
-VALUES ("golden apples", "produce", "luckys produce", 55,  1, 88, "individual", 20, 1), 
-("jack daniels", "liquor", "drink and smoke bev", 64,  1, 12, "individual", 5, 1),
- ("dukes mayonnaise", "condiments", "luckys produce", 24, 1, 4, "individual", 1, 1),
- ("marlboro reds", "tobacco", "drink and smoke bev", 30, 1, 10, "individual", 4, 1),
-("sani clean", "condiments", "chem club", 120, 1, 4, "individual", 1, 1),
-("santa muerta candles", "housewares", "marias candles", 40, 1, 10, "individual", NULL, 1);
+INSERT INTO items (unit_name, unit_category, unit_distributor, unit_price, unit_par, items_per_unit, item_count_type, item_count_par) 
+VALUES ("golden apples", "produce", "luckys produce", 55,  1, 88, "individual", 20), 
+("jack daniels", "liquor", "drink and smoke bev", 64,  1, 12, "individual", 5),
+ ("dukes mayonnaise", "condiments", "luckys produce", 24, 1, 4, "individual", 1),
+ ("marlboro reds", "tobacco", "drink and smoke bev", 30, 1, 10, "individual", 4),
+("sani clean", "condiments", "chem club", 120, 1, 4, "individual", 1),
+("santa muerta candles", "housewares", "marias candles", 40, 1, 10, "individual", 1);
 
 -- SEED DATA FOR ITEMS  for inventory week 1
-INSERT INTO inventory_items (unit_count, item_count, total_value, inventory_date, items_id) 
+INSERT INTO inventories (unit_count, item_count, total_value, inventory_date, UserId) 
 VALUES (1, 20, 1000, "2020-12-10", 1),
-(2, 5, 500, "2020-12-10", 2),
-(0, 3, 1000, "2020-12-10", 3), 
-(1, 1, 400, "2020-12-10", 4),
-(1, 0, 120, "2020-12-10", 5), 
-(0, 20, 200, "2020-12-10", 6);
+(2, 5, 500, "2020-12-10", 1),
+(0, 3, 1000, "2020-12-10", 1), 
+(1, 1, 400, "2020-12-10", 1),
+(1, 0, 120, "2020-12-10", 1), 
+(0, 20, 200, "2020-12-10", 1);
 
 -- SEED DATA FOR ITEMS  for inventory week 2
-INSERT INTO inventory_items (unit_count, item_count, total_value, inventory_date, items_id) 
+INSERT INTO inventories (unit_count, item_count, total_value, inventory_date, UserId) 
 VALUES (1, 20, 1000, "2020-12-17", 1),
-(2, 5, 500, "2020-12-17", 2),
-(0, 3, 1000, "2020-12-17", 3), 
-(1, 1, 400, "2020-12-17", 4),
-(1, 0, 120, "2020-12-17", 5), 
-(0, 20, 200, "2020-12-17", 6);
-
--- SELECT THAT pulls together inventory tables 
-SELECT items.unit_name, items.unit_category, items.unit_distributor, items.unit_price, items.unit_par, items.items_per_unit,
-items.item_count_type, items.item_count_par, inventory.unit_count, inventory.item_count, inventory.total_value, inventory.inventory_date
-FROM items
-JOIN inventory_items AS inventory
-WHERE inventory.items_id = items.id 
-AND inventory.inventory_date = "2020-12-10"
-AND items.users_id = 1;
+(2, 5, 500, "2020-12-17", 1),
+(0, 3, 1000, "2020-12-17", 1), 
+(1, 1, 400, "2020-12-17", 1),
+(1, 0, 120, "2020-12-17", 1), 
+(0, 20, 200, "2020-12-17", 1);
