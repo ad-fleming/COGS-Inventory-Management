@@ -83,6 +83,7 @@ router.post("/api/items", (req, res)    =>  {
         item_count_par: req.body.item_count_par,
         unit_count: req.body.unit_count,
         item_count: req.body.item_count,
+        total_value: req.body.total_value,
         InventoryId: req.body.InventoryId
     }
     db.Item.create(newItem)
@@ -96,6 +97,39 @@ router.post("/api/items", (req, res)    =>  {
         .catch((err)=>{
             console.log(err);
         })
+})
+
+
+router.put("/api/items", (req,res)=>{
+    db.Item.update(
+        req.body,
+        {
+            where:{
+                id: req.body.id
+            }
+        })
+        .then((updatedItem)=>{
+            console.log(updatedItem);
+            res.json(updatedItem)
+        })
+})
+
+
+
+// DELETE ITEM
+
+router.delete("/api/items/:id", (req, res)=>{
+    db.Item.destroy({
+        where:{
+            id: req.params.id
+        }
+    })
+    .then((item)=>{
+        res.json(item)
+    })
+    .cath((err)=>{
+        console.log(err)
+    })
 })
 
 
