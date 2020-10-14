@@ -6,7 +6,6 @@ const db = require ("../models");
 
 router.get("/user", (req, res)  =>  {
     db.User.findAll().then(allUsers =>  {
-        
         res.render('all-users');
     })
 })

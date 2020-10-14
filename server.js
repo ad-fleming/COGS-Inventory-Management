@@ -38,8 +38,12 @@ app.get("/", (req, res) =>  {
   res.render("index");
 });
 
-app.get("/newuser", (req, res) =>  {
-  res.render("newuser");
+app.get("/newUserForm", (req, res) =>  {
+  res.render("newUserForm");
+});
+
+app.get("/newUser", (req, res) =>  {
+  res.render("newUser");
 });
 
 app.use(userController);
