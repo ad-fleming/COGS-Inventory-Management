@@ -47,7 +47,8 @@ router.post("/api/users", (req, res)    =>  {
         account_name: req.body.account_name,
         email: req.body.email,
         name: req.body.name,
-        password: req.body.password
+        password: req.body.password,
+        InventoryId: req.body.InventoryId
     }
 
     db.User.create(newUser)
