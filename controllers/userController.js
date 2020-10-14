@@ -25,6 +25,23 @@ router.get("user/new", (req, res)   =>  {
 
 // API ROUTES
 
+// FIND A SPECIFIC USER
+router.get("/api/users", (req,res)=>{
+    db.User.findOne({
+        where:{
+            id: req.body.id
+        }
+    })
+    .then((specificUser)=>{
+        console.log(specificUser);
+        res.json({
+            message:"found specific user",
+            success: true,
+        })
+    })
+})
+
+// CREATE A NEW USER
 router.post("/api/users", (req, res)    =>  {
     const newUser = {
         account_name: req.body.account_name,
