@@ -34,9 +34,18 @@ module.exports = function(sequelize, Datatypes){
             type: Datatypes.INTEGER,
             allowNull: false
         },
-        // inventory_id: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: true},
+        unit_count:{
+            type: Datatypes.INTEGER,   // change to decimal?
+            allowNull: false
+        },  
+        item_count:{
+            type: Datatypes.INTEGER,
+            allowNull: true
+        },
+        total_value:{
+            type: Datatypes.INTEGER,
+            allowNull: false
+        },
     },{
         timestamps: false,            // CAN REMOVE once not using seed data
     });
