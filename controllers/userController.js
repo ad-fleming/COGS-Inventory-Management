@@ -2,12 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require ("../models");
 
-
-
-
-
-
-
 // RENDERS FOR USER
 router.get("/user", (req, res)  =>  {
     db.User.findAll({})
@@ -15,6 +9,7 @@ router.get("/user", (req, res)  =>  {
         var hbsObject = {
             User: userData
         }
+        console.log(hbsObject)
         res.render("newUser", hbsObject)
     })
 })
