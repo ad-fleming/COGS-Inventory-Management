@@ -48,9 +48,9 @@ app.get("/api/config",(req, res)  =>  {
 })
 
 // THIS ONE DROPS THE TABLES
-db.sequelize.sync({force:true}).then(function() {
+// db.sequelize.sync({force:true}).then(function() {
 // THIS ONE DOESN'T DROP TABLES
-// db.sequelize.sync().then(function(){
+db.sequelize.sync().then(function(){
     app.listen(PORT, function(){
       console.log(`Server listening on http://localhost:${PORT}`)
     });

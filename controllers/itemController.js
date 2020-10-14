@@ -34,6 +34,7 @@ router.post("/api/items", (req, res)    =>  {
         items_per_unit: req.body.items_per_unit,
         item_count_type: req.body.item_count_type,
         item_count_par: req.body.item_count_par,
+        UserId: req.body.UserId
     }
     db.Item.create(newItem)
         .then((newItem)=>{
