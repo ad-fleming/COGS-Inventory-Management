@@ -25,6 +25,7 @@ router.get("/items/new", (req, res) =>  {
 
 // API ROUTES
 
+// FIND ALL ITEMS IN THE DATABASE
 router.get(`/api/items`, (req, res) => 
     db.Item.findAll()
     .then(allItems =>{
@@ -34,6 +35,42 @@ router.get(`/api/items`, (req, res) =>
     .catch(err => console.log(err)));
 
 
+// FIND ALL ITEMS FOR A SPECIFIC INVENTORY ID (ALL Items by Inventory Week)
+router.get("/api/items/:id", (req,res)=>{
+    db.Item.findAll({
+        where: {
+            InventoryId: req.params.id
+        }
+    })
+    .then((weeklyInventoryItems)=>{
+        console.log(weeklyInventoryItems);
+        res.json(weeklyInventoryItems)
+    })
+    .catch((err)=>{
+        console.log(err)
+        res.json({
+            message: "issue returning inventory items"
+        })
+    })
+})
+
+// Find a specific item by name
+
+router.get("/api/item/:id", (req,res)=>{
+    db.Item.findAll({
+        where:{
+            unit_name:req.params.id
+        }
+    }).then((specificItem)=>{
+        console.log(specificItem);
+        res.json(specificItem)
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+
+// CREATE A NEW ITEM
 router.post("/api/items", (req, res)    =>  {
     const newItem = {
         unit_name: req.body.unit_name,
@@ -44,7 +81,7 @@ router.post("/api/items", (req, res)    =>  {
         items_per_unit: req.body.items_per_unit,
         item_count_type: req.body.item_count_type,
         item_count_par: req.body.item_count_par,
-        UserId: req.body.UserId
+        InventoryId: req.body.InventoryId
     }
     db.Item.create(newItem)
         .then((newItem)=>{
@@ -58,5 +95,7 @@ router.post("/api/items", (req, res)    =>  {
             console.log(err);
         })
 })
+
+
 
 module.exports = router;
