@@ -1,7 +1,7 @@
 
 module.exports = function(sequelize, Datatypes){
 
-    const Inventory_item = sequelize.define("Inventory_item",  {
+    const Inventory = sequelize.define("Inventory",  {
         unit_count:{
             type: Datatypes.INTEGER,   // change to decimal?
             allowNull: false
@@ -25,12 +25,8 @@ module.exports = function(sequelize, Datatypes){
     },{
         timestamps: false,            // CAN REMOVE once not using seed data
     });
-    Inventory_item.associate = function (models){
-        Inventory_item.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false,
-            },
-        });
+    Inventory.associate = function (models){
+        Inventory.hasMany(models.Item);
     };
-    return Inventory_item
+    return Inventory;
 }
