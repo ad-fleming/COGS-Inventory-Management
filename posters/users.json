@@ -23,3 +23,10 @@
     "password": "Turran",
     "email": "wineMarcos@winestore.com"
     }
+    {
+        "id": 5,
+        "account_name": "Black Cat Fireworks",
+        "name": "Junior Junior Duggans",
+        "password": "applejacks",
+        "email": "Duggans@BCfireworks.com"
+    }
