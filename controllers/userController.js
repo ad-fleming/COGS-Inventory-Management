@@ -42,14 +42,15 @@ router.get("/api/users/", (req,res)=>{
 })
 
 router.get("/api/users/:id", (req,res)=>{
-    db.User.findOne({
+    db.User.findAll({
         where:{
-            id: req.body.id
+            id: req.params.id
         }
     })
     .then((specificUser)=>{
         console.log(specificUser);
         res.json({
+            user: specificUser,
             message:"found specific user",
             success: true,
         })
