@@ -20,6 +20,9 @@ const db = require ("../models");
 //     })
 // })
 
+// Get
+
+
 // GET INVENTORIES BY USER
 router.get("api/inventory/:id", (req,res)=>{
     db.inventory.findAll({
