@@ -24,6 +24,21 @@ router.get("/items/new", (req, res) =>  {
 
 // API ROUTES
 
+// router.get(`/api/items/:id`, (req, res) =>  {
+//     db.Item.findAll({
+//         where:
+//     })
+// })
+
+router.get(`/api/items`, (req, res) => 
+    db.Item.findAll()
+    .then(allItems =>{
+        console.log(allItems)
+        res.json(allItems);
+    })
+    .catch(err => console.log(err)));
+
+
 router.post("/api/items", (req, res)    =>  {
     const newItem = {
         unit_name: req.body.unit_name,
