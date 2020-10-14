@@ -56,10 +56,10 @@ router.get("/api/items/:id", (req,res)=>{
 
 // Find a specific item by name
 
-router.get("/api/item/:id", (req,res)=>{
+router.get("/api/items/name/:unit_name", (req,res)=>{
     db.Item.findAll({
         where:{
-            unit_name:req.params.id
+            unit_name:req.params.unit_name.trim()
         }
     }).then((specificItem)=>{
         console.log(specificItem);
@@ -67,13 +67,17 @@ router.get("/api/item/:id", (req,res)=>{
     })
     .catch((err)=>{
         console.log(err);
+        res.json({
+            message: "Trouble finding item by name",
+            success: false
+        })
     })
 })
 
 // CREATE A NEW ITEM
 router.post("/api/items", (req, res)    =>  {
     const newItem = {
-        unit_name: req.body.unit_name,
+        unit_name: req.body.unit_name.trim(),
         unit_category: req.body.unit_category,
         unit_distributor: req.body.unit_distributor,
         unit_price: req.body.unit_price,
@@ -109,8 +113,11 @@ router.put("/api/items", (req,res)=>{
             }
         })
         .then((updatedItem)=>{
-            console.log(updatedItem);
-            res.json(updatedItem)
+            console.log("Successfully updated item");
+            res.json({
+                message: `Successfully updated item`,
+                success: true
+            })
         })
 })
 
@@ -123,12 +130,10 @@ router.delete("/api/items/:id", (req, res)=>{
         where:{
             id: req.params.id
         }
-    })
-    .then((item)=>{
+    }).then((item)=>{
         res.json(item)
-    })
-    .cath((err)=>{
-        console.log(err)
+    }).catch((err)=>{
+        console.log(err);
     })
 })
 
