@@ -7,6 +7,9 @@
     "items_per_unit": 24,
     "item_count_type": "individual",
     "item_count_par": 0,
+    "unit-par": 1,
+    "item_count": 5,
+    "total_value": 68 
     },
 {
         "unit_name": "Budlight",
@@ -17,6 +20,9 @@
         "items_per_unit": 24,
         "item_count_type": "individual",
         "item_count_par": 0,
+        "unit-par": 4,
+        "item_count": 13,
+        "total_value": 260 
         },
 {
     "unit_name": "Golden Apples",
@@ -27,6 +33,9 @@
     "items_per_unit": 88,
     "item_count_type": "individual",
     "item_count_par": 48,
+    "unit-par": 3,
+    "item_count": 20,
+    "total_value": 250 
     },
 {
     "unit_name": "Marschino Cherries",
@@ -37,4 +46,7 @@
     "items_per_unit": 1,
     "item_count_type": "individual",
     "item_count_par": 10,
+    "unit-par": 4,
+    "item_count": 0,
+    "total_value": 800 
     },
