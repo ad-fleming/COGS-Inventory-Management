@@ -24,7 +24,7 @@ const db = require ("../models");
 
 
 // GET INVENTORIES BY USER
-router.get("api/inventory/:id", (req,res)=>{
+router.get("/api/inventory/:id", (req,res)=>{
     db.inventory.findAll({
         where:{
             UserId: req.params.id
@@ -39,11 +39,13 @@ router.get("api/inventory/:id", (req,res)=>{
     })
 })
 
-router.post ("api/inventory", (req,res)=>{
-    db.Inventory.create({
-      inventory_date: req.body.inventory_date,
-      UserId: req.body.UserId  
-    })
+router.post ("/api/inventory", (req,res)=>{
+    const newInventory = {
+        inventory_date: req.body.inventory_date,
+        UserId: req.body.UserId  
+      }
+    
+    db.Inventory.create(newInventory)
     .then((inventory)=>{
         console.log(inventory);
         res.json(inventory);
