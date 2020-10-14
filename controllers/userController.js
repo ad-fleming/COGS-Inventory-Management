@@ -13,9 +13,9 @@ router.get("/user", (req, res)  =>  {
     db.User.findAll({})
     .then((userData)=>{
         var hbsObject = {
-            User =  userData
+            User: userData
         }
-        res.render("all-users", hbsObject)
+        res.render("newUser", hbsObject)
     })
 })
 
@@ -26,7 +26,7 @@ router.get("/user/:id", (req, res)  =>  {
         }
     }).then ((singleUserData)=>{
         var hbsObject = {
-            User = singleUserData
+            User: singleUserData
         }
     })
     res.render("one-user", hbsObject)
