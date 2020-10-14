@@ -24,12 +24,6 @@ router.get("/items/new", (req, res) =>  {
 
 // API ROUTES
 
-// router.get(`/api/items/:id`, (req, res) =>  {
-//     db.Item.findAll({
-//         where:
-//     })
-// })
-
 router.get(`/api/items`, (req, res) => 
     db.Item.findAll()
     .then(allItems =>{
