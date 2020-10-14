@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require ("../models");
 
-// ROUTES FOR USER
+// RENDERS FOR USER
 
 router.get("/user", (req, res)  =>  {
     db.User.findAll().then(allUsers =>  {
@@ -25,8 +25,7 @@ router.get("user/new", (req, res)   =>  {
 
 // API ROUTES
 
-// FIND A SPECIFIC USER
-
+// FIND A ALL USERS
 router.get("/api/users/", (req,res)=>{
     db.User.findAll()
     .then((allUsers)=>{
@@ -41,6 +40,7 @@ router.get("/api/users/", (req,res)=>{
     })
 })
 
+// FIND A SPECIFIC USER
 router.get("/api/users/:id", (req,res)=>{
     db.User.findAll({
         where:{
@@ -79,5 +79,18 @@ router.post("/api/users", (req, res)    =>  {
             console.log(err);
         })
 })
+
+// UPDATE A USER
+router.put("/api/users/", (req, res) =>  {
+    db.Post.update(req.body,{
+        where: {
+            id: req.body.id
+        }
+    })
+    .then(function(dbUser)  {
+        res.json(dbUser)
+    })
+})
+
 
 module.exports = router;

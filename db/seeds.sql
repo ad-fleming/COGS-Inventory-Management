@@ -1,16 +1,10 @@
-DROP DATABASE IF EXISTS cogs_db;
-
-CREATE DATABASE cogs_db;
-
-USE cogs_db;
-
 create table users (
 id INTEGER auto_increment NOT NULL,
 account_name varchar(100),
 email varchar(100),
 name varchar(100),
 password varchar(100),
-items_id int,
+ItemId int,
 PRIMARY KEY (id)
 );
 
@@ -28,17 +22,17 @@ unit_par int,
 items_per_unit INT,
 item_count_type VARCHAR(100),
 item_count_par INT,
+unit_count integer,
+item_count integer,
+total_value integer,
 InventoryId INT,
 PRIMARY KEY (id)
 );
 
 CREATE TABLE inventories (
   id INTEGER auto_increment NOT NULL, 
-  unit_count integer,
-  item_count integer,
-  total_value integer,
   inventory_date date,
-  ItemId int,
+  UserId int,
   PRIMARY KEY (id)
 );
 
@@ -60,28 +54,17 @@ SELECT * FROM items;
 SELECT * FROM inventories;
 
 -- SEED DATA FOR ITEMS  
-INSERT INTO items (unit_name, unit_category, unit_distributor, unit_price, unit_par, items_per_unit, item_count_type, item_count_par) 
-VALUES ("golden apples", "produce", "luckys produce", 55,  1, 88, "individual", 20), 
-("jack daniels", "liquor", "drink and smoke bev", 64,  1, 12, "individual", 5),
- ("dukes mayonnaise", "condiments", "luckys produce", 24, 1, 4, "individual", 1),
- ("marlboro reds", "tobacco", "drink and smoke bev", 30, 1, 10, "individual", 4),
-("sani clean", "condiments", "chem club", 120, 1, 4, "individual", 1),
-("santa muerta candles", "housewares", "marias candles", 40, 1, 10, "individual", 1);
+INSERT INTO items (unit_name, unit_category, unit_distributor, unit_price, unit_par, items_per_unit, item_count_type, item_count_par, InventoryId, unit_count, item_count, total_value) 
+VALUES ("golden apples", "produce", "luckys produce", 55,  1, 88, "individual", 20, 1, 2, 40, 800), 
+("jack daniels", "liquor", "drink and smoke bev", 64,  1, 12, "individual", 5, 2, 1, 40, 800),
+ ("dukes mayonnaise", "condiments", "luckys produce", 24, 1, 4, "individual", 1, 1, 2, 40, 800),
+ ("marlboro reds", "tobacco", "drink and smoke bev", 30, 1, 10, "individual", 4, 1, 2, 40, 700),
+("sani clean", "condiments", "chem club", 120, 1, 4, "individual", 1, 1, 2, 40, 800),
+("santa muerta candles", "housewares", "marias candles", 40, 1, 10, "individual", 1, 1, 2, 40, 650);
 
 -- SEED DATA FOR ITEMS  for inventory week 1
-INSERT INTO inventories (unit_count, item_count, total_value, inventory_date, UserId) 
-VALUES (1, 20, 1000, "2020-12-10", 1),
-(2, 5, 500, "2020-12-10", 1),
-(0, 3, 1000, "2020-12-10", 1), 
-(1, 1, 400, "2020-12-10", 1),
-(1, 0, 120, "2020-12-10", 1), 
-(0, 20, 200, "2020-12-10", 1);
+INSERT INTO inventories (inventory_date, UserId) 
+VALUES ("2020-12-10", 1), ("2020-12-17", 1);
 
--- SEED DATA FOR ITEMS  for inventory week 2
-INSERT INTO inventories (unit_count, item_count, total_value, inventory_date, UserId) 
-VALUES (1, 20, 1000, "2020-12-17", 1),
-(2, 5, 500, "2020-12-17", 1),
-(0, 3, 1000, "2020-12-17", 1), 
-(1, 1, 400, "2020-12-17", 1),
-(1, 0, 120, "2020-12-17", 1), 
-(0, 20, 200, "2020-12-17", 1);
+SELECT * FROM items
+WHERE items.InventoryId = 1;
