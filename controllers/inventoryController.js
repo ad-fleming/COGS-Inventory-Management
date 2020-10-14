@@ -32,17 +32,17 @@ router.get("/inventory/:id", (req,res)=>{
     })
 })
 
-router.post ("api/inventories", (req,res)=>{
+router.post ("api/inventory", (req,res)=>{
     db.Inventory.create({
-      unit_count: req.body.unit_count,
-      item_count: req.body.item_count,
-      total_value:req.body.total_value,
       inventory_date: req.body.inventory_date,
       UserId: req.body.UserId  
     })
     .then((inventory)=>{
         console.log(inventory);
         res.json(inventory);
+    })
+    .catch((err)=>{
+        console.log(err)
     })
 })
 
