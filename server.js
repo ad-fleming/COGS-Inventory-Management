@@ -38,6 +38,10 @@ app.get("/", (req, res) =>  {
   res.render("index");
 });
 
+app.get("/newuser", (req, res) =>  {
+  res.render("newuser");
+});
+
 app.use(userController);
 app.use(itemController);
 app.use(inventoryController);
