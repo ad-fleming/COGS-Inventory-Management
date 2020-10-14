@@ -35,7 +35,7 @@ module.exports = function(sequelize, Datatypes){
             allowNull: false
         },
         UserId: {
-            type: Sequelize.INTEGER,
+            type: Datatypes.INTEGER,
             allowNull: true},
         // inventory_id: {
         //     type: Sequelize.INTEGER,
