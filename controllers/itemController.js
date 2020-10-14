@@ -10,6 +10,7 @@ router.get("/items", (req,res)  =>  {
     }) 
 });
 
+
 router.get("/items/:id", (req, res) =>  {
     res.render("one-item")
 })
@@ -23,6 +24,57 @@ router.get("/items/new", (req, res) =>  {
 })
 
 // API ROUTES
+
+router.get("/api/items", (req,res)=>{
+    db.Item.findAll({})
+        .then((items)=>{
+            console.log(items);
+            res.json(items);
+        })
+        .catch((err)=>{
+            console.log(err);
+            res.json({
+                message: "Issue finding all items",
+                success:false
+            })
+        })
+})
+
+router.get("/api/items/:id", (req,res)=>{
+    db.Item.findAll({
+        where: {
+            UserId: req.params.id
+        }
+    }).then((userItems)=>{
+        console.log(userItems);
+        res.json(userItems)
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.json({
+            message: "error trying to find user items",
+            success:false
+        })
+    })
+})
+
+router.get("/api/items/:id", (req,res)=>{
+    db.Item.findAll({
+        where: {
+            id: req.params.id
+        }
+    }).then((singleItem)=>{
+        console.log(singleItem);
+        res.json(singleItem)
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.json({
+            message: "error trying to find single item",
+            success:false
+        })
+    })
+})
 
 router.post("/api/items", (req, res)    =>  {
     const newItem = {
