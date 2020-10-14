@@ -25,19 +25,27 @@ router.get("/items/new", (req, res) =>  {
 // API ROUTES
 
 router.post("/api/items", (req, res)    =>  {
-    db.Item.create(req.body).then(newItem   =>  {
-        res.json({
-            error: false,
-            data: newItem,
-            message: "You created a new item!"
+    const newItem = {
+        unit_name: req.body.unit_name,
+        unit_category: req.body.unit_category,
+        unit_distributor: req.body.unit_distributor,
+        unit_price: req.body.unit_price,
+        unit_par: req.body.unit_par,
+        items_per_unit: req.body.items_per_unit,
+        item_count_type: req.body.item_count_type,
+        item_count_par: req.body.item_count_par,
+    }
+    db.Item.create(newItem)
+        .then((newItem)=>{
+            console.log(newItem);
+            res.json({
+                message: "created new item",
+                success: true
+            })
         })
-    }).catch((err)  =>  {
-        res.status(500).json({
-            error: true,
-            data: err,
-            message:"You did not create an item! LOSER!"
-        })  
-    })
+        .catch((err)=>{
+            console.log(err);
+        })
 })
 
 module.exports = router;
