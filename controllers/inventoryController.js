@@ -24,8 +24,24 @@ const db = require ("../models");
 
 
 // GET INVENTORIES BY USER
+
+router.get("/api/inventory", (req,res)=>{
+    db.Inventory.findAll({})
+    .then((inventories)=>{
+        console.log(inventories);
+        res.json(inventories);
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.json({
+            message: "issue getting all inventories",
+            success:false
+        })
+    })
+})
+
 router.get("/api/inventory/:id", (req,res)=>{
-    db.inventory.findAll({
+    db.Inventory.findAll({
         where:{
             UserId: req.params.id
         }
