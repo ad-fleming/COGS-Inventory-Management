@@ -20,8 +20,9 @@ const db = require ("../models");
 //     })
 // })
 
-router.get("/inventory/:id", (req,res)=>{
-    db.inventory.findOne({
+// GET INVENTORIES BY USER
+router.get("api/inventory/:id", (req,res)=>{
+    db.inventory.findAll({
         where:{
             UserId: req.params.id
         }
@@ -29,6 +30,9 @@ router.get("/inventory/:id", (req,res)=>{
     .then((inventory)=>{
         console.log(inventory);
         res.json(inventory);
+    })
+    .catch((err)=>{
+        console.log(err);
     })
 })
 
