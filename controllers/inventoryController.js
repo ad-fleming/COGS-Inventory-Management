@@ -6,25 +6,7 @@ const db = require ("../models");
 
 
 // API ROUTES =====================
-
-// router.get("/inventory/:id", (req,res)=>{
-//     db.inventory.findOne({
-//         include: db.User,
-//         where:{
-//             userID: req.params.id
-//         }
-//     })
-//     .then((inventory)=>{
-//         console.log(inventory);
-//         res.json(inventory);
-//     })
-// })
-
-// Get
-
-
-// GET INVENTORIES BY USER
-
+// GET ALL Inventories 
 router.get("/api/inventory", (req,res)=>{
     db.Inventory.findAll({})
     .then((inventories)=>{
@@ -40,15 +22,29 @@ router.get("/api/inventory", (req,res)=>{
     })
 })
 
+// GET AN INVENTORY BASED ON ID
+
 router.get("/api/inventory/:id", (req,res)=>{
+    db.Inventory.findOne({
+        where:{
+            id: req.params.id
+        }
+    }).then((specificInventory)=>{
+        console.log(specificInventory);
+        res.json(specificInventory)
+    })
+})
+
+// GET ALL INVENTORIES FOR A PARTICULAR USER
+router.get("/api/inventory/user/:id", (req,res)=>{
     db.Inventory.findAll({
         where:{
             UserId: req.params.id
         }
     })
-    .then((inventory)=>{
-        console.log(inventory);
-        res.json(inventory);
+    .then((userInventory)=>{
+        console.log(userInventory);
+        res.json(userInventory);
     })
     .catch((err)=>{
         console.log(err);
@@ -70,5 +66,48 @@ router.post ("/api/inventory", (req,res)=>{
         console.log(err)
     })
 })
+
+
+router.put("/api/inventory", (req,res)=>{
+    db.Inventory.update(
+        req.body,
+        {
+            where: {
+                id: req.body.id
+            }
+        }).then((updatedInventory)=>{
+            console.log(updatedInventory);
+            res.json({
+                message: "Successfully updated inventory",
+                success: true
+            })
+        }).catch((err)=>{
+            console.log(err);
+            res.json({
+                message: "Issue updating inventory",
+                success: false
+            })
+        })
+})
+
+
+router.delete("/api/inventory/:id", (req,res)=>{
+    db.Inventory.destroy({
+        where:{
+            id: req.params.id
+        }
+    }).then((inventory)=>{
+        res.json(inventory)
+    }).catch((err)=>{
+        console.log(err)
+        res.json({
+            message: "Issue deleting Inventory",
+            success: false
+        })
+    })
+});
+
+
+
 
 module.exports = router;
