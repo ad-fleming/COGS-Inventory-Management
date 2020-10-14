@@ -113,10 +113,16 @@ router.put("/api/items", (req,res)=>{
             }
         })
         .then((updatedItem)=>{
-            console.log("Successfully updated item");
+            console.log(updatedItem);
             res.json({
                 message: `Successfully updated item`,
                 success: true
+            })
+        }).catch((err)=>{
+            console.log(err);
+            res.json({
+                message: "Issue updating item",
+                success: false
             })
         })
 })
@@ -134,8 +140,11 @@ router.delete("/api/items/:id", (req, res)=>{
         res.json(item)
     }).catch((err)=>{
         console.log(err);
+        res.json({
+            message: "Issue deleting Item"
+        })
     })
-})
+});
 
 
 
