@@ -7,7 +7,7 @@ const db = require ("../models");
 router.get("/user", (req, res)  =>  {
     db.User.findAll().then(allUsers =>  {
         
-        res.render(`all-users`);
+        res.render('all-users');
     })
 })
 
@@ -26,7 +26,22 @@ router.get("user/new", (req, res)   =>  {
 // API ROUTES
 
 // FIND A SPECIFIC USER
-router.get("/api/users", (req,res)=>{
+
+router.get("/api/users/", (req,res)=>{
+    db.User.findAll()
+    .then((allUsers)=>{
+        console.log(allUsers);
+        res.json({
+            users: allUsers,
+            message:"found specific user",
+            success: true,
+        })
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
+
+router.get("/api/users/:id", (req,res)=>{
     db.User.findOne({
         where:{
             id: req.body.id
