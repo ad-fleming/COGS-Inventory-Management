@@ -34,9 +34,6 @@ module.exports = function(sequelize, Datatypes){
             type: Datatypes.INTEGER,
             allowNull: false
         },
-        UserId: {
-            type: Datatypes.INTEGER,
-            allowNull: true},
         // inventory_id: {
         //     type: Sequelize.INTEGER,
         //     allowNull: true},
@@ -44,12 +41,9 @@ module.exports = function(sequelize, Datatypes){
         timestamps: false,            // CAN REMOVE once not using seed data
     });
     Item.associate = function (models){
-        Item.hasMany(models.Inventory_item), 
-        Item.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false,
-            }
-        })
+        Item.belongsTo(models.Inventory, {
+            through: models.User
+        }) 
     }
     return Item
 }

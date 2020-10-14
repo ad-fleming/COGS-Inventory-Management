@@ -90,8 +90,4 @@ FROM items
 JOIN inventory_items AS inventory
 WHERE inventory.items_id = items.id 
 AND inventory.inventory_date = "2020-12-10"
-<<<<<<< HEAD
 AND items.users_id = 1;
-=======
-AND items.users_id = 1;
->>>>>>> 264d9b60a69ab24ed57cbc22be733682d0fc6e89

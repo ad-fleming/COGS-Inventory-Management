@@ -12,14 +12,11 @@ module.exports = function(sequelize, Datatypes){
     password: {
         type: Datatypes.STRING,
         allowNull: false},
-    inventory_id: {
-        type: Datatypes.INTEGER,
-        allowNull: true},
     },{
         timestamps: false,            
     });
     User.associate = function (models){
-        User.hasOne(models.Item, {
+        User.hasMany(models.Inventory, {
             onDelete: "Cascade"
         });
     }
