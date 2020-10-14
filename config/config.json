@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "1087",
-=======
-    "password": "password",
->>>>>>> 08fe48c0637e355f226dbbc791c901960be387a0
     "database": "cogs_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
