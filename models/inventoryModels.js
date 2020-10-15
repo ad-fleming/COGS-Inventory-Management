@@ -3,7 +3,7 @@ module.exports = function(sequelize, Datatypes){
 
     const Inventory = sequelize.define("Inventory",  {
         inventory_date:{               // possibly replace with measurement?
-            type: Datatypes.DATE,
+            type: Datatypes.DATEONLY,
             allowNull: false
         },
         // items_id:{               

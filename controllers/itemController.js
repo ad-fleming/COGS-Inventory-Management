@@ -57,8 +57,6 @@ router.get("/items/user/inventory/:id", (req,res)=>{
         })
     })
 })
-    
-
 
 // API ROUTES
 // FIND ALL ITEMS IN THE DATABASE

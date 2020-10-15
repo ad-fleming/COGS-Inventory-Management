@@ -9,20 +9,20 @@
             simply gaze in wonder at the awesome things you have! Editing this sheet will not impact previous inventories, because magic.</p> 
       
         {{#with masterInventory}}
-        {{[0].dataValues.Inventory.dataValues.inventory_date}}
+        <p>{{[0].dataValues.Inventory.dataValues.inventory_date}}</p>
         {{/with}}
 
         <form class="white-text logo-push">    
         
         {{#each masterInventory}}
-            {{!-- <p>Item Id:</p>  --}}
-            <div class="row section">
-            <div class="col s4 l4">
-            <h4 class="" data-attribute={{id}}> {{unit_name}} </h4> 
-            <h5>{{unit_category}}</h5>
-            <h5>{{unit_distributor}}</h5>
-            {{!-- {{Inventory.inventory_date}} --}}
-            </div>
+        {{!-- <p>Item Id:</p>  --}}
+        <div class="row section">
+        <div class="col s4 l4">
+        <h4 class="" data-attribute={{id}}> {{unit_name}} </h4> 
+        <h5>{{unit_category}}</h5>
+        <h5>{{unit_distributor}}</h5>
+        {{!-- {{Inventory.inventory_date}} --}}
+        </div>
             
             <div class="col s4 l4">
             <p>Unit Par:</p>
