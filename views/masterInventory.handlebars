@@ -1,22 +1,23 @@
 
 <div class="row center-content">
-    <div class="col s1 hide-on-small-only"> </div>
     <div class="col s12 m12">
       <div class="card grey darken-4 section">
         <div class="card-content white-text">
-          <span class="card-title"><h2>COGS</h2></span>
-          <p class="section">This your MAIN item sheet that contains all of your inventory items. You can edit any of the fields if they need updating, delete by line or
-            simply gaze in wonder at the awesome things you have! Editing this sheet will not impact previous inventories, because magic.</p> 
-      
-        {{#with masterInventory}}
-        <p>{{[0].dataValues.Inventory.dataValues.inventory_date}}</p>
-        {{/with}}
-
+        <span class="card-title">
+        <h2>Main Item Sheet</h2>
+       </span>
+        <div class="row">
+        <div class="col l12 s12">
+        <p class="section">This your MAIN item sheet that contains all of your inventory items. You can edit any of the fields if they need updating, delete by line or
+          simply gaze in wonder at the awesome things you have! Editing this sheet will not impact previous inventories, because magic.</p> 
+    
+  </div>
+    </div>
         <form class="white-text logo-push">    
         
         {{#each masterInventory}}
         {{!-- <p>Item Id:</p>  --}}
-        <div class="row section">
+        <div class="row section form-section">
         <div class="col s4 l4">
         <h4 class="" data-attribute={{id}}> {{unit_name}} </h4> 
         <h5>{{unit_category}}</h5>
