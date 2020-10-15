@@ -4,18 +4,21 @@ const db = require ("../models");
 
 
 // RENDERS FOR USER
-// router.get("/users", function(req,res){
-//     db.User.findAll()
-//     .then((users)=>{
-//         console.log(users);
-//         res.render("newUser", {users})
-//     })
-//     .catch((err)=>{
-//         console.log(err);
-//     })
-// })
 
-router.get("/users/:id", (req,res)=>{
+// IF WE WANT TO DISPLAY ALL USERS 
+router.get("/users", function(req,res){
+    db.User.findAll()
+    .then((users)=>{
+        console.log(users);
+        res.render("#", {users})
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+
+// DISPLAYS A PARTICULAR User's info to the newUser.handlebars file
+router.get("/users/welcome/:id", (req,res)=>{
     db.User.findOne({
         where:{
             id: req.params.id
@@ -27,12 +30,15 @@ router.get("/users/:id", (req,res)=>{
     })
 })
 
-router.get("/user/:id/edit",    (req, res)  =>  {
-    res.render("edit-user");
-})
-
-router.get("user/new", (req, res)   =>  {
-    res.render("new-user")
+// ROUTE CAN BE HOOKED UP TO USER ACCOUNT EDIT PAGE
+router.get("/user/edit/:id",    (req, res)  =>  {
+    db.User.findOne({
+        where:{
+            id: req.params.id
+        }
+    }).then((user)=>{
+        res.render("#", {user})
+    })
 })
 
 // API ROUTES
