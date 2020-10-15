@@ -3,33 +3,28 @@ const router = express.Router();
 const db = require ("../models");
 
 
-
-
-
-
-
 // RENDERS FOR USER
-router.get("/user", (req, res)  =>  {
-    db.User.findAll({})
-    .then((userData)=>{
-        var hbsObject = {
-            User =  userData
-        }
-        res.render("all-users", hbsObject)
-    })
-})
+// router.get("/users", function(req,res){
+//     db.User.findAll()
+//     .then((users)=>{
+//         console.log(users);
+//         res.render("newUser", {users})
+//     })
+//     .catch((err)=>{
+//         console.log(err);
+//     })
+// })
 
-router.get("/user/:id", (req, res)  =>  {
-    db.User.findAll({
+router.get("/users/:id", (req,res)=>{
+    db.User.findOne({
         where:{
             id: req.params.id
         }
-    }).then ((singleUserData)=>{
-        var hbsObject = {
-            User = singleUserData
-        }
+    }).then((user)=>{
+        res.render("newUser", {user})
+    }).catch((err)=>{
+        console.log(err)
     })
-    res.render("one-user", hbsObject)
 })
 
 router.get("/user/:id/edit",    (req, res)  =>  {
