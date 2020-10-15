@@ -7,10 +7,25 @@
     "items_per_unit": 24,
     "item_count_type": "individual",
     "item_count_par": 0,
-    "unit-par": 1,
+    "unit_count": 1,
     "item_count": 5,
-    "total_value": 68 
-    },
+    "total_value": 68, 
+    "InventoryId": 2 
+    }
+    {
+        "unit_name": "Milk",
+        "unit_category": "Produce",
+        "unit_distributor": "King Canales' Culinary Curiosities",
+        "unit_price": 46,
+        "unit_par": "1.00",
+        "items_per_unit": 24,
+        "item_count_type": "individual",
+        "item_count_par": 0,
+        "unit_count": 2,
+        "item_count": 13,
+        "total_value": 260,
+        "InventoryId": 3
+    }
 {
         "unit_name": "Budlight",
         "unit_category": "Beer",
@@ -20,9 +35,10 @@
         "items_per_unit": 24,
         "item_count_type": "individual",
         "item_count_par": 0,
-        "unit-par": 4,
+        "unit_count": 4,
         "item_count": 13,
-        "total_value": 260 
+        "total_value": 260, 
+        "InventoryId": 3 
         },
 {
     "unit_name": "Golden Apples",
@@ -33,9 +49,10 @@
     "items_per_unit": 88,
     "item_count_type": "individual",
     "item_count_par": 48,
-    "unit-par": 3,
+    "unit_count": 3,
     "item_count": 20,
-    "total_value": 250 
+    "total_value": 250, 
+    "InventoryId": 1
     },
 {
     "unit_name": "Marschino Cherries",
@@ -46,7 +63,21 @@
     "items_per_unit": 1,
     "item_count_type": "individual",
     "item_count_par": 10,
-    "unit-par": 4,
+    "unit_count": 4,
     "item_count": 0,
-    "total_value": 800 
+    "total_value": 800, 
+    "InventoryId": 2
     },
+
+    {
+        "inventory_date": "2020-10-17",
+        "UserId": 2
+    }
+    {
+        "inventory_date": "2020-10-24",
+        "UserId": 2
+    }
+    {
+        "inventory_date": "2020-10-10",
+        "UserId": 2
+    }

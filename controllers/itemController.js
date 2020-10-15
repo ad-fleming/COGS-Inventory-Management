@@ -28,7 +28,6 @@ router.get("/items/edit/:id",   (req,res)   =>  {
         where: {
             id: req.params.id
         }
-        
     }).then((item)=>{
         res.render("#", {
             item,
@@ -50,21 +49,18 @@ router.get("/items/user/inventory/:id", (req,res)=>{
                 model: db.Inventory, 
             }
         ]
-        // NEED TO FIND A WAY TO JOIN INVENTORY DATE HERE
     })
-    .then((weeklyInventoryItems)=>{
+    .then((masterInventory)=>{
         // res.json(weeklyInventoryItems)
-        res.render("weeklyInventoryItems",{
-            weeklyInventoryItems
+        res.render("masterInventory",{
+            masterInventory
         })
-        // res.render("weeklyInventoryItems", {weeklyInventoryItems})
     })
 })
     
 
 
 // API ROUTES
-
 // FIND ALL ITEMS IN THE DATABASE
 router.get(`/api/items`, (req, res) => 
     db.Item.findAll()

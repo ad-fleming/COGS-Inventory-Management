@@ -46,6 +46,10 @@ app.get("/newUser", (req, res) =>  {
   res.render("newUser");
 });
 
+app.get("/newItem", (req, res) =>  {
+  res.render("newUser");
+});
+
 app.use(userController);
 app.use(itemController);
 app.use(inventoryController);
