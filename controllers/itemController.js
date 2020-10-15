@@ -47,7 +47,7 @@ router.get("/items/user/inventory/:id", (req,res)=>{
         include:[
             {
                 model: db.Inventory, 
-            }
+            },
         ]
     })
     .then((masterInventory)=>{
