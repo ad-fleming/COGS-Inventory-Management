@@ -44,12 +44,20 @@ router.get("/items/user/inventory/:id", (req,res)=>{
     db.Item.findAll({
         where: {
             InventoryId: req.params.id
-        }
+        },
+        include:[
+            {
+                model: db.Inventory, 
+            }
+        ]
         // NEED TO FIND A WAY TO JOIN INVENTORY DATE HERE
     })
     .then((weeklyInventoryItems)=>{
-        console.log(weeklyInventoryItems);
-        res.render("weeklyInventoryItems", {weeklyInventoryItems})
+        // res.json(weeklyInventoryItems)
+        res.render("weeklyInventoryItems",{
+            weeklyInventoryItems
+        })
+        // res.render("weeklyInventoryItems", {weeklyInventoryItems})
     })
 })
     
