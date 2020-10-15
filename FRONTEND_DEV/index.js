@@ -18,4 +18,18 @@ $("#loginButton").on("click", function(event) {
       
         console.log(user);})
 
-        
+
+        $("#submitButton").on("click", function(event) {
+            event.preventDefault();
+
+            var loginInfo = {
+                Name: $("#name").val().trim(),
+                Account_Name: $("#account-name").val().trim(),
+                Email: $("#email").val().trim(),
+                Password: $("#password").val().trim(),
+                
+              };
+            
+              console.log(loginInfo);
+
+            })
