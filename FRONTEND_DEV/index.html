@@ -7,49 +7,69 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>COGS-Inventory-Management</title>
+        <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-    type="text/css" />
-    <link rel="stylesheet" href="./style.css/COGS.css">
-   
+        <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </head>
     <body>
-    <div class="ui fixed menu">
-    <div class="ui container">
-        <a class="item theFont header" id="homePage">COGS-Inventory-Management</a>
-        <a class="item theFont right aligned" id="About">About</a>
-        <a class="item theFont" id="Inventory">Inventory</a>
-        <a class="item theFont" id="COGS">COGS</a>
-        <a class="item theFont" id="Account">Account</a>
-      </div>
-    </div>
+     
+        <!-- NAV BAR -->
+        <nav>
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo">COGS-Inventory-Management</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="about.html">About</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="email.html">Email</a></li>
+                <li><a href="account.html">Password</a></li>
+              </ul>
+            </div>
+          </nav>
+                
 
-    <div class="ui main text container">
-        <div class="center align">
-    <div class="ui sizer vertical segment" id="head-align">
-        <div class="ui huge header">COGS-Inventory-Management</div>
-        <p></p>
-      
-         
-          <form id="inventoryForm">
+
+
+          <div class="container">
+        <!-- TEXT INPUTS -->
+        <div class="row">
+            <form class="col s12">
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="accountName" type="password" class="validate">
+                <label for="accountName">Account Name</label>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="first_name" type="text" class="validate">
+                  <label for="first_name">Name</label>
+                </div>
+              
+              </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="email" type="email" class="validate">
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="password" type="password" class="validate">
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              
+              
+                </div>
+              
         
-          <div class="ui fluid action input huge">
-            <p1>
-            <button class="ui button huge" type= "submit" id="loginButton">Login</button>
-        </p1>
-        <p2>
-            <button class="ui button huge" type= "submit" id="userButton">New User</button>
-            </p2>
-          </div>
-          </form>
-        </div>
-        </div>
-        </div>
-      
-
-      
         
         <script src="" async defer></script>
     </body>
