@@ -4,24 +4,64 @@ const db = require ("../models");
 
 // ROUTES FOR ITEMS
 
+// IF WE WANT TO DISPLAY ALL ITEMS IN DATABASE
 router.get("/items", (req,res)  =>  {
-    db.Item.findAll().then(allItems =>  {
-        res.render("all-items")
+    db.Item.findAll().then(items =>  {
+        res.render("#", {items})
     }) 
 });
 
-
+// IF WE WANT TO DISPLAY A PARTICULAR ITEM IN THE MAIN ITEM TABLE
 router.get("/items/:id", (req, res) =>  {
-    res.render("one-item")
+    db.Item.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then((item)=>{
+        res.render("#", {item})
+    })
 })
 
-router.get("/items/:id/edit",   (req,res)   =>  {
-    res.render("edit-item");
+// IF WE WANT TO DISPLAY AN EDIT PAGE FOR A PARTICULAR ITEM IN THE MAIN ITEM TABLE
+router.get("/items/edit/:id",   (req,res)   =>  {
+    db.Item.findOne({
+        where: {
+            id: req.params.id
+        }
+        
+    }).then((item)=>{
+        res.render("#", {
+            item,
+            inventory: item.inventory[req.params.id]
+        }
+        );
+    })
+    
 });
 
-router.get("/items/new", (req, res) =>  {
-    res.render("new-item")
+// DISPLAY A USER'S ITEMS BY INVENTORY NUMBER (SHOW THEM THAT WEEK'S INVENTORY)
+router.get("/items/user/inventory/:id", (req,res)=>{
+    db.Item.findAll({
+        where: {
+            InventoryId: req.params.id
+        },
+        include:[
+            {
+                model: db.Inventory, 
+            }
+        ]
+        // NEED TO FIND A WAY TO JOIN INVENTORY DATE HERE
+    })
+    .then((weeklyInventoryItems)=>{
+        // res.json(weeklyInventoryItems)
+        res.render("weeklyInventoryItems",{
+            weeklyInventoryItems
+        })
+        // res.render("weeklyInventoryItems", {weeklyInventoryItems})
+    })
 })
+    
+
 
 // API ROUTES
 
@@ -102,7 +142,6 @@ router.post("/api/items", (req, res)    =>  {
             console.log(err);
         })
 })
-
 
 router.put("/api/items", (req,res)=>{
     db.Item.update(

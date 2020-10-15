@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require ("../models");
 
+<<<<<<< HEAD
 // RENDERS FOR USER
 router.get("/user", (req, res)  =>  {
     db.User.findAll({})
@@ -11,28 +12,52 @@ router.get("/user", (req, res)  =>  {
         }
         console.log(hbsObject)
         res.render("newUser", hbsObject)
+=======
+
+// RENDERS FOR USER
+
+// IF WE WANT TO DISPLAY ALL USERS 
+router.get("/users", function(req,res){
+    db.User.findAll()
+    .then((users)=>{
+        console.log(users);
+        res.render("#", {users})
+    })
+    .catch((err)=>{
+        console.log(err);
+>>>>>>> e73db548651ec977d6a1b4b54d10b39ecb58e1c6
     })
 })
 
-router.get("/user/:id", (req, res)  =>  {
-    db.User.findAll({
+// DISPLAYS A PARTICULAR User's info to the newUser.handlebars file
+router.get("/users/welcome/:id", (req,res)=>{
+    db.User.findOne({
         where:{
             id: req.params.id
         }
+<<<<<<< HEAD
     }).then ((singleUserData)=>{
         var hbsObject = {
             User: singleUserData
         }
+=======
+    }).then((user)=>{
+        res.render("newUser", {user})
+    }).catch((err)=>{
+        console.log(err)
+>>>>>>> e73db548651ec977d6a1b4b54d10b39ecb58e1c6
     })
-    res.render("one-user", hbsObject)
 })
 
-router.get("/user/:id/edit",    (req, res)  =>  {
-    res.render("edit-user");
-})
-
-router.get("user/new", (req, res)   =>  {
-    res.render("new-user")
+// ROUTE CAN BE HOOKED UP TO USER ACCOUNT EDIT PAGE
+router.get("/user/edit/:id",    (req, res)  =>  {
+    db.User.findOne({
+        where:{
+            id: req.params.id
+        }
+    }).then((user)=>{
+        res.render("#", {user})
+    })
 })
 
 // API ROUTES
