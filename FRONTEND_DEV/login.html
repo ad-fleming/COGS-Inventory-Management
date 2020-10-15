@@ -8,9 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"type="text/css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>    
-          <link rel="stylesheet" href="./style.css/styles.css" media="screen" title="no title">
-          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="./style.css/styles.css" media="screen" title="no title">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <body>
   <nav>
     <div class="nav-wrapper grey darken-4 white-text">
@@ -34,19 +33,25 @@
               <div class="card grey darken-4 section">
                 <div class="card-content white-text">
                   <span class="card-title"><h2>COGS</h2></span>
-                  <p class="section">The world is an uncertain place, but your inventory and sales tracking doesn't have to be, regardless of your size. COGS is a business inventory management system that will meet you exactly where you are and deliver results!</p>
-                  <p class="section">Use our customizable inventory database to help your business thrive.</p>
+                  <p class="section">Please enter in your account information below.</p>
                 </div>
+                <form class="white-text logo-push" id="login-form">
+                    <p>Name:</p>
+                    <input class="white-text" type="text" id="name">
+                    <p>Account Name:</p>
+                    <input class="white-text" type="text" id="account-name">
+                    <p>Email:</p>
+                    <input class="white-text" type="text" id="email">
+                    <p>Password:</p>
+                    <input class="white-text" type="text" id="password">
+                       </form>
                       <div class="row"> 
-                          <div class="col s6 section"> </div>
-                          <div class="col s3">
-                            <button class="ui button lime accent-2 right" type= "submit" id="loginButton"><p>Login</p></button>
+                          <div class="col s5 l5 section"> </div>
+                          <div class="col s3 l3">
+                            <button class="ui button lime accent-2 right l12" type= "submit" id="submitButton"><p>Submit</p></button>
                           </div>
-                      <div class="col s3"> 
-                          <button class="ui button lime accent-2 right" type= "submit" id="userButton">
-                            <p class="black-font">New User</p>
-                            </button>
-                        </div>
+                     
+                       <div class="col s1 l1"></div>  
                      </div>
                   </div>
                   </div>
