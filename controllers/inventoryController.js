@@ -2,8 +2,36 @@ const express = require("express");
 const router = express.Router();
 const db = require ("../models");
 
+// IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
+router.get("/inventory", (req,res)=>{
+    db.Inventory.findAll()
+    .then((inventories)=>{
+        res.render("#", {inventories})
+    })
+})
 
+// IF WE WANT TO DISPY
+router.get("/inventory/:id", (req,res)=>{
+    db.Inventory.findOne({
+        where:{
+            id: req.params.id
+        }
+    }).then((inventory)=>{
+        res.render("#", {inventory})
+    })
+})
 
+// FOR DISPLAYING ALL INVENTORIES OF A GIVEN USER
+
+router.get("/inventory/user/:id", (req,res)=>{
+    db.Inventory.findAll({
+        where:{
+            UserId: req.params.id
+        }
+    }).then((inventories)=>{
+        res.render("#", {inventories})
+    })
+})
 
 // API ROUTES =====================
 // GET ALL Inventories 
