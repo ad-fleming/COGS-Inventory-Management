@@ -6,10 +6,11 @@
         <div class="card-content white-text">
           <span class="card-title"><h2>COGS</h2></span>
           <p class="section">This your MAIN item sheet that contains all of your inventory items. You can edit any of the fields if they need updating, delete by line or
-            simply gaze in wonder at the awesome things you have! Editing this sheet will not impact previous inventories, because magic.</p> 
-        {{log this}}
+            simply gaze in wonder at the awesome things you have! Editing this sheet will not impact previous inventories, because magic.
+             {{masterInventory}}</p> 
+      
         <form class="white-text logo-push">    
-        {{masterInventory.Inventory.inventory_date}}
+
         {{#each masterInventory}}
             {{!-- <p>Item Id:</p>  --}}
             <div class="row section">
