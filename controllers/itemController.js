@@ -38,16 +38,16 @@ router.get("/items/edit/:id",   (req,res)   =>  {
     
 });
 
-// DISPLAY A USER'S ITEMS BY INVENTORY NUMBER (SHOW THEM THAT WEEK'S INVENTORY)
-router.get("/items/user/inventory/:id", (req,res)=>{
+// DISPLAY A USER'S PRIMARY INVENTORY
+router.get("/maininventory", (req,res)=>{
     db.Item.findAll({
         where: {
-            InventoryId: req.params.id
+            InventoryId: 1
         },
         include:[
             {
                 model: db.Inventory, 
-            },
+            }
         ]
     })
     .then((masterInventory)=>{
@@ -57,6 +57,28 @@ router.get("/items/user/inventory/:id", (req,res)=>{
         })
     })
 })
+
+// DISPLAY A USER'S INVENTORY BASED ON ID
+router.get("/inventory/:id", (req,res)=>{
+    db.Item.findAll({
+        where: {
+            InventoryId: 1
+        },
+        include:[
+            {
+                model: db.Inventory, 
+            }
+        ]
+    })
+    .then((masterInventory)=>{
+        // res.json(weeklyInventoryItems)
+        res.render("masterInventory",{
+            masterInventory
+        })
+    })
+})
+    
+
 
 // API ROUTES
 // FIND ALL ITEMS IN THE DATABASE
