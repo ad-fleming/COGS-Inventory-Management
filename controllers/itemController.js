@@ -58,7 +58,7 @@ router.get("/maininventory", (req,res)=>{
     })
 })
 
-// DISPLAY A USER'S SPECIFIC INVENTORY BASED ON INVENTORY ID
+// Display with EMPTY UNIT, ITEM and VALUE fields
 router.get("/newInventory", (req,res)=>{
     db.Item.findAll({
         where: {
@@ -81,7 +81,7 @@ router.get("/newInventory", (req,res)=>{
 router.get("/inventory/:id", (req,res)=>{
     db.Item.findAll({
         where: {
-            InventoryId: 1
+            InventoryId: req.params.id
         },
         include:[
             {
@@ -89,10 +89,10 @@ router.get("/inventory/:id", (req,res)=>{
             }
         ]
     })
-    .then((masterInventory)=>{
+    .then((previousInventory)=>{
         // res.json(weeklyInventoryItems)
-        res.render("masterInventory",{
-            masterInventory
+        res.render("previousInventory",{
+            previousInventory
         })
     })
 })
