@@ -10,7 +10,7 @@ const jwtSecret = "tesT_sEcrET";
 // ==============================================================================
 router.post('/api/auth', (req,res)=>{
     const {email, password} = req.body;
-
+    console.log(req.body);
     // Validation -check database for matching email and password
     if(!email || !password){
         return res.status(400).json({msg: "Please enter all fields"})
@@ -36,7 +36,8 @@ router.post('/api/auth', (req,res)=>{
                     (err, token) =>{ //<---call back function for async
                         if(err) throw err;
                         // If no Error send the token
-                        res.json({
+                        req.session.userId = user.id;
+                        res.render("newuser", {
                             token, //<----same as token: token in ES6
                             id: user.id,
                             account_name: user.account_name, 

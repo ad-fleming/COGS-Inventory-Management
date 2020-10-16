@@ -38,6 +38,8 @@ function newUserCreate(stringifiedUser)  {
         newUserCreate(stringifiedUser);
         })
 
+// LOGIN 
+      
 
         $("#newItemCreate").on("click", function(event) {
           event.preventDefault();

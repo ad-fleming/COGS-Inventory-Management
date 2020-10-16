@@ -7,7 +7,8 @@ const itemController = require("./controllers/itemController");
 const userController = require("./controllers/userController");
 const inventoryController = require("./controllers/inventoryController");
 const authController = require("./controllers/authController");
-
+const session = require("express-session")
+const {auth} = require("./middleware/auth")
 // Sets up the Express APP 
 // =======================
 
@@ -31,6 +32,12 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
+app.use(session({
+  secret: "thanksphil",
+  resave: true,
+  saveUninitialized: true
+}));
+
 // ROUTES WILL GO HERE
 // *******************
 
@@ -44,11 +51,13 @@ app.get("/newUserForm", (req, res) =>  {
 });
 
 app.get("/newUser", (req, res) =>  {
+  console.log(req.session)
   res.render("newUser");
 });
 
-app.get("/newItem", (req, res) =>  {
-  res.render("newItem");
+app.get("/newItem", auth, (req, res) =>  {
+  console.log(req.session);
+  res.render("newItem", {id: req.session.userId});
 });
 
 app.get("/login", (req, res) =>  {
