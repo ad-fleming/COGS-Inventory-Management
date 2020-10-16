@@ -47,7 +47,7 @@ app.get("/newUser", (req, res) =>  {
 });
 
 app.get("/newItem", (req, res) =>  {
-  res.render("newUser");
+  res.render("newItem");
 });
 
 app.use(userController);
