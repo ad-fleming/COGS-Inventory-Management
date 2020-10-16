@@ -1,16 +1,16 @@
-module.exports = function(sequelize, Datatypes){
+module.exports = function(sequelize, DataTypes){
     const User = sequelize.define("User",  {
     account_name: {
-        type: Datatypes.STRING,
+        type: Dataypes.STRING,
         allowNull: false},
     email: {
-        type: Datatypes.STRING,
+        type: Dataypes.STRING,
         allowNull: false},
     name: {
-        type: Datatypes.STRING,
+        type: Dataypes.STRING,
         allowNull: false},
     password: {
-        type: Datatypes.STRING,
+        type: Dataypes.STRING,
         allowNull: false},
     },{
         timestamps: false,            
