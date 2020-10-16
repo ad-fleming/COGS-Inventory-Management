@@ -42,7 +42,7 @@ router.get("/items/edit/:id",   (req,res)   =>  {
 router.get("/maininventory", (req,res)=>{
     db.Item.findAll({
         where: {
-            InventoryId: 1
+            InventoryId: 1  //ID MUST BE TARGETTED
         },
         include:[
             {
@@ -54,6 +54,25 @@ router.get("/maininventory", (req,res)=>{
         // res.json(weeklyInventoryItems)
         res.render("masterInventory",{
             masterInventory
+        })
+    })
+})
+
+// DISPLAY A USER'S SPECIFIC INVENTORY BASED ON INVENTORY ID
+router.get("/inventory/:id", (req,res)=>{
+    db.Item.findAll({
+        where: {
+            InventoryId: req.params.id  //ID MUST BE TARGETTED
+        },
+        include:[
+            {
+                model: db.Inventory, 
+            }        ]
+    })
+    .then((specificInventory)=>{
+        // res.json(weeklyInventoryItems)
+        res.render("specificInventory",{
+            specificInventory
         })
     })
 })
