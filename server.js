@@ -6,6 +6,7 @@ const {allowInsecurePrototypeAccess} = require("@handlebars/allow-prototype-acce
 const itemController = require("./controllers/itemController");
 const userController = require("./controllers/userController");
 const inventoryController = require("./controllers/inventoryController");
+const authController = require("./controllers/authController");
 
 // Sets up the Express APP 
 // =======================
@@ -57,6 +58,7 @@ app.get("/login", (req, res) =>  {
 app.use(userController);
 app.use(itemController);
 app.use(inventoryController);
+app.use(authController);
 
 // API
 app.get("/api/config",(req, res)  =>  {
