@@ -5,24 +5,37 @@ $(document ).ready(function() {
 const newUserBtn = $("#submitButton")
 
 // global functions
-function newUserCreate(newUser)  {
-  $.post("/api/auth", function(data)  {
-    alert(`data: ${data}`)
+function newUserCreate(stringifiedUser)  {
+  $.ajax({
+    url: "/api/users",
+    method: "POST",
+    data: {
+      account_name: $("#account-name").val().trim(),  
+      email: $("#email").val().trim(),
+      name: $("#name").val().trim(),
+      password: $("#password").val().trim(),
+    },  
+  }).then(function(response)  {
+    console.log(response.token);
+    let passKey = response.token;
+    localStorage.setItem("passKey", passKey)
   })
 }
+
 
 // Create New User // Tied to NewUserForm.handlebars
       newUserBtn.on("click", function(event) {
         event.preventDefault();
         const newUserInfo = {
-            Name: $("#name").val().trim(),
-            Account_Name: $("#account-name").val().trim(),
-            Email: $("#email").val().trim(),
-            Password: $("#password").val().trim(),
+            account_name: $("#account-name").val().trim(),  
+            email: $("#email").val().trim(),
+            name: $("#name").val().trim(),
+            password: $("#password").val().trim(),
           };
-        let newUser = newUserInfo;
-        console.log(newUser)
-        newUserCreate();
+        console.log(newUserInfo);
+        let stringifiedUser = JSON.stringify(newUserInfo);
+        console.log(stringifiedUser);
+        newUserCreate(stringifiedUser);
         })
 
 
