@@ -21,6 +21,10 @@ router.get("/users", function(req,res){
     })
 })
 
+// router.get("/users", function(req, res) {
+//     db.User.findAll().then()
+// })
+
 // DISPLAYS A PARTICULAR User's info to the newUser.handlebars file
 router.get("/users/welcome/:id", (req,res)=>{
     db.User.findOne({

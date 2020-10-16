@@ -1,28 +1,63 @@
+// const db = require("../../models");
+
 $(document ).ready(function() {
     console.log( "ready!" );
 
 // global variables
 const newUserBtn = $("#submitButton")
+const newItemFrm = $("#new-item-form")
 
 // global functions
+
+// CREATE A NEW USER
 function newUserCreate(stringifiedUser)  {
+  let easy = JSON.parse(stringifiedUser)
+  console.log("---------")
+  console.log(easy)
   $.ajax({
     url: "/api/users",
     method: "POST",
     data: {
       account_name: $("#account-name").val().trim(),  
-      email: $("#email").val().trim(),
       name: $("#name").val().trim(),
       password: $("#password").val().trim(),
+      email: $("#email").val().trim(),
     },  
-  }).then(function(response)  {
-    console.log(response.token);
-    let passKey = response.token;
-    localStorage.setItem("passKey", passKey)
-    location.redirect("newuser")
-  })
-}
+  }).then(function(data)  {
+    let userEmailString = (this.data)
+    console.log(userEmailString)
+    let userEmailArray = userEmailString.split("&email=")
+    console.log(userEmailArray[1])
 
+    // console.log(data + "this is what returns to me!")
+    // console.log(data.email + );
+      })
+    // .then(function(res) {
+    //   console.log(res + "   TOTALLY RES DUDE!")
+      // $.ajax({
+      //   url: "/api/inventory",
+      //   method: "POST",
+      //   data: {
+      //     UserId: res
+      //   }
+      // })
+    // })
+  
+}
+//     let passKey = response.token;
+//     localStorage.setItem("passKey", passKey);
+//     $.ajax({
+//       url: "/api/inventory",
+//       method: "POST",
+//       data: {
+//         UserId: passKey,
+//         inventory_date: "0001-01-01"
+//       }
+//     }).then(location.redirect("newuser"))
+//   })
+// }
+
+// CLICK EVENTS
 
 // Create New User // Tied to NewUserForm.handlebars
       newUserBtn.on("click", function(event) {
@@ -33,13 +68,13 @@ function newUserCreate(stringifiedUser)  {
             name: $("#name").val().trim(),
             password: $("#password").val().trim(),
           };
-        console.log(newUserInfo);
+        // console.log(newUserInfo);
         let stringifiedUser = JSON.stringify(newUserInfo);
-        console.log(stringifiedUser);
+        // console.log(stringifiedUser);
         newUserCreate(stringifiedUser);
         })
 
-// LOGIN 
+// NEW ITEM CREATE
       
 
         $("#newItemCreate").on("click", function(event) {
@@ -55,10 +90,8 @@ function newUserCreate(stringifiedUser)  {
             Item_count_type: $("#item-count-type").val().trim(),
             Item_count_par: $("#item-count-par").val().trim(),
             
-          };
-        
-          console.log(newItemForm);
-
+        };
+        console.log(newItemForm);
         })
 
         $("#Finished").on("click", function(event) {

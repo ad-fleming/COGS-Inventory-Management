@@ -6,8 +6,14 @@ const jwt = require('jsonwebtoken');
 
 const jwtSecret = "tesT_sEcrET";
 
-// ROUTES FOR ITEMS
 
+router.get("/newItem", (req, res) =>  {
+    console.log(req.session);
+    const uuid = req.session.userId;   
+    res.render("newItem", {id: req.session.userId});
+  });
+
+// ROUTES FOR ITEMS
 // IF WE WANT TO DISPLAY ALL ITEMS IN DATABASE
 router.get("/items", (req,res)  =>  {
     db.Item.findAll().then(items =>  {
