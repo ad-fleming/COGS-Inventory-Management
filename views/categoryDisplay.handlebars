@@ -1,0 +1,35 @@
+<div class="row center-content">
+    <div class="col s12 m12">
+      <div class="card grey darken-4 section">
+        <div class="card-content white-text">
+        <div class="row">
+        <div class="col l12 s12">    
+    </div>
+</div>
+        <form class="white-text logo-push">    
+            <h3 id="categoryDisplay">Categories</h3>
+            </h3>    
+            {{#each categoryDisplay}}
+            {{!-- button class needs something to make it space out better vertically --}}
+            <button class="ui button lime accent-2" data-attribute="{{id}}"><p class="black-font">{{unit_category}}</p></button> 
+            {{/each}}
+        </form>
+
+    </div>
+            <div class="row"> 
+            <div class="col s6 l6">
+            <p>Search Inventory</p>
+            <input class="input-field form-text logo-" type="text" placeholder=>
+            </div>
+
+            <div class="col s9 l8 section"> </div>      
+                <button class="ui button lime accent-2 right button-right-margin" type= "submit" id="updateInventory">
+                    <p class="black-font">Search Inventory</p>
+                    </button>
+                </div>
+              </div>
+          </div>
+        </div>
+
+    <div class="col s2 hide-on-small-only"> </div>
+  </div>

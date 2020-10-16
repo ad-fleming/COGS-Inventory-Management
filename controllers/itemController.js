@@ -58,7 +58,26 @@ router.get("/maininventory", (req,res)=>{
     })
 })
 
-// Display with EMPTY UNIT, ITEM and VALUE fields
+// DISPLAY category page
+router.get("/categoryDisplay", (req,res)=>{
+    db.Item.findAll({
+        where: {
+            InventoryId: 1  //ID MUST BE TARGETTED
+        },
+        include:[
+            {
+                model: db.Inventory, 
+            }
+        ]
+    })
+    .then((categoryDisplay)=>{
+        res.render("categoryDisplay",{
+            categoryDisplay
+        })
+    })
+})
+
+// NEW INVENTORY with EMPTY UNIT, ITEM and VALUE fields
 router.get("/newInventory", (req,res)=>{
     db.Item.findAll({
         where: {

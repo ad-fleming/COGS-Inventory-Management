@@ -48,7 +48,11 @@ app.get("/newUser", (req, res) =>  {
 });
 
 app.get("/newItem", (req, res) =>  {
-  res.render("newUser");
+  res.render("newItem");
+});
+
+app.get("/login", (req, res) =>  {
+  res.render("login");
 });
 
 app.use(userController);
