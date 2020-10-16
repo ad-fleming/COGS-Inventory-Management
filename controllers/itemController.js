@@ -59,20 +59,20 @@ router.get("/maininventory", (req,res)=>{
 })
 
 // DISPLAY A USER'S SPECIFIC INVENTORY BASED ON INVENTORY ID
-router.get("/inventory/:id", (req,res)=>{
+router.get("/newInventory", (req,res)=>{
     db.Item.findAll({
         where: {
-            InventoryId: req.params.id  //ID MUST BE TARGETTED
+            InventoryId: 1  //ID MUST BE TARGETTED
         },
         include:[
             {
                 model: db.Inventory, 
             }        ]
     })
-    .then((specificInventory)=>{
+    .then((newInventory)=>{
         // res.json(weeklyInventoryItems)
-        res.render("specificInventory",{
-            specificInventory
+        res.render("newInventory",{
+            newInventory
         })
     })
 })
