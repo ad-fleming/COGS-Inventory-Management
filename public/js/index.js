@@ -1,20 +1,30 @@
 $(document ).ready(function() {
     console.log( "ready!" );
 
-    $("#submitButton").on("click", function(event) {
+// global variables
+const newUserBtn = $("#submitButton")
+
+// global functions
+function newUserCreate(newUser)  {
+  $.get("/users", function(data, status)  {
+    alert(`data: ${data}  \n  ${status}`)
+  })
+
+// Create New User // Tied to NewUserForm.handlebars
+      newUserBtn.on("click", function(event) {
         event.preventDefault();
 
-        var loginInfo = {
+        const newUserInfo = {
             Name: $("#name").val().trim(),
             Account_Name: $("#account-name").val().trim(),
             Email: $("#email").val().trim(),
             Password: $("#password").val().trim(),
             
           };
-        
-          console.log(loginInfo);
-
+        let newUser = newUserInfo;
+        newUserCreate();
         })
+
 
         $("#newItemCreate").on("click", function(event) {
           event.preventDefault();
