@@ -4,8 +4,7 @@ const db = require ("../models");
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 
-const jwtSecret = process.env.ACCESS_TOKEN_SECRET; //TODO: MAKE SURE WITH Phil THAT THIS IS OKAY (.env file)
-
+const jwtSecret = "tesT_sEcrET";
 
 // THIS SHOULD BE THE ROUTE THAT USER'S are directed to when clicking 'LOGIN'
 // ==============================================================================
@@ -17,7 +16,11 @@ router.post('/api/auth', (req,res)=>{
         return res.status(400).json({msg: "Please enter all fields"})
     }
     // Check for existing user
-    db.User.findOne({email}) //<--TODO: THIS MIGHT HAVE TO BE CHANGED TO WHERE email: req.body.email
+    db.User.findOne({
+        where:{
+            email: req.body.email
+        }
+    }) //<--TODO: THIS MIGHT HAVE TO BE CHANGED TO WHERE email: req.body.email
         .then(user =>{
             if(!user) return res.status(400).json({msg: "User does not exist"})
             // Validate Password
@@ -45,3 +48,5 @@ router.post('/api/auth', (req,res)=>{
 
         })
 })
+
+module.exports = router;

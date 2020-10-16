@@ -4,7 +4,7 @@ const db = require ("../models");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const jwtSecret = process.env.ACCESS_TOKEN_SECRET;
+const jwtSecret = "tesT_sEcrET";
 
 
 // RENDERS FOR USER
@@ -90,7 +90,11 @@ router.post("/api/users", (req, res)    =>  {
         return res.status(400).json({msg: "Please enter all fields"})
     }
     // CHECK FOR EXISTING USER
-    db.User.findOne({email}) //<---- TODO: SAME AS OTHER. MIGHT NEED TO CHANGE TO WHERE email: req.body.email
+    db.User.findOne({
+        where:{
+            email: req.body.email
+        }
+    }) //<---- TODO: SAME AS OTHER. MIGHT NEED TO CHANGE TO WHERE email: req.body.email
         .then(user =>{
             if(user) return res.status(400).json({msg: "User already exists"})
             // IF you make it past this point, create new user
@@ -100,7 +104,7 @@ router.post("/api/users", (req, res)    =>  {
                name: req.body.name,
                password: req.body.password 
             }).then((newUser)=>{
-                bcrypt.hash(newUser.password, salt, (err,hash)=>{
+                bcrypt.hash(newUser.password, bcrypt.genSaltSync(15), (err,hash)=>{
                     if(err) throw err;
                     newUser.password = hash;
                     newUser.save() //<--- TODO:Can we even do this or do we need to do an db.User.update?
