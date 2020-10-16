@@ -19,6 +19,7 @@ function newUserCreate(stringifiedUser)  {
     console.log(response.token);
     let passKey = response.token;
     localStorage.setItem("passKey", passKey)
+    location.redirect("newuser")
   })
 }
 

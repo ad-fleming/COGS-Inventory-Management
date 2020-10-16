@@ -55,7 +55,7 @@ app.get("/newUser", (req, res) =>  {
   res.render("newUser");
 });
 
-app.get("/newItem", auth, (req, res) =>  {
+app.get("/newItem", (req, res) =>  {
   console.log(req.session);
   res.render("newItem", {id: req.session.userId});
 });
