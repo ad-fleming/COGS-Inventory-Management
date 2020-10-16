@@ -50,10 +50,10 @@ router.get("/maininventory", (req,res)=>{
             }
         ]
     })
-    .then((masterInventory)=>{
+    .then((mainInventory)=>{
         // res.json(weeklyInventoryItems)
-        res.render("masterInventory",{
-            masterInventory
+        res.render("mainInventory",{
+            mainInventory
         })
     })
 })
