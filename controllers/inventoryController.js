@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require ("../models");
 
+
 // IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
 router.get("/inventory", (req,res)=>{
     db.Inventory.findAll()
