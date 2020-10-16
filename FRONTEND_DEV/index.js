@@ -95,3 +95,173 @@ $("#loginButton").on("click", function(event) {
               console.log(Finalize);
 
             }) 
+
+            
+            $("#updateInventory").on("click", function(event) {
+              event.preventDefault();
+
+              var updateInventory={
+                Update_Inventory: $("#finalizeButton")
+              };
+              console.log(updateInventory);
+
+            }) 
+            
+            
+            $("#category1").on("click", function(event) {
+              event.preventDefault();
+
+              var category1={
+                Category1: $("#category1")
+              };
+              console.log(category1);
+
+            }) 
+
+            $("#category2").on("click", function(event) {
+              event.preventDefault();
+
+              var category2={
+                Category2: $("#category1")
+              };
+              console.log(category2);
+
+            }) 
+
+            $("#category3").on("click", function(event) {
+              event.preventDefault();
+
+              var category3={
+                Category3: $("#category3")
+              };
+              console.log(category3);
+
+            }) 
+
+            $("#category4").on("click", function(event) {
+              event.preventDefault();
+
+              var category4={
+                Category4: $("#category4")
+              };
+              console.log(category4);
+
+            }) 
+
+
+            $("#item1").on("click", function(event) {
+              event.preventDefault();
+
+              var item1={
+                Item1: $("#item1")
+              };
+              console.log(item1);
+
+            }) 
+
+
+            $("#item2").on("click", function(event) {
+              event.preventDefault();
+
+              var item2={
+                Item2: $("#item2")
+              };
+              console.log(item2);
+
+            }) 
+
+
+            $("#item3").on("click", function(event) {
+              event.preventDefault();
+
+              var item3={
+                Item3: $("#item3")
+              };
+              console.log(item3);
+
+            }) 
+
+
+            $("#item4").on("click", function(event) {
+              event.preventDefault();
+
+              var item4={
+                Item4: $("#item1")
+              };
+              console.log(item4);
+
+            }) 
+
+
+            $("#item5").on("click", function(event) {
+              event.preventDefault();
+
+              var item5={
+                Item5: $("#item5")
+              };
+              console.log(item5);
+
+            }) 
+
+
+            $("#item6").on("click", function(event) {
+              event.preventDefault();
+
+              var item6={
+                Item6: $("#item6")
+              };
+              console.log(item6);
+
+            }) 
+
+            $("#item7").on("click", function(event) {
+              event.preventDefault();
+
+              var item7={
+                Item7: $("#item7")
+              };
+              console.log(item7);
+
+            }) 
+
+
+            $("#item8").on("click", function(event) {
+              event.preventDefault();
+
+              var item8={
+                Item8: $("#item8")
+              };
+              console.log(item8);
+
+            }) 
+
+
+            $("#item9").on("click", function(event) {
+              event.preventDefault();
+
+              var item9={
+                Item9: $("#item9")
+              };
+              console.log(item9);
+
+            }) 
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            $("#updateInventory").on("click", function(event) {
+              event.preventDefault();
+
+              var updateInventory={
+                Update_Inventory: $("#finalizeButton")
+              };
+              console.log(updateInventory);
+
+            }) 
