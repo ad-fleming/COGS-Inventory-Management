@@ -34,7 +34,7 @@ router.post('/api/auth', (req,res)=>{
                         if(err) throw err;
                         // If no Error send the token
                         res.json({
-                            token,
+                            token, //<----same as token: token in ES6
                             id: user.id,
                             account_name: user.account_name, 
                             user_email: user.email

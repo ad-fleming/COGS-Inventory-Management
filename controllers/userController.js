@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const db = require ("../models");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const jwtSecret = process.env.ACCESS_TOKEN_SECRET;
 
 
 // RENDERS FOR USER
@@ -75,29 +79,56 @@ router.get("/api/users/:id", (req,res)=>{
     })
 })
 
-// CREATE A NEW USER
+// ==================CREATE A NEW USER==============================
+// == THIS IS THE ROUTE FOR NEW USERS WHO WANT TO SIGN UP
+// WILL CHECK FOR AN EXISTING USER, ASSUMING THAT THEIR CREDENTIALS ARE UNIQUE IT WILL CREATE A USER AND HASH THE PASSWORD
 router.post("/api/users", (req, res)    =>  {
-    const newUser = {
-        account_name: req.body.account_name,
-        email: req.body.email,
-        name: req.body.name,
-        password: req.body.password,
-        // InventoryId : req.body.InventoryId
-    }
+    const { account_name, email, name, password } = req.body;
 
-    db.User.create(newUser)
-        .then((newUser)=>{
-            console.log(newUser);
-            res.json({
-                message: "created new user",
-                success: true
+    // SIMPLE VALIDATION
+    if(!name || !email || !password){
+        return res.status(400).json({msg: "Please enter all fields"})
+    }
+    // CHECK FOR EXISTING USER
+    db.User.findOne({email}) //<---- TODO: SAME AS OTHER. MIGHT NEED TO CHANGE TO WHERE email: req.body.email
+        .then(user =>{
+            if(user) return res.status(400).json({msg: "User already exists"})
+            // IF you make it past this point, create new user
+            db.User.create({ //<--- TODO: Can possibly just pass user since we're inside findOne promise
+               account_name: req.body.account_name,
+               email: req.body.email,
+               name: req.body.name,
+               password: req.body.password 
+            }).then((newUser)=>{
+                bcrypt.hash(newUser.password, salt, (err,hash)=>{
+                    if(err) throw err;
+                    newUser.password = hash;
+                    newUser.save() //<--- TODO:Can we even do this or do we need to do an db.User.update?
+                        .then(user=>{
+                            jwt.sign(
+                                {id: user.id }, //<---- payload
+                                jwtSecret,
+                                {expiresIn: "1h"}, //<--- token lasts for an hour
+                                (err,token)=>{ //<--- call back
+                                    if(err) throw err;
+                                    res.json({
+                                        token, //<---- same as token: token in ES6
+                                        user:{
+                                            id: user.id,
+                                            account_name: user.account_name,
+                                            user_email: user.email
+                                        }
+                                    })
+                                }
+                            )
+                        })
+                })
             })
         })
-        .catch((err)=>{
-            console.log(err);
-        })
-})
 
+})
+// ========================
+// =========================
 // UPDATE A USER
 router.put("/api/users/", (req, res) =>  {
     db.User.update(req.body,{
