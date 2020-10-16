@@ -38,8 +38,47 @@ router.get("/items/edit/:id",   (req,res)   =>  {
     
 });
 
-// DISPLAY A USER'S ITEMS BY INVENTORY NUMBER (SHOW THEM THAT WEEK'S INVENTORY)
-router.get("/items/user/inventory/:id", (req,res)=>{
+// DISPLAY A USER'S PRIMARY INVENTORY
+router.get("/maininventory", (req,res)=>{
+    db.Item.findAll({
+        where: {
+            InventoryId: 1  //ID MUST BE TARGETTED
+        },
+        include:[
+            {
+                model: db.Inventory, 
+            }
+        ]
+    })
+    .then((mainInventory)=>{
+        // res.json(weeklyInventoryItems)
+        res.render("mainInventory",{
+            mainInventory
+        })
+    })
+})
+
+// Display with EMPTY UNIT, ITEM and VALUE fields
+router.get("/newInventory", (req,res)=>{
+    db.Item.findAll({
+        where: {
+            InventoryId: 1  //ID MUST BE TARGETTED
+        },
+        include:[
+            {
+                model: db.Inventory, 
+            }        ]
+    })
+    .then((newInventory)=>{
+        // res.json(weeklyInventoryItems)
+        res.render("newInventory",{
+            newInventory
+        })
+    })
+})
+
+// DISPLAY A USER'S INVENTORY BASED ON ID
+router.get("/inventory/:id", (req,res)=>{
     db.Item.findAll({
         where: {
             InventoryId: req.params.id
@@ -50,10 +89,10 @@ router.get("/items/user/inventory/:id", (req,res)=>{
             }
         ]
     })
-    .then((masterInventory)=>{
+    .then((previousInventory)=>{
         // res.json(weeklyInventoryItems)
-        res.render("masterInventory",{
-            masterInventory
+        res.render("previousInventory",{
+            previousInventory
         })
     })
 })
