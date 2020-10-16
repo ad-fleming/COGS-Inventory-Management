@@ -19,9 +19,14 @@ function auth (req, res, next){
         // ADD user from payload
         req.user = decoded;
         next();
-    } catch(e){
+    } catch(e){ //<--- catch (e)xception
         res.status(400).json({msg: "Token is not valid"})
     }
 }
 
 module.exports = auth;
+
+//================================
+// NOW WHEN WE WANT TO PROTECT A ROUTE:
+// 1) WE IMPORT AUTH TO CONTROLLER FILE
+// 2) CALL AUTH AS THE SECOND PARAMETER OF THE ROUTE ENDPOINT
