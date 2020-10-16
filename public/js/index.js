@@ -9,6 +9,7 @@ function newUserCreate(newUser)  {
   $.get("/users", function(data, status)  {
     alert(`data: ${data}  \n  ${status}`)
   })
+}
 
 // Create New User // Tied to NewUserForm.handlebars
       newUserBtn.on("click", function(event) {
