@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const db = require ("../models");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const jwtSecret = "tesT_sEcrET";
 
 
 // IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
