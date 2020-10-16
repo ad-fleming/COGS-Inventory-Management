@@ -50,6 +50,10 @@ app.get("/newItem", (req, res) =>  {
   res.render("newItem");
 });
 
+app.get("/login", (req, res) =>  {
+  res.render("login");
+});
+
 app.use(userController);
 app.use(itemController);
 app.use(inventoryController);
