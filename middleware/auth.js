@@ -1,5 +1,5 @@
 // THIS IS MIDDLE WARE FOR AUTHENTICATING USER TOKEN
-const configPackage = require('config');
+const config = require('config');
 const jwt = require('jsonwebtoken');
 
 // This function grabs the token that is being sent from the Frontend and authenticates it
