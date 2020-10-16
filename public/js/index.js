@@ -6,23 +6,22 @@ const newUserBtn = $("#submitButton")
 
 // global functions
 function newUserCreate(newUser)  {
-  $.get("/users", function(data, status)  {
-    alert(`data: ${data}  \n  ${status}`)
+  $.post("/api/auth", function(data)  {
+    alert(`data: ${data}`)
   })
 }
 
 // Create New User // Tied to NewUserForm.handlebars
       newUserBtn.on("click", function(event) {
         event.preventDefault();
-
         const newUserInfo = {
             Name: $("#name").val().trim(),
             Account_Name: $("#account-name").val().trim(),
             Email: $("#email").val().trim(),
             Password: $("#password").val().trim(),
-            
           };
         let newUser = newUserInfo;
+        console.log(newUser)
         newUserCreate();
         })
 
