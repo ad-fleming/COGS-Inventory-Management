@@ -1,10 +1,13 @@
 // THIS IS MIDDLE WARE FOR AUTHENTICATING USER TOKEN
 const config = require('config');
 const jwt = require('jsonwebtoken');
+const jwtSecret = "tesT_sEcrET"
 
 // This function grabs the token that is being sent from the Frontend and authenticates it
 
-exports.auth = (req, res, next) =>  {
+
+
+function auth(req, res, next){
     const token = req.header('x-auth-token');
 
     // CHECK FOR TOKEN
@@ -15,7 +18,7 @@ exports.auth = (req, res, next) =>  {
 
     try{
         // verify token
-        const decoded = jwt.verify(token, config.get('jwtSecret'));
+        const decoded = jwt.verify(token, jwtSecret);
         // ADD user from payload
         req.user = decoded;
         next();
@@ -24,7 +27,7 @@ exports.auth = (req, res, next) =>  {
     }
 }
 
-// module.exports = auth;
+module.exports = auth;
 
 //================================
 // NOW WHEN WE WANT TO PROTECT A ROUTE:

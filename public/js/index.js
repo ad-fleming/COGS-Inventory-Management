@@ -7,6 +7,7 @@ $(document ).ready(function() {
 // global button targetting
 const newUserBtn = $("#submitButton");
 const newItemFrm = $("#new-item-form");
+const loginBtn = $("#loginButton")
 const addItemBtn = $("#add-item-button");
 
 // local storage access
@@ -47,16 +48,48 @@ function newUserCreate(stringifiedUser)  {
         }).catch((err) => {
           console.log(err)
         })
-        // $.ajax({
-        //   url: `users/welcome/${safeUser}`,
-        //   method: "GET",
-        // }).then((data)=>{
-        // console.log("THIS WHERE THE GIANT HTML BLOCK IS WORKING, BUT WE'RE NOT GOING ANYWHERE")
-        // }).catch((err)=>console.log(err))
 
       })
     }
   }
+
+  // LOGIN USER
+
+  function loginUser(stringifiedLoginUser) {
+    $.ajax({
+      url: `/api/auth`,
+      method: "POST",
+      data: {
+        email: $("#loginEmail").val().trim(),
+        password: $("#loginPassword").val().trim()
+      }, 
+    }).then((response)=>{
+      console.log(response + "line 73 INDEX.JS");
+    })
+    
+  }
+
+  loginBtn.on("click", function (event) {
+    event.preventDefault();
+    // const loginUserInfo = {
+    //   email: $("#loginEmail").val().trim(),
+    //   password: $("#loginPassword").val().trim(),
+    // };
+    // let stringifiedLoginUser = JSON.stringify(loginUserInfo);
+    loginUser();
+  })
+
+  // newUserBtn.on("click", function (event) {
+  //   event.preventDefault();
+  //   const newUserInfo = {
+  //     account_name: $("#account-name").val().trim(),
+  //     email: $("#email").val().trim(),
+  //     name: $("#name").val().trim(),
+  //     password: $("#password").val().trim(),
+  //   };
+  //   let stringifiedUser = JSON.stringify(newUserInfo);
+  //   newUserCreate(stringifiedUser);
+  // })
 
   // ADDING ITEM TO INITIAL INVENTORY
   function newItemCreate(stringifiedItem) {
@@ -108,10 +141,22 @@ function newUserCreate(stringifiedUser)  {
       name: $("#name").val().trim(),
       password: $("#password").val().trim(),
     };
-    // console.log(newUserInfo);
     let stringifiedUser = JSON.stringify(newUserInfo);
-    // console.log(stringifiedUser);
     newUserCreate(stringifiedUser);
+  })
+
+// I'm HERE ====================================
+  loginBtn.on("click",(event)=>{
+    event.preventDefault();
+    // const userToLoginInfo = {
+    //   email: $("#loginEmail").val().trim(),
+    //   password: $("#loginPassword").val().trim()
+    // }
+
+    // let stringifiedUserToLogin = JSON.stringify(userToLoginInfo);
+    
+    // loginUser(stringifiedUserToLogin);
+    loginUser();
   })
 
   // NEW ITEM CREATE
