@@ -7,6 +7,7 @@ $(document ).ready(function() {
 // global button targetting
 const newUserBtn = $("#submitButton");
 const newItemFrm = $("#new-item-form");
+const loginBtn = $("#loginButton")
 const addItemBtn = $("#add-item-button");
 
 // local storage access
@@ -58,6 +59,26 @@ function newUserCreate(stringifiedUser)  {
     }
   }
 
+  // LOGIN USER
+
+  function loginUser(stringifiedUserToLogin) {
+    $.ajax({
+      url: "/api/auth",
+      method: "POST",
+      data: {
+        email: $("#loginEmail").val().trim(),
+        password: $("#loginPassword").val().trim(),
+      }, 
+    }).then((response)=>{
+      console.log(response + "line 73 INDEX.JS");
+    })
+  }
+
+  loginBtn.on("click",(event)=>{
+    event.preventDefault();
+    loginUser();
+  })
+
   // ADDING ITEM TO INITIAL INVENTORY
   function newItemCreate(stringifiedItem) {
     console.log("creating new item")
@@ -108,10 +129,21 @@ function newUserCreate(stringifiedUser)  {
       name: $("#name").val().trim(),
       password: $("#password").val().trim(),
     };
-    // console.log(newUserInfo);
     let stringifiedUser = JSON.stringify(newUserInfo);
-    // console.log(stringifiedUser);
     newUserCreate(stringifiedUser);
+  })
+
+// I'm HERE ====================================
+  loginBtn.on("click",(event)=>{
+    event.preventDefault();
+    const userToLoginInfo = {
+      email: $("#loginEmail").val().trim(),
+      password: $("#loginPassword").val().trim()
+    }
+
+    let stringifiedUserToLogin = JSON.stringify(userToLoginInfo);
+    
+    loginUser(stringifiedUserToLogin);
   })
 
   // NEW ITEM CREATE
