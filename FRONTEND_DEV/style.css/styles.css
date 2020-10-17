@@ -31,6 +31,12 @@ p {
 .black-font{
     color: black;
 }
+
+#newItemCreate{
+margin:5px;
+}
+
+
 /* .light-shadow{
     box-shadow: 1px 1px 4px whitesmoke !important;
 } */
