@@ -1,38 +1,40 @@
 // const db = require("../../models");
 // const { query } = require("express");
 
-$(document).ready(function () {
-  console.log("ready!");
+$(document ).ready(function() {
+    console.log( "ready!" );
 
-  // global button targetting
-  const newUserBtn = $("#submitButton");
-  const newItemFrm = $("#new-item-form");
-  const addItemBtn = $("#add-item-button");
+// global button targetting
+const newUserBtn = $("#submitButton");
+const newItemFrm = $("#new-item-form");
+const addItemBtn = $("#add-item-button");
 
-  // local storage access
-  let safeUser = localStorage.getItem("safeUser");
+// local storage access
+let safeUser = localStorage.getItem("safeUser");
+console.log(safeUser);
 
-  // global functions
+// global functions
 
+// Did it work?
 
-  // CREATE A NEW USER & // INITIAL INVENTORIES
-  function newUserCreate(stringifiedUser) {
-    {
-      $.ajax({
-        url: "/api/users",
-        method: "POST",
-        data: {
-          account_name: $("#account-name").val().trim(),
-          name: $("#name").val().trim(),
-          password: $("#password").val().trim(),
-          email: $("#email").val().trim(),
-        },
-      }).then((response) => {
-        let passKey = response.token
-        const safeUser = response.user.id;
-        localStorage.setItem("safeUser", safeUser)
-        localStorage.setItem("passKey", passKey);
-        $.ajax({
+// CREATE A NEW USER & // INITIAL INVENTORIES
+function newUserCreate(stringifiedUser)  {
+ {$.ajax({
+    url: "/api/users",
+    method: "POST",
+    data: {
+      account_name: $("#account-name").val().trim(),  
+      name: $("#name").val().trim(),
+      password: $("#password").val().trim(),
+      email: $("#email").val().trim(),
+    },  
+  }).then((response) =>  {
+    window.location.replace(`/users/welcome/${response.user.id}`)
+    let passKey = response.token
+    safeUser = response.user.id;
+    localStorage.setItem("safeUser", safeUser);
+    localStorage.setItem("passKey", passKey);
+    $.ajax({
           url: `/api/inventory`,
           method: "POST",
           data: {
