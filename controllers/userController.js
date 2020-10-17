@@ -31,18 +31,42 @@ router.get("/users/email/:email", function(req, res) {
     })
 })
 
-// DISPLAYS A PARTICULAR User's info to the newUser.handlebars file
 router.get("/users/welcome/:id", (req,res)=>{
+    console.log(req.params.id);
     db.User.findOne({
         where:{
             id: req.params.id
         }
-    }).then((user)=>{
-        res.render("newUser", {user})
+    })
+    .then((user)=>{
+        console.log(user);
+        res.render("newuser", {
+            id: user.id,
+            account_name: user.account_name,
+            email: user.email,
+            name: user.name,
+            password: user.password
+        })
     }).catch((err)=>{
         console.log(err)
     })
 })
+
+
+// DISPLAYS A PARTICULAR User's info to the newUser.handlebars file
+// router.get("/users/welcome/:id", (req,res)=>{
+//     console.log(req.params.id + " line 36 user controller")
+//     db.User.findOne({
+//         where:{
+//             id: req.params.id.trim()
+//         }
+//     }).then((user)=>{
+//         console.log(user + "line 42")
+//         res.render("newuser", {user})
+//     }).catch((err)=>{
+//         console.log(err)
+//     })
+// })
 
 // ROUTE CAN BE HOOKED UP TO USER ACCOUNT EDIT PAGE
 router.get("/user/edit/:id",    (req, res)  =>  {

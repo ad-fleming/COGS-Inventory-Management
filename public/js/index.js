@@ -45,6 +45,13 @@ $(document).ready(function () {
         }).catch((err) => {
           console.log(err)
         })
+        // $.ajax({
+        //   url: `users/welcome/${safeUser}`,
+        //   method: "GET",
+        // }).then((data)=>{
+        // console.log("THIS WHERE THE GIANT HTML BLOCK IS WORKING, BUT WE'RE NOT GOING ANYWHERE")
+        // }).catch((err)=>console.log(err))
+
       })
     }
   }
