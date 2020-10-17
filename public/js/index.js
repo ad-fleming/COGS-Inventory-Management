@@ -38,11 +38,11 @@ function newUserCreate(stringifiedUser)  {
           url: `/api/inventory`,
           method: "POST",
           data: {
-          UserId: safeUser,
-          inventory_date: "0001-01-01",
-          id: safeUser
+            UserId: safeUser,
+            inventory_date: "0001-01-01",
+            id: safeUser
           },
-        }).then(function(data)  {
+        }).then(function (data) {
           console.log(data)
         }).catch((err) => {
           console.log(err)
@@ -58,116 +58,121 @@ function newUserCreate(stringifiedUser)  {
     }
   }
 
-// ADDING ITEM TO INITIAL INVENTORY
-function newItemCreate(stringifiedItem) {
-  {$.ajax({
-    url: "/api/items/",
-    method: "POST",
-    data: {
-      unit_name: $("#name-of-item").val().trim(),
-      unit_category: $("#category").val().trim(),
-      unit_distributor: $("#distributor").val().trim(),
-      unit_price: $("#unit-price").val().trim(),
-      unit_par: $("#unit-par").val().trim(),
-      items_per_unit: $("#items-per-unit").val().trim(),
-      item_count_type: $("#item-count-type").val().trim(),
-      item_count_par: $("#item-count-par").val().trim(),
-    },
-  }).then((userData) => {
-    console.log(userData)
-    console.log(safeUser)
-    $.ajax({
-      url:  `/api/inventory/user/${safeUser}`,
-      method: "GET"
-    }).then((data)  =>  {
-      console.log("---------")
-      console.log(data)
-    }).catch((err)  =>  {
-      console.log
+  // ADDING ITEM TO INITIAL INVENTORY
+  function newItemCreate(stringifiedItem) {
+    console.log("creating new item")
+    postedItem = $.ajax({
+      url: "/api/items/",
+      method: "POST",
+      data: {
+        unit_name: $("#name-of-item").val().trim(),
+        unit_category: $("#category").val().trim(),
+        unit_distributor: $("#distributor").val().trim(),
+        unit_price: $("#unit-price").val().trim(),
+        unit_par: $("#unit-par").val().trim(),
+        items_per_unit: $("#items-per-unit").val().trim(),
+        item_count_type: $("#item-count-type").val().trim(),
+        item_count_par: $("#item-count-par").val().trim(),
+      },
+    }).then((response) => {
+      console.log(response.id + " of item to target")
+    }).catch((err) => {
+      console.log(err)
     })
-  }).catch((err) => {
-    console.log(err)
+    return postedItem
+  }
+
+  async function getInventoryId(safeUser) {
+    console.log("did getInventoryId happen?")
+    console.log(safeUser)
+    try {
+      const inventory = await $.ajax({
+        url: `/user/${safeUser}/inventory/?date=0001-01-01`,
+        method: "GET"
+      })
+      console.log(inventory)
+      return inventory
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  // CLICK EVENTS
+
+  // Create New User // Tied to NewUserForm.handlebars
+  newUserBtn.on("click", function (event) {
+    event.preventDefault();
+    const newUserInfo = {
+      account_name: $("#account-name").val().trim(),
+      email: $("#email").val().trim(),
+      name: $("#name").val().trim(),
+      password: $("#password").val().trim(),
+    };
+    // console.log(newUserInfo);
+    let stringifiedUser = JSON.stringify(newUserInfo);
+    // console.log(stringifiedUser);
+    newUserCreate(stringifiedUser);
   })
-}
-}
 
-// CLICK EVENTS
+  // NEW ITEM CREATE
+  addItemBtn.on("click", function (event) {
+    event.preventDefault();
+    var newItemInfo = {
+      productName: $("#name-of-item").val().trim(),
+      productCategory: $("#category").val().trim(),
+      productDistributor: $("#distributor").val().trim(),
+      unitPrice: $("#unit-price").val().trim(),
+      unitPar: $("#unit-par").val().trim(),
+      itemsPerUnit: $("#items-per-unit").val().trim(),
+      itemCountType: $("#item-count-type").val().trim(),
+      itemCountPar: $("#item-count-par").val().trim(),
+      UserId: safeUser
+    };
+    console.log(newItemInfo);
+    let stringifiedItem = JSON.stringify(newItemInfo);
+    newItemCreate(stringifiedItem);
+    getInventoryId(safeUser);
+  })
 
-// Create New User // Tied to NewUserForm.handlebars
-      newUserBtn.on("click", function(event) {
-        event.preventDefault();
-        const newUserInfo = {
-            account_name: $("#account-name").val().trim(),  
-            email: $("#email").val().trim(),
-            name: $("#name").val().trim(),
-            password: $("#password").val().trim(),
-          };
-        // console.log(newUserInfo);
-        let stringifiedUser = JSON.stringify(newUserInfo);
-        // console.log(stringifiedUser);
-        newUserCreate(stringifiedUser);
-        console.log(stringifiedUser + "index.js line 107")
-        
-        })
+  $("#finished").on("click", function (event) {
+    event.preventDefault();
+    var Finished = {
+      Finished: $("#finished")
+    };
+    console.log(Finished);
+  })
 
-// NEW ITEM CREATE
-        addItemBtn.on("click", function(event) {
-        event.preventDefault();
-        var newItemInfo = {
-            productName: $("#name-of-item").val().trim(),
-            productCategory: $("#category").val().trim(),
-            productDistributor: $("#distributor").val().trim(),
-            unitPrice: $("#unit-price").val().trim(),
-            unitPar: $("#unit-par").val().trim(),
-            itemsPerUnit: $("#items-per-unit").val().trim(),
-            itemCountType: $("#item-count-type").val().trim(),
-            itemCountPar: $("#item-count-par").val().trim(),
-            UserId: safeUser
-        };
-        console.log(newItemInfo);
-        let stringifiedItem = JSON.stringify(newItemInfo)
-        newItemCreate(stringifiedItem)
-        })
+  $("#updateButton").on("click", function (event) {
+    event.preventDefault();
 
-        $("#finished").on("click", function(event) {
-          event.preventDefault();
-          var Finished= {
-            Finished: $("#finished")
-          };
-          console.log(Finished);
-        }) 
+    var updateForm = {
+      Unit_Distributor: $("#distributor").val().trim(),
+      Unit_Par: $("#unit-par").val().trim(),
+      Unit_Price: $("#unit-price").val().trim(),
+      Items_Per_Unit: $("#items-per-unit").val().trim(),
+      Item_count_type: $("#item-count-type").val().trim(),
+      Item_par: $("#item-par").val().trim(),
+      Unit_Count: $("#unit-count").val().trim(),
+      Item_count: $("#item-count").val().trim(),
+      Total_Value: $("#total-value").val().trim(),
+      Inventory_id: $("#inventory-id").val().trim(),
 
-        $("#updateButton").on("click", function(event) {
-          event.preventDefault();
+    };
 
-        var updateForm = {
-          Unit_Distributor: $("#distributor").val().trim(),
-          Unit_Par: $("#unit-par").val().trim(),
-          Unit_Price: $("#unit-price").val().trim(),
-          Items_Per_Unit: $("#items-per-unit").val().trim(),
-          Item_count_type: $("#item-count-type").val().trim(),
-          Item_par: $("#item-par").val().trim(),
-          Unit_Count: $("#unit-count").val().trim(),
-          Item_count: $("#item-count").val().trim(),
-            Total_Value: $("#total-value").val().trim(),
-            Inventory_id: $("#inventory-id").val().trim(),
-            
-          };
-        
-          console.log(updateForm);
+    console.log(updateForm);
 
-        })
+  })
 
-        $("#finalizeButton").on("click", function(event) {
-          event.preventDefault();
+  $("#finalizeButton").on("click", function (event) {
+    event.preventDefault();
 
-          var Finalize= {
-            Finalize: $("#finalizeButton")
-          };
+    var Finalize = {
+      Finalize: $("#finalizeButton")
+    };
 
-          console.log(Finalize);
+    console.log(Finalize);
 
-        }) 
+  })
 
 
 
@@ -184,20 +189,20 @@ function newItemCreate(stringifiedItem) {
 
 // $("#loginButton").on("click", function(event) {
 //     event.preventDefault();
-  
+
 //     // Make a newChirp object
 //     var login = {
 //       login: $("#loginButton").val().trim(),
 //     };
-  
+
 //     console.log(login);})
 
 //     $("#userButton").on("click", function(event) {
 //         event.preventDefault();
-      
+
 //         // Make a newChirp object
 //         var user = {
 //           user: $("#userButton").val().trim(),
 //         };
-      
+
 //         console.log(user);})
