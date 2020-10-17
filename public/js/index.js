@@ -1,27 +1,53 @@
+// const db = require("../../models");
+// const { query } = require("express");
+
 $(document ).ready(function() {
     console.log( "ready!" );
 
-// global variables
+// global button targetting
 const newUserBtn = $("#submitButton")
+const newItemFrm = $("#new-item-form")
 
+// global variable
+let safeUser = "" // initial inventory id
 // global functions
-function newUserCreate(stringifiedUser)  {
-  $.ajax({
+
+// CREATE A NEW USER & // INITIAL INVENTORIES
+async function newUserCreate(stringifiedUser)  {
+ {$.ajax({
     url: "/api/users",
     method: "POST",
     data: {
       account_name: $("#account-name").val().trim(),  
-      email: $("#email").val().trim(),
       name: $("#name").val().trim(),
       password: $("#password").val().trim(),
+      email: $("#email").val().trim(),
     },  
   }).then(function(response)  {
-    console.log(response.token);
-    let passKey = response.token;
-    localStorage.setItem("passKey", passKey)
-  })
-}
+    let passKey = response.token
+    const safeUser = response.user.id;
+    localStorage.setItem("safeUser", safeUser)
+    localStorage.setItem("passKey", passKey);
+    $.ajax({
+          url: `/api/inventory`,
+          method: "POST",
+          data: {
+          UserId: safeUser,
+          inventory_date: "0001-01-01"
+          },
+        }).then(function(data)  {
+          console.log(data)
+        }).catch((err) => {
+          console.log(err)
+        })
+      })
+    }
+  }
 
+// ADDING ITEMS TO INITIAL INVENTORY
+
+
+// CLICK EVENTS
 
 // Create New User // Tied to NewUserForm.handlebars
       newUserBtn.on("click", function(event) {
@@ -32,13 +58,13 @@ function newUserCreate(stringifiedUser)  {
             name: $("#name").val().trim(),
             password: $("#password").val().trim(),
           };
-        console.log(newUserInfo);
+        // console.log(newUserInfo);
         let stringifiedUser = JSON.stringify(newUserInfo);
-        console.log(stringifiedUser);
+        // console.log(stringifiedUser);
         newUserCreate(stringifiedUser);
         })
 
-// LOGIN 
+// NEW ITEM CREATE
       
 
         $("#newItemCreate").on("click", function(event) {
@@ -54,10 +80,8 @@ function newUserCreate(stringifiedUser)  {
             Item_count_type: $("#item-count-type").val().trim(),
             Item_count_par: $("#item-count-par").val().trim(),
             
-          };
-        
-          console.log(newItemForm);
-
+        };
+        console.log(newItemForm);
         })
 
         $("#Finished").on("click", function(event) {

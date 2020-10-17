@@ -1,4 +1,4 @@
-<input type="hidden" name="" value="{{id}}">
+
 <div class="row center-content">
     <div class="col s1 hide-on-small-only"> </div>
     <div class="col s12 m8">
@@ -9,29 +9,32 @@
                 </span>
                 <p class="section">Please enter in the details of the new item you'd like to add to your inventory.</p>
             </div>
-            <form class="white-text logo-push">
+            <form class="white-text logo-push" id="new-item-form">
                 <div class="row">
+
                     <div class="col s6 l6">
                         <p>Name of Item:</p>
-                        <input class="white-text" type="text">
+                        <input class="white-text" type="text" id="name-of-item">
                         <p>Category:</p>
-                        <input class="white-text" type="text">
+                        <input class="white-text" type="text"  id="category">
                         <p>Distributor:</p>
-                        <input class="white-text" type="text">
+                        <input class="white-text" type="text"  id="distributor">
                         <p>Unit Price:</p>
-                        <input class="white-text" type="text">
-                    </div>
-                    <div class="col s6 l6">
-                        <p>Unit Par:</p>
-                        <input class="white-text" type="text">
-                        <p>Items Per Unit:</p>
-                        <input class="white-text" type="text">
-                        <p>Item Count Type:</p>
-                        <input class="white-text" type="text">
-                        <p>Item Count Par:</p>
-                        <input class="white-text" type="text">
+                        <input class="white-text" type="number"  id="unit-price">
                     </div>
 
+                    <div class="col s6 l6">
+                        <p>Unit Par:</p>
+                        <input class="white-text" type="number"  id="unit-par">
+                        <p>Items Per Unit:</p>
+                        <input class="white-text" type="number"  id="items-per-unit">
+                        <p>Item Count Type:</p>
+                        <input class="white-text" type="text"  id="item-count-type">
+                        <p>Item Count Par:</p>
+                        <input class="white-text" type="number"  id="item-count-par">
+                        <input type="hidden" name="" data-attribute="{{id}}" id="{{id}}">
+                    </div>
+                    
                 </div>
             </form>
             <div class="row">
