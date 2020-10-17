@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 // This function grabs the token that is being sent from the Frontend and authenticates it
 
-function auth (req, res, next){
+exports.auth = (req, res, next) =>  {
     const token = req.header('x-auth-token');
 
     // CHECK FOR TOKEN
@@ -24,7 +24,7 @@ function auth (req, res, next){
     }
 }
 
-module.exports = auth;
+// module.exports = auth;
 
 //================================
 // NOW WHEN WE WANT TO PROTECT A ROUTE:

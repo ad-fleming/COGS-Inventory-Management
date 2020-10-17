@@ -84,7 +84,7 @@ router.get("/api/users/:id", (req,res)=>{
 // WILL CHECK FOR AN EXISTING USER, ASSUMING THAT THEIR CREDENTIALS ARE UNIQUE IT WILL CREATE A USER AND HASH THE PASSWORD
 router.post("/api/users", (req, res)    =>  {
     const { account_name, email, name, password } = req.body;
-
+    console.log(req.body);
     // SIMPLE VALIDATION
     if(!name || !email || !password){
         return res.status(400).json({msg: "Please enter all fields"})
