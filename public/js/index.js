@@ -15,6 +15,7 @@ console.log(safeUser);
 
 // global functions
 
+// Did it work?
 
 // CREATE A NEW USER & // INITIAL INVENTORIES
 function newUserCreate(stringifiedUser)  {
