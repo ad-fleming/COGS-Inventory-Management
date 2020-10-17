@@ -15,19 +15,19 @@ router.get("/inventory", (req,res)=>{
     })
 })
 
-// IF WE WANT TO DISPY
-router.get("/inventory/:id", (req,res)=>{
-    db.Inventory.findOne({
+// IF WE WANT TO DISPLAY of a user
+router.get("/initial/user/date", (req,res)=>{
+    db.Inventory.findAll({
         where:{
-            id: req.params.id
+            UserId: req.body.UserId,
+            inventory_date: req.body.inventory_date
         }
     }).then((inventory)=>{
-        res.render("#", {inventory})
+        res.json(inventory)
     })
 })
 
 // FOR DISPLAYING ALL INVENTORIES OF A GIVEN USER
-
 router.get("/inventory/user/:id", (req,res)=>{
     db.Inventory.findAll({
         where:{

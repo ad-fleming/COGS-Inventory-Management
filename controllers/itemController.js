@@ -196,16 +196,35 @@ router.post("/api/items", (req, res)    =>  {
     db.Item.create(newItem)
         .then((newItem)=>{
             console.log(newItem);
-            res.json({
-                message: "created new item",
-                success: true
-            })
+            res.json(newItem)
         })
         .catch((err)=>{
             console.log(err);
         })
 })
 
+router.put("/api/items", (req,res)=>{
+    db.Item.update(
+        req.body,
+        {
+            where:{
+                id: req.body.id
+            }
+        })
+        .then((updatedItem)=>{
+            console.log(updatedItem);
+            res.json({
+                message: `Successfully updated item`,
+                success: true
+            })
+        }).catch((err)=>{
+            console.log(err);
+            res.json({
+                message: "Issue updating item",
+                success: false
+            })
+        })
+})
 router.put("/api/items", (req,res)=>{
     db.Item.update(
         req.body,

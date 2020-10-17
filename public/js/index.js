@@ -51,10 +51,11 @@ function newUserCreate(stringifiedUser)  {
 
 // ADDING ITEM TO INITIAL INVENTORY
 function newItemCreate(stringifiedItem) {
-  {$.ajax({
-    url: "/api/items/",
-    method: "POST",
-    data: {
+  console.log("creating new item")
+  postedItem = $.ajax({
+      url: "/api/items/",
+      method: "POST",
+      data: {
       unit_name: $("#name-of-item").val().trim(),
       unit_category: $("#category").val().trim(),
       unit_distributor: $("#distributor").val().trim(),
@@ -63,23 +64,30 @@ function newItemCreate(stringifiedItem) {
       items_per_unit: $("#items-per-unit").val().trim(),
       item_count_type: $("#item-count-type").val().trim(),
       item_count_par: $("#item-count-par").val().trim(),
-    },
-  }).then((data) => {
-    console.log(data)
-    console.log(safeUser)
-    $.ajax({
-      url:  `/api/inventory/user/${safeUser}`,
-      method: "GET"
-    }).then((data)  =>  {
-      console.log("---------")
-      console.log(data)
-    }).catch((err)  =>  {
-      console.log
-    })
-  }).catch((err) => {
-    console.log(err)
-  })
+      }, }).then((response) => {
+      console.log(response.id + " of item to target")
+      }).catch((err)  =>  {
+      console.log(err)
+      })
+  return postedItem
 }
+
+async function getInventoryId(safeUser)  {
+  console.log("did getInventoryId happen?")
+  console.log(safeUser)
+  try {
+  const inventory = await $.ajax({
+    url:  "/initial/user/date",
+    method: "GET",
+    data: { 
+          UserId: safeUser,
+          inventory_date: "0001-01-01"
+          } 
+    })
+    console.log(inventory)
+    } catch(err)  {
+      console.log(err)
+    }
 }
 
 // CLICK EVENTS
@@ -114,8 +122,9 @@ function newItemCreate(stringifiedItem) {
             UserId: safeUser
         };
         console.log(newItemInfo);
-        let stringifiedItem = JSON.stringify(newItemInfo)
-        newItemCreate(stringifiedItem)
+        let stringifiedItem = JSON.stringify(newItemInfo);
+        newItemCreate(stringifiedItem);
+        getInventoryId(safeUser);
         })
 
         $("#finished").on("click", function(event) {
