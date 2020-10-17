@@ -4,6 +4,7 @@ const db = require ("../models");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const auth = require ("../middleware/auth")
 const jwtSecret = "tesT_sEcrET";
 
 
@@ -11,7 +12,7 @@ const jwtSecret = "tesT_sEcrET";
 router.get("/inventory", (req,res)=>{
     db.Inventory.findAll()
     .then((inventories)=>{
-        res.render("#", {inventories})
+        res.json({inventories})
     })
 })
 

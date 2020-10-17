@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require ("../models");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const auth = require("../middleware/auth")
 
 const jwtSecret = "tesT_sEcrET";
 
@@ -17,7 +18,7 @@ router.get("/newItem", (req, res) =>  {
 // IF WE WANT TO DISPLAY ALL ITEMS IN DATABASE
 router.get("/items", (req,res)  =>  {
     db.Item.findAll().then(items =>  {
-        res.render("#", {items})
+        res.json(items)
     }) 
 });
 

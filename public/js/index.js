@@ -48,12 +48,6 @@ function newUserCreate(stringifiedUser)  {
         }).catch((err) => {
           console.log(err)
         })
-        // $.ajax({
-        //   url: `users/welcome/${safeUser}`,
-        //   method: "GET",
-        // }).then((data)=>{
-        // console.log("THIS WHERE THE GIANT HTML BLOCK IS WORKING, BUT WE'RE NOT GOING ANYWHERE")
-        // }).catch((err)=>console.log(err))
 
       })
     }
@@ -61,23 +55,41 @@ function newUserCreate(stringifiedUser)  {
 
   // LOGIN USER
 
-  function loginUser(stringifiedUserToLogin) {
+  function loginUser(stringifiedLoginUser) {
     $.ajax({
-      url: "/api/auth",
+      url: `/api/auth`,
       method: "POST",
       data: {
         email: $("#loginEmail").val().trim(),
-        password: $("#loginPassword").val().trim(),
+        password: $("#loginPassword").val().trim()
       }, 
     }).then((response)=>{
       console.log(response + "line 73 INDEX.JS");
     })
+    
   }
 
-  loginBtn.on("click",(event)=>{
+  loginBtn.on("click", function (event) {
     event.preventDefault();
+    // const loginUserInfo = {
+    //   email: $("#loginEmail").val().trim(),
+    //   password: $("#loginPassword").val().trim(),
+    // };
+    // let stringifiedLoginUser = JSON.stringify(loginUserInfo);
     loginUser();
   })
+
+  // newUserBtn.on("click", function (event) {
+  //   event.preventDefault();
+  //   const newUserInfo = {
+  //     account_name: $("#account-name").val().trim(),
+  //     email: $("#email").val().trim(),
+  //     name: $("#name").val().trim(),
+  //     password: $("#password").val().trim(),
+  //   };
+  //   let stringifiedUser = JSON.stringify(newUserInfo);
+  //   newUserCreate(stringifiedUser);
+  // })
 
   // ADDING ITEM TO INITIAL INVENTORY
   function newItemCreate(stringifiedItem) {
@@ -136,14 +148,15 @@ function newUserCreate(stringifiedUser)  {
 // I'm HERE ====================================
   loginBtn.on("click",(event)=>{
     event.preventDefault();
-    const userToLoginInfo = {
-      email: $("#loginEmail").val().trim(),
-      password: $("#loginPassword").val().trim()
-    }
+    // const userToLoginInfo = {
+    //   email: $("#loginEmail").val().trim(),
+    //   password: $("#loginPassword").val().trim()
+    // }
 
-    let stringifiedUserToLogin = JSON.stringify(userToLoginInfo);
+    // let stringifiedUserToLogin = JSON.stringify(userToLoginInfo);
     
-    loginUser(stringifiedUserToLogin);
+    // loginUser(stringifiedUserToLogin);
+    loginUser();
   })
 
   // NEW ITEM CREATE
