@@ -64,11 +64,18 @@ function newItemCreate(stringifiedItem) {
       item_count_type: $("#item-count-type").val().trim(),
       item_count_par: $("#item-count-par").val().trim(),
     },
-  }).then((response) => {
-    console.log(response)
-    // $.ajax({
-    //   url: 
-    // })
+  }).then((data) => {
+    console.log(data)
+    console.log(safeUser)
+    $.ajax({
+      url:  `/api/inventory/user/${safeUser}`,
+      method: "GET"
+    }).then((data)  =>  {
+      console.log("---------")
+      console.log(data)
+    }).catch((err)  =>  {
+      console.log
+    })
   }).catch((err) => {
     console.log(err)
   })

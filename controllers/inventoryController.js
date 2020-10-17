@@ -31,7 +31,7 @@ router.get("/inventory/:id", (req,res)=>{
 router.get("/inventory/user/:id", (req,res)=>{
     db.Inventory.findAll({
         where:{
-            UserId: req.params.id
+            Inventory: req.params.id
         }
     }).then((inventories)=>{
         res.render("#", {inventories})
@@ -57,10 +57,10 @@ router.get("/api/inventory", (req,res)=>{
 
 // GET AN INVENTORY BASED ON ID
 
-router.get("/api/inventory/:id", (req,res)=>{
-    db.Inventory.findOne({
+router.get("/api/inventory/:UserId", (req,res)=>{
+    db.Inventory.findAll({
         where:{
-            id: req.params.id
+            UserId: req.params.UserId
         }
     }).then((specificInventory)=>{
         console.log(specificInventory);
@@ -72,7 +72,7 @@ router.get("/api/inventory/:id", (req,res)=>{
 router.get("/api/inventory/user/:id", (req,res)=>{
     db.Inventory.findAll({
         where:{
-            UserId: req.params.id
+            UserId: req.params.UserId
         }
     })
     .then((userInventory)=>{
