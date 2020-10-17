@@ -21,9 +21,15 @@ router.get("/users", function(req,res){
     })
 })
 
-// router.get("/users", function(req, res) {
-//     db.User.findAll().then()
-// })
+router.get("/users/email/:email", function(req, res) {
+    db.User.findAll({
+        where: {
+            id: req.params.email
+        }
+    }).then((user) =>   {
+        res.json(user)
+    })
+})
 
 // DISPLAYS A PARTICULAR User's info to the newUser.handlebars file
 router.get("/users/welcome/:id", (req,res)=>{
