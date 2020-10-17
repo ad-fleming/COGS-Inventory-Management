@@ -28,9 +28,10 @@ function newUserCreate(stringifiedUser)  {
       email: $("#email").val().trim(),
     },  
   }).then((response) =>  {
+    window.location.replace(`/users/welcome/${response.user.id}`)
     let passKey = response.token
-    const safeUser = response.user.id;
-    localStorage.setItem("safeUser", safeUser)
+    safeUser = response.user.id;
+    localStorage.setItem("safeUser", safeUser);
     localStorage.setItem("passKey", passKey);
     $.ajax({
           url: `/api/inventory`,
@@ -45,6 +46,13 @@ function newUserCreate(stringifiedUser)  {
         }).catch((err) => {
           console.log(err)
         })
+        // $.ajax({
+        //   url: `users/welcome/${safeUser}`,
+        //   method: "GET",
+        // }).then((data)=>{
+        // console.log("THIS WHERE THE GIANT HTML BLOCK IS WORKING, BUT WE'RE NOT GOING ANYWHERE")
+        // }).catch((err)=>console.log(err))
+
       })
     }
   }
@@ -64,8 +72,8 @@ function newItemCreate(stringifiedItem) {
       item_count_type: $("#item-count-type").val().trim(),
       item_count_par: $("#item-count-par").val().trim(),
     },
-  }).then((data) => {
-    console.log(data)
+  }).then((userData) => {
+    console.log(userData)
     console.log(safeUser)
     $.ajax({
       url:  `/api/inventory/user/${safeUser}`,
@@ -97,6 +105,8 @@ function newItemCreate(stringifiedItem) {
         let stringifiedUser = JSON.stringify(newUserInfo);
         // console.log(stringifiedUser);
         newUserCreate(stringifiedUser);
+        console.log(stringifiedUser + "index.js line 107")
+        
         })
 
 // NEW ITEM CREATE
