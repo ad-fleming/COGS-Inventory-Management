@@ -2,6 +2,11 @@
 module.exports = function(sequelize, Datatypes){
 
     const Inventory = sequelize.define("Inventory",  {
+        id: {
+            type: Datatypes.UUID,
+            defaultValue: Datatypes.UUIDV1,
+            primaryKey: true
+        },
         inventory_date:{               // possibly replace with measurement?
             type: Datatypes.DATEONLY,
             allowNull: false

@@ -5,15 +5,19 @@ $(document ).ready(function() {
     console.log( "ready!" );
 
 // global button targetting
-const newUserBtn = $("#submitButton")
-const newItemFrm = $("#new-item-form")
+const newUserBtn = $("#submitButton");
+const newItemFrm = $("#new-item-form");
+const addItemBtn = $("#add-item-button");
 
-// global variable
-let safeUser = "" // initial inventory id
+// local storage access
+let safeUser = localStorage.getItem("safeUser");
+console.log(safeUser);
+
 // global functions
 
+
 // CREATE A NEW USER & // INITIAL INVENTORIES
-async function newUserCreate(stringifiedUser)  {
+function newUserCreate(stringifiedUser)  {
  {$.ajax({
     url: "/api/users",
     method: "POST",
@@ -23,7 +27,7 @@ async function newUserCreate(stringifiedUser)  {
       password: $("#password").val().trim(),
       email: $("#email").val().trim(),
     },  
-  }).then(function(response)  {
+  }).then((response) =>  {
     let passKey = response.token
     const safeUser = response.user.id;
     localStorage.setItem("safeUser", safeUser)
@@ -33,7 +37,8 @@ async function newUserCreate(stringifiedUser)  {
           method: "POST",
           data: {
           UserId: safeUser,
-          inventory_date: "0001-01-01"
+          inventory_date: "0001-01-01",
+          id: safeUser
           },
         }).then(function(data)  {
           console.log(data)
@@ -44,8 +49,31 @@ async function newUserCreate(stringifiedUser)  {
     }
   }
 
-// ADDING ITEMS TO INITIAL INVENTORY
-
+// ADDING ITEM TO INITIAL INVENTORY
+function newItemCreate(stringifiedItem) {
+  {$.ajax({
+    url: "/api/items/",
+    method: "POST",
+    data: {
+      unit_name: $("#name-of-item").val().trim(),
+      unit_category: $("#category").val().trim(),
+      unit_distributor: $("#distributor").val().trim(),
+      unit_price: $("#unit-price").val().trim(),
+      unit_par: $("#unit-par").val().trim(),
+      items_per_unit: $("#items-per-unit").val().trim(),
+      item_count_type: $("#item-count-type").val().trim(),
+      item_count_par: $("#item-count-par").val().trim(),
+    },
+  }).then((response) => {
+    console.log(response)
+    // $.ajax({
+    //   url: 
+    // })
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+}
 
 // CLICK EVENTS
 
@@ -65,34 +93,30 @@ async function newUserCreate(stringifiedUser)  {
         })
 
 // NEW ITEM CREATE
-      
-
-        $("#newItemCreate").on("click", function(event) {
-          event.preventDefault();
-
-        var newItemForm = {
-            Name_of_Item: $("#name-of-item").val().trim(),
-            Category: $("#category").val().trim(),
-            Distributor: $("#distributor").val().trim(),
-            Unit_Price: $("#unit-price").val().trim(),
-            Unit_Par: $("#unit-par").val().trim(),
-            Items_Per_Unit: $("#items-per-unit").val().trim(),
-            Item_count_type: $("#item-count-type").val().trim(),
-            Item_count_par: $("#item-count-par").val().trim(),
-            
+        addItemBtn.on("click", function(event) {
+        event.preventDefault();
+        var newItemInfo = {
+            productName: $("#name-of-item").val().trim(),
+            productCategory: $("#category").val().trim(),
+            productDistributor: $("#distributor").val().trim(),
+            unitPrice: $("#unit-price").val().trim(),
+            unitPar: $("#unit-par").val().trim(),
+            itemsPerUnit: $("#items-per-unit").val().trim(),
+            itemCountType: $("#item-count-type").val().trim(),
+            itemCountPar: $("#item-count-par").val().trim(),
+            UserId: safeUser
         };
-        console.log(newItemForm);
+        console.log(newItemInfo);
+        let stringifiedItem = JSON.stringify(newItemInfo)
+        newItemCreate(stringifiedItem)
         })
 
-        $("#Finished").on("click", function(event) {
+        $("#finished").on("click", function(event) {
           event.preventDefault();
-
           var Finished= {
-            Finished: $("#Finished")
+            Finished: $("#finished")
           };
-
           console.log(Finished);
-
         }) 
 
         $("#updateButton").on("click", function(event) {
