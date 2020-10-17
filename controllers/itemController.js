@@ -114,7 +114,10 @@ router.get("/inventory/:id", (req,res)=>{
         },
         include:[
             {
-                model: db.Inventory, 
+                model: db.Inventory,
+                include: [{
+                    model: db.User
+                }] 
             }
         ]
     })
