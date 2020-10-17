@@ -36,15 +36,18 @@ module.exports = function(sequelize, Datatypes){
         },
         unit_count:{
             type: Datatypes.INTEGER,   // change to decimal?
-            allowNull: false
+            allowNull: true,
+            defaultValue: 0
         },  
         item_count:{
             type: Datatypes.INTEGER,
-            allowNull: true
+            allowNull: true,
+            defaultValue: 0
         },
         total_value:{
             type: Datatypes.INTEGER,
-            allowNull: false
+            allowNull: true,
+            defaultValue: 0
         },
     },{
         timestamps: false,            // CAN REMOVE once not using seed data

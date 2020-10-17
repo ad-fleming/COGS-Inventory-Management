@@ -192,7 +192,6 @@ router.post("/api/items", (req, res)    =>  {
         unit_count: req.body.unit_count,
         item_count: req.body.item_count,
         total_value: req.body.total_value,
-        InventoryId: req.body.InventoryId
     }
     db.Item.create(newItem)
         .then((newItem)=>{
