@@ -3,9 +3,9 @@ const express = require("express");
 const exphbs= require("express-handlebars");
 const handlebars = require ("handlebars");
 const {allowInsecurePrototypeAccess} = require("@handlebars/allow-prototype-access");
-const itemController = require("./controllers/itemController");
-const userController = require("./controllers/userController");
-const inventoryController = require("./controllers/inventoryController");
+// const itemController = require("./controllers/itemController");
+// const userController = require("./controllers/userController");
+// const inventoryController = require("./controllers/inventoryController");
 // const cookieParser = require ("cookie-parser");
 // Sets up the Express APP 
 // =======================
@@ -42,11 +42,6 @@ app.get("/newUserForm", (req, res) =>  {
   res.render("newUserForm");
 });
 
-app.get("/newUser", (req, res) =>  {
-  console.log(req.session)
-  res.render("newUser");
-});
-
 app.get("/newItem", (req, res) =>  {
   res.render("newItem");
 });
@@ -55,14 +50,20 @@ app.get("/login", (req, res) =>  {
   res.render("login");
 });
 
-// app.get("/mainInventory",auth, (req,res)=>{
-//   res.render("mainInventory")
-// })
+app.get("/mainSheet", (req, res) =>  {
+  res.render("mainSheet");
+});
 
-app.use(userController);
-app.use(itemController);
-app.use(inventoryController);
-app.use(authController);
+app.get("/newInventory", (req, res) =>  {
+  res.render("newInventory");
+});
+
+
+
+// app.use(userController);
+// app.use(itemController);
+// app.use(inventoryController);
+// app.use(authController);
 
 // API
 app.get("/api/config",(req, res)  =>  {
