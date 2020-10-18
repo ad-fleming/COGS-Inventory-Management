@@ -59,9 +59,8 @@ app.get("/newUser", (req, res) =>  {
   res.render("newUser");
 });
 
-app.get("/newItem", auth, (req, res) =>  {
-  ;
-  res.render("newItem", {id: req.user.id});
+app.get("/newItem", (req, res) =>  {
+  res.render("newItem");
 });
 
 app.get("/login", (req, res) =>  {

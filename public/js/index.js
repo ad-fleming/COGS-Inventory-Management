@@ -74,7 +74,7 @@ function newUserCreate(stringifiedUser)  {
           "x-auth-token": passkey
         }
       }).then((response)=>{
-        console.log(response);
+        window.location.replace("/newItem")
       })
       // safeUser = response.id
       // localStorage.setItem("safeUser", safeUser);
@@ -84,6 +84,7 @@ function newUserCreate(stringifiedUser)  {
 
   loginBtn.on("click", function (event) {
     event.preventDefault();
+    event.stopPropagation();
     const loginUserInfo = {
       email: $("#loginEmail").val().trim(),
       password: $("#loginPassword").val().trim(),
@@ -110,6 +111,9 @@ function newUserCreate(stringifiedUser)  {
     postedItem = $.ajax({
       url: "/api/items/",
       method: "POST",
+      headers:{
+        "x-auth-token": passkey
+      },
       data: {
         unit_name: $("#name-of-item").val().trim(),
         unit_category: $("#category").val().trim(),
