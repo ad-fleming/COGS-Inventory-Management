@@ -1,25 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const db = require ("../models");
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const auth = require("../middleware/auth")
-const jwtSecret = "tesT_sEcrET";
-
-
-// RENDERS FOR USER
-
-// IF WE WANT TO DISPLAY ALL USERS 
-router.get("/users", function(req,res){
-    db.User.findAll()
-    .then((users)=>{
-        console.log(users);
-        res.render("#", {users})
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-})
 
 router.get("/users/email/:email", function(req, res) {
     db.User.findAll({
@@ -137,34 +118,9 @@ router.post("/api/users", (req, res)    =>  {
                email: req.body.email,
                name: req.body.name,
                password: req.body.password 
-            }).then((newUser)=>{
-                bcrypt.hash(newUser.password, bcrypt.genSaltSync(15), (err,hash)=>{
-                    if(err) throw err;
-                    newUser.password = hash;
-                    newUser.save() //<--- TODO:Can we even do this or do we need to do an db.User.update?
-                        .then(user=>{
-                            jwt.sign(
-                                {id: user.id, account_name: user.account_name, email: user.email, name: user.name}, //<---- payload
-                                jwtSecret,
-                                {expiresIn: "1h"}, //<--- token lasts for an hour
-                                (err,token)=>{ //<--- call back
-                                    if(err) throw err;
-                                    res.json({
-                                        token, //<---- same as token: token in ES6
-                                        user:{
-                                            id: user.id,
-                                            account_name: user.account_name,
-                                            user_email: user.email
-                                        }
-                                    })
-                                }
-                            )
-                        })
+                    })
                 })
             })
-        })
-
-})
 // ========================
 // =========================
 // UPDATE A USER
