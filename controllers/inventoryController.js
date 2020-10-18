@@ -38,7 +38,7 @@ router.get("/test", auth, (req,res)=>{
         ]
 
     }).then((inventories)=>{
-        res.json({inventories})
+        res.render("handlebars",{inventories})
     })
 })
 
