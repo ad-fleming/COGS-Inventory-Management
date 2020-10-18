@@ -37,11 +37,7 @@ router.get("/test", auth, (req,res)=>{
             }
         ]
     }).then((inventories)=>{
-<<<<<<< HEAD
         res.render("mainInventory", {inventories})
-=======
-        res.render("handlebars",{inventories})
->>>>>>> 23bbde7dc888f7b6d3e590a76dbda2f4f2bc1bb0
     })
 })
 
