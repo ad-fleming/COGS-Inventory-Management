@@ -4,7 +4,7 @@ const exphbs= require("express-handlebars");
 const handlebars = require ("handlebars");
 const {allowInsecurePrototypeAccess} = require("@handlebars/allow-prototype-access");
 // const itemController = require("./controllers/itemController");
-// const userController = require("./controllers/userController");
+const userController = require("./controllers/userController");
 // const inventoryController = require("./controllers/inventoryController");
 // const cookieParser = require ("cookie-parser");
 // Sets up the Express APP 
@@ -64,7 +64,7 @@ app.get("/previousInventory", (req, res)  =>  {
 
 
 
-// app.use(userController);
+app.use(userController);
 // app.use(itemController);
 // app.use(inventoryController);
 // app.use(authController);
