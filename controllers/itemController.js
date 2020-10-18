@@ -10,8 +10,8 @@ const jwtSecret = "tesT_sEcrET";
 
 router.get("/newItem", (req, res) =>  {
     console.log(req.session);
-    const uuid = req.session.userId;   
-    res.render("newItem", {id: req.session.userId});
+    // const uuid = req.session.userId;   
+    res.render("newItem");
   });
 
 // // IF WE WANT TO DISPLAY A PARTICULAR ITEM IN THE MAIN ITEM TABLE

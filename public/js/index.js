@@ -107,7 +107,6 @@ function newUserCreate(stringifiedUser)  {
 
   // ADDING ITEM TO INITIAL INVENTORY
   function newItemCreate(stringifiedItem) {
-    console.log("creating new item")
     postedItem = $.ajax({
       url: "/api/addToMaster",
       method: "POST",
@@ -125,27 +124,27 @@ function newUserCreate(stringifiedUser)  {
         item_count_par: $("#item-count-par").val().trim(),
       },
     }).then((response) => {
-      console.log(response.id + " of item to target")
+      window.location.reload();
     }).catch((err) => {
       console.log(err)
     })
     return postedItem
   }
 
-  async function getInventoryId(safeUser) {
-    console.log("did getInventoryId happen?")
-    console.log(safeUser)
-    try {
-      const inventory = await $.ajax({
-        url: `/user/${safeUser}/inventory/?date=0001-01-01`,
-        method: "GET"
-      })
-      console.log(inventory)
-      return inventory
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // async function getInventoryId(safeUser) {
+  //   console.log("did getInventoryId happen?")
+  //   console.log(safeUser)
+  //   try {
+  //     const inventory = await $.ajax({
+  //       url: `/user/${safeUser}/inventory/?date=0001-01-01`,
+  //       method: "GET"
+  //     })
+  //     console.log(inventory)
+  //     return inventory
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   // CLICK EVENTS
 
@@ -216,16 +215,16 @@ function newUserCreate(stringifiedUser)  {
 
   })
 
-  $("#finalizeButton").on("click", function (event) {
-    event.preventDefault();
+  // $("#finalizeButton").on("click", function (event) {
+  //   event.preventDefault();
 
-    var Finalize = {
-      Finalize: $("#finalizeButton")
-    };
+  //   var Finalize = {
+  //     Finalize: $("#finalizeButton")
+  //   };
 
-    console.log(Finalize);
+  //   console.log(Finalize);
 
-  })
+  // })
 
 
 
