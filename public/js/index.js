@@ -109,7 +109,14 @@ function newUserCreate(stringifiedUser)  {
   function newItemCreate(stringifiedItem) {
     console.log("creating new item")
     postedItem = $.ajax({
+<<<<<<< HEAD
       url: "/api/addToMaster",
+=======
+      url: "/api/items/",
+      headers: {
+        "x-auth-token": passkey
+      }
+>>>>>>> d5b02350d377633fdabc84bd5c8cb0dedf357634
       method: "POST",
       headers:{
         "x-auth-token": passkey
@@ -169,7 +176,6 @@ function newUserCreate(stringifiedUser)  {
     //   email: $("#loginEmail").val().trim(),
     //   password: $("#loginPassword").val().trim()
     // }
-
     // let stringifiedUserToLogin = JSON.stringify(userToLoginInfo);
     
     // loginUser(stringifiedUserToLogin);
@@ -193,9 +199,12 @@ function newUserCreate(stringifiedUser)  {
     let stringifiedItem = JSON.stringify(newItemInfo);
     newItemCreate(stringifiedItem);
 
+<<<<<<< HEAD
   })
 
 
+=======
+>>>>>>> d5b02350d377633fdabc84bd5c8cb0dedf357634
   $("#updateButton").on("click", function (event) {
     event.preventDefault();
 

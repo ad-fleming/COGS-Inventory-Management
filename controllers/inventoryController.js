@@ -9,6 +9,7 @@ const jwtSecret = "tesT_sEcrET";
 
 
 
+<<<<<<< HEAD
 
 // IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
 router.get("/inventory", (req,res)=>{
@@ -19,6 +20,9 @@ router.get("/inventory", (req,res)=>{
 })
 
 // VIEW MASTER INVENTORY WITH ITEMS
+=======
+// testing authentication
+>>>>>>> d5b02350d377633fdabc84bd5c8cb0dedf357634
 router.get("/test", auth, (req,res)=>{
     console.log(req.user);
     db.Inventory.findAll({
@@ -35,11 +39,10 @@ router.get("/test", auth, (req,res)=>{
     }).then((inventories)=>{
         res.json({inventories})
     })
-    
 })
 
 
-// IF WE WANT TO DISPLAY of a user
+// IF WE WANT TO DISPLAY 
 router.get("/user/:userId/inventory", (req, res) => {
     const inventoryDate = req.query.date
     if (inventoryDate) {
@@ -73,34 +76,35 @@ router.get("/inventory/user/:id", (req,res)=>{
 })
 
 // API ROUTES =====================
-// GET ALL Inventories 
-router.get("/api/inventory", (req,res)=>{
-    db.Inventory.findAll({})
-    .then((inventories)=>{
-        console.log(inventories);
-        res.json(inventories);
-    })
-    .catch((err)=>{
-        console.log(err);
-        res.json({
-            message: "issue getting all inventories",
-            success:false
-        })
-    })
-})
+// GET ALL Inventories
 
-// GET AN INVENTORY BASED ON ID
+// router.get("/api/inventory", (req,res)=>{
+//     db.Inventory.findAll({})
+//     .then((inventories)=>{
+//         console.log(inventories);
+//         res.json(inventories);
+//     })
+//     .catch((err)=>{
+//         console.log(err);
+//         res.json({
+//             message: "issue getting all inventories",
+//             success:false
+//         })
+//     })
+// })
 
-router.get("/api/inventory/:UserId", (req,res)=>{
-    db.Inventory.findAll({
-        where:{
-            UserId: req.params.UserId
-        }
-    }).then((specificInventory)=>{
-        console.log(specificInventory);
-        res.json(specificInventory)
-    })
-})
+// GET AN INVENTORIES BASED ON UserD
+// router.get("/api/inventory/:UserId", (req,res)=>{
+//     db.Inventory.findAll({
+//         where:{
+//             UserId: req.params.UserId
+//         }
+//     }).then((specificInventory)=>{
+//         console.log(specificInventory);
+//         res.json(specificInventory)
+//     })
+// })
+
 
 // GET ALL INVENTORIES FOR A PARTICULAR USER
 router.get("/api/inventory/user/:id", (req,res)=>{
@@ -118,6 +122,7 @@ router.get("/api/inventory/user/:id", (req,res)=>{
     })
 })
 
+// Add New Inventory
 router.post ("/api/inventory", (req,res)=>{
     const newInventory = {
         inventory_date: req.body.inventory_date,
