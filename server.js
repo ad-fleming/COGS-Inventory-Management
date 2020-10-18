@@ -67,9 +67,9 @@ app.get("/login", (req, res) =>  {
   res.render("login");
 });
 
-app.get("/mainInventory",auth, (req,res)=>{
-  res.render("mainInventory")
-})
+// app.get("/mainInventory",auth, (req,res)=>{
+//   res.render("mainInventory")
+// })
 
 app.use(userController);
 app.use(itemController);
