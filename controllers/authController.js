@@ -22,7 +22,7 @@ router.post('/api/auth', (req,res)=>{
         }
     }) //<--TODO: THIS MIGHT HAVE TO BE CHANGED TO WHERE email: req.body.email
     .then(user =>{
-        console.log(user + "Line 25 authController")
+        console.log(user)
         if(!user) return res.status(400).json({msg: "User does not exist"})
         // Validate Password
         // below compares user-typed password to hashed password, returns promise
@@ -31,7 +31,7 @@ router.post('/api/auth', (req,res)=>{
             if(!isMatch) return res.status(400).json({msg: "Invalid Credentials"})
             // If it matches, we send token and user
             jwt.sign(
-                {id: user.id}, //<--- Token payload
+                {id: user.id, account_name: user.account_name, email: user.email, name: user.name}, //<--- Token payload
                 jwtSecret,
                 {expiresIn: "1h"}, //<---Token will expire in 1 hour, after which user will be logged out (forbidden from page)
                 (err, token) =>{ //<---call back function for async
