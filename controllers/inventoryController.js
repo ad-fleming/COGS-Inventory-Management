@@ -37,7 +37,7 @@ router.get("/test", auth, (req,res)=>{
             }
         ]
     }).then((inventories)=>{
-        console.log(inventories + "line 40 inventoryController")
+        console.log(inventories)
         // let mainInventory = {
         //     id: inventories.id,
         //     inventory_date: inventories.inventory_date,
