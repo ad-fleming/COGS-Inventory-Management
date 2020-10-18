@@ -37,6 +37,7 @@ router.get("/test", auth, (req,res)=>{
             }
         }).then((masterInventoryItems)=>{
             res.render("mainInventory",{masterInventoryItems})
+            res.redirect("/mainInventory")
         }).catch((err)=>{
             console.log(err);
             res.json({msg: "Still don't know"})
