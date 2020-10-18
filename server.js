@@ -59,11 +59,10 @@ app.get("/newUser", (req, res) =>  {
   res.render("newUser");
 });
 
-// app.get("/newItem", (req, res) =>  {
-  
-//   console.log(req.session);
-//   res.render("newItem", {id: req.session.userId});
-// });
+app.get("/newItem", (req, res) =>  {
+  ;
+  res.render("newItem", {id: req.user.id});
+});
 
 app.get("/login", (req, res) =>  {
   res.render("login");
