@@ -24,7 +24,7 @@ router.get("/test", auth, (req,res)=>{
     db.Inventory.findAll({
         where:{
             UserId: req.user.id,
-            inventory_date: req.user.date
+            inventory_date: "0001-01-01"
         }, 
         include: [
             {
