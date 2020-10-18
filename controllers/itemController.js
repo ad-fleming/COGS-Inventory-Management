@@ -5,9 +5,7 @@ const db = require ("../models");
 
 
 // VIEW ROUTE TO NEW ITEMS PAGE
-router.get("/newItem", (req, res) =>  {
-    console.log(req.session);
-    // const uuid = req.session.userId;   
+router.get("/newItem", (req, res) =>  {  
     res.render("newItem");
   });
 
@@ -37,10 +35,10 @@ router.get("/weeklyInventory/:id", (req,res)=>{
 
 //================= API ROUTES===========================
 
-// POST AN INVENTORY TO A PARTICULAR Inventory
+// POST AN ITEM TO A PARTICULAR Inventory
 router.post("/post-item/:id",(req,res)=>{
     db.Item.create({
-        unit_name: req.body.unit_name.trim(),
+            unit_name: req.body.unit_name.trim(),
             unit_category: req.body.unit_category,
             unit_distributor: req.body.unit_distributor,
             unit_price: req.body.unit_price,
