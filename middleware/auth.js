@@ -7,8 +7,10 @@ const jwtSecret = "tesT_sEcrET"
 
 
 // function auth(req, res, next){
+//     const authHeader = req.headers['authorization'];
+
 //     console.log("this is hitting")
-//     const token = req.header ['Cookie'];
+//     const token = authHeader && authHeader.split(" ")[1];
 //     console.log(token);
 
 //     // CHECK FOR TOKEN
@@ -30,19 +32,92 @@ const jwtSecret = "tesT_sEcrET"
 //     }
 // }
 
-function auth(req, res, next){
-    const authHeader = req.headers['authorization'];
-    // If there is an authHeader, split it and return token
-    // Otherwise return as undefined
-    const token = authHeader && authHeader.split(" ")[1];
-    if (token == null) return res.sendStatus(401);
+// function auth(req, res, next){
+//     const authHeader = req.headers['authorization'];
+//     // If there is an authHeader, split it and return token
+//     // Otherwise return as undefined
+//     const token = authHeader && authHeader.split(" ")[1];
+//     if (token == null) return res.json({msg: "no token present"})
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user)=>{
-        if(err) return res.sendStatus(403);
-        req.user = user
-        next();
-    })
+//     jwt.verify(token, jwtSecret, (err, user)=>{
+//         if(err) return res.json({msg: "Invalid Token"});
+//         req.user = user
+//         next();
+//     })
+// }
+
+// function auth(req, res, next){
+//     // Get auth header value
+//     const bearerHeader = req.headers['authorization'];
+//     // Check if bearer is undefined
+//     if(typeof bearerHeader !== 'undefined'){
+//         // Split at the space 'bearer token'
+//         const bearer = bearerHeader.split(" "); //--- splits 'bearer token' to [bearer, token]
+//         // get token from array
+//         const bearerToken = bearer[1];
+//         // set the token
+//         req.token = bearerToken
+//         // Next middleware
+//         next();
+//     } else {
+//         // Forbidden
+//         res.sendStatus(403);
+//     }
+
+//     jwt.verify(token, jwtSecret, (err, user) =>{
+//         if(err) return res.json({msg: "Invalid Token"});
+//         req.user = user
+//     })
+// }
+
+// let auth = (req, res, next) => {
+//   let token = req.headers['x-access-token'] || req.headers['authorization']; // Express headers are auto converted to lowercase
+//   if (token.startsWith('Bearer ')) {
+//     // Remove Bearer from string
+//     token = token.slice(7, token.length);
+//   }
+
+//   if (token) {
+//     jwt.verify(token, jwt, (err, decoded) => {
+//       if (err) {
+//         return res.json({
+//           success: false,
+//           message: 'Token is not valid'
+//         });
+//       } else {
+//         req.decoded = decoded;
+//         console.log(req.decoded)
+//         next();
+//       }
+//     });
+//   } else {
+//     return res.json({
+//       success: false,
+//       message: 'Auth token is not supplied'
+//     });
+//   }
+// };
+
+function auth(req, res, next){
+    const token = req.header('x-auth-token');
+    // Check for token
+    if(!token) {
+        res.status(401).json({msg: "No Token"})
+    }
+
+    try {
+        const decoded = jwt.verify(token, jwtSecret);
+            // Add user form payload
+            req.user = decoded;
+            next();
+    }
+    catch(e){
+        res.status(400).json({msg: "invalid token"})
+    }
+    
+
 }
+
 
 module.exports = auth;
 

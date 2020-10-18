@@ -12,7 +12,7 @@ const addItemBtn = $("#add-item-button");
 
 // local storage access
 let safeUser = localStorage.getItem("safeUser");
-console.log(safeUser);
+let passkey = localStorage.getItem("passKey")
 
 // global functions
 
@@ -67,6 +67,15 @@ function newUserCreate(stringifiedUser)  {
       console.log(response);
       let passKey = response.token
       localStorage.setItem("passKey", passKey);
+      $.ajax({
+        url:`/test`,
+        method: "GET",
+        headers: {
+          "x-auth-token": passkey
+        }
+      }).then((response)=>{
+        console.log(response);
+      })
       // safeUser = response.id
       // localStorage.setItem("safeUser", safeUser);
     })
