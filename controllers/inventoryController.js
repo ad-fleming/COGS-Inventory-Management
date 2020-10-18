@@ -36,9 +36,8 @@ router.get("/test", auth, (req,res)=>{
               model: db.Item  
             }
         ]
-
     }).then((inventories)=>{
-        res.json({inventories})
+        res.render("mainInventory", {inventories})
     })
 })
 
