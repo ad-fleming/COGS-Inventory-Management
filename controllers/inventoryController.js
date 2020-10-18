@@ -26,7 +26,7 @@ router.get("/mainInventory", auth, (req,res)=>{
 // VIEW MASTER INVENTORY WITH ITEMS
 router.get("/test", auth, (req,res)=>{
     console.log(req.user + "line 28 inventoryController");
-    db.Inventory.findAll({
+    db.Inventory.findOne({
         where:{
             UserId: req.user.id,
             inventory_date: "0001-01-01"
@@ -53,7 +53,11 @@ router.get("/test", auth, (req,res)=>{
         //     unit_par: inventories.Items.unit_par,
         //     unit_price: inventories.Items.unit_price,
         // }
-        res.render("mainInventory", {inventories});
+        res.render("mainInventory", {
+            inventories
+        });
+    }).catch((err)=>{
+        console.log(err)
     })
 })
 

@@ -29,21 +29,20 @@ function goToMainInventory()    {
     },
   }).then((response) =>   {
     console.log(response);
-    $.ajax({
-      url: `/mainInventory`,
-      headers:{
-        "x-auth-token": passkey
-      },
-      method: "Get",
-  }).then((response)=>{
-    window.location.replace("/mainInventory")
-  })
+  //   $.ajax({
+  //     url: `/mainInventory`,
+  //     headers:{
+  //       "x-auth-token": passkey
+  //     },
+  //     method: "Get",
+  // }).then((response)=>{
+  //   window.location.replace("/mainInventory")
+  // })
   })
 }
 
 // MAIN INVENTORY BUTTON
 mainInventoryBtn.on("click", function(event)  {
-    event.stopPropagation();
     goToMainInventory();
 })
 
