@@ -71,11 +71,12 @@ function newUserCreate(stringifiedUser)  {
 
   loginBtn.on("click", function (event) {
     event.preventDefault();
-    // const loginUserInfo = {
-    //   email: $("#loginEmail").val().trim(),
-    //   password: $("#loginPassword").val().trim(),
-    // };
-    // let stringifiedLoginUser = JSON.stringify(loginUserInfo);
+    event.stopPropagation();
+    const loginUserInfo = {
+      email: $("#loginEmail").val().trim(),
+      password: $("#loginPassword").val().trim(),
+    };
+    let stringifiedLoginUser = JSON.stringify(loginUserInfo);
     loginUser();
   })
 
