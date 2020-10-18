@@ -68,7 +68,7 @@ function newUserCreate(stringifiedUser)  {
       let passKey = response.token
       localStorage.setItem("passKey", passKey);
       $.ajax({
-        url:`/test`,
+        url:`/newItem`,
         method: "GET",
         headers: {
           "x-auth-token": passkey
