@@ -37,12 +37,15 @@ router.post('/api/auth', (req,res)=>{
                 (err, token) =>{ //<---call back function for async
                     if(err) throw err;
                     // If no Error send the token
-                    req.session.userId = user.id;
+                    // req.session.userId = user.id;
                     res.json({
                         token, //<----same as token: token in ES6
-                        id: user.id,
-                        account_name: user.account_name, 
-                        user_email: user.email
+                        user: {
+                            id: user.id,
+                            account_name: user.account_name, 
+                            user_email: user.email
+                        }
+
                     })
                 }
             )
