@@ -2,7 +2,7 @@ $(document ).ready(function() {
     console.log( "ready!" );
 
 // global button targetting
-const newUserBtn = $("#submitButton");
+const newUserBtn = $("#user-create-button");
 const newItemFrm = $("#new-item-form");
 const loginBtn = $("#loginButton")
 const addItemBtn = $("#add-item-button");
@@ -16,117 +16,7 @@ const mainSheetNav  = $("#main-sheet-nav");
 let safeUser = localStorage.getItem("safeUser");
 let passkey = localStorage.getItem("passKey")
 
-// global functions
-
-function goToMainInventory()    {
-  console.log("is this happening?")
-  passkey = localStorage.getItem("passKey")
-  $.ajax({
-    url:`/test`,
-    method: "GET",
-    headers: {
-      "x-auth-token": passkey
-    },
-  }).then((response) =>   {
-    mainItemsArray = response.Items
-    console.log(mainItemsArray)
-    rowTopTarget.empty();
-    rowLowTarget.empty();
-    cardTextTop.text("Main Item Sheet")
-    let mainItemForm = $("<form>");
-    mainItemForm.addClass("white-text logo push");
-    mainItemForm.attr("id", "add-item-form")
-    mainItemForm.text("hello again")
-    rowTopTarget.append(mainItemForm)
-    
-    if (mainItemsArray)  {
-      
-      for(var i = 0; i < mainItemsArray.length; i++)  {
-      let itemName = $("<h4>");
-      itemName.text(mainItemsArray[i].unit_name + " - " + mainItemsArray[i].unit_category);
-      itemName.attr("data-type", mainItemsArray[i].name)
-      mainItemForm.append(itemName);
-
-      let divItemRow = $("<div>");
-      divItemRow.addClass("row section form-section")
-      mainItemForm.append(divItemRow);
-      
-      let divItemColLeft = $("<div>").addClass("col s6 l6");
-      divItemRow.append(divItemColLeft);
-
-      let pDistributor = $("<p>");
-      pDistributor.text("Distributor");
-      divItemColLeft.append(pDistributor);
-
-      let distInput = $("<input>");
-      distInput.addClass("input-field form-text");
-      distInput.attr("value", mainItemsArray[i].unit_distributor);
-      divItemColLeft.append(distInput);
-
-      let pUnitPrice = $("<p>");
-      pUnitPrice.text("Unit Price");
-      divItemColLeft.append(pUnitPrice);
-      
-      let unitPriceInput = $("<input>");
-      unitPriceInput.addClass("input-field form-text");
-      unitPriceInput.attr("value", mainItemsArray[i].unit_price);
-      divItemColLeft.append(unitPriceInput);
-
-      let pItemCountType = $("<p>");
-      pItemCountType.text("Item Count Type");
-      divItemColLeft.append(pItemCountType);
-
-      let itemCountTypeInput = $("<input>");
-      itemCountTypeInput.addClass("input-field form-text");
-      itemCountTypeInput.attr("value", mainItemsArray[i].item_count_type);
-      divItemColLeft.append(itemCountTypeInput);
-
-      let divItemColRight = $("<div>").addClass("col s6 l6")
-      divItemRow.append(divItemColRight);
-
-      let pUnitPar = $("<p>");
-      pUnitPar.text("Unit Par");
-      divItemColRight.append(pUnitPar);
-
-      let unitParInput = $("<input>");
-      unitParInput.addClass("input-field form-text");
-      unitParInput.attr("value", mainItemsArray[i].unit_par);
-      divItemColRight.append(unitParInput);
-
-      let pItemPar = $("<p>");
-      pItemPar.text("Item Par");
-      divItemColRight.append(pItemPar);
-
-      let itemParInput = $("<input>");
-      itemParInput.addClass("input-field form-text");
-      itemParInput.attr("value", mainItemsArray[i].item_count_type);
-      divItemColRight.append(itemParInput);
-
-      let pItemsPerUnit = $("<p>");
-      pItemsPerUnit.text("Items Per Unit");
-      divItemColRight.append(pItemsPerUnit);
-      
-      let itemsPerInput = $("<input>");
-      itemsPerInput.addClass("input-field form-text");
-      itemsPerInput.attr("value", mainItemsArray[i].items_per_unit);
-      divItemColRight.append(itemsPerInput);
-
-    }
-  } else {
-    console.log("items array is not greater than 0")
-  }
-
-  })
-}
-
-// MAIN INVENTORY BUTTON
-mainInventoryBtn.on("click", function(event)  {
-    goToMainInventory();
-})
-
-mainSheetNav.on("click", function(event)  {
-  goToMainInventory();
-})
+// Global Functions
 
 // CREATE A NEW USER & // INITIAL INVENTORIES
 function newUserCreate(stringifiedUser)  {
@@ -165,44 +55,41 @@ function newUserCreate(stringifiedUser)  {
 
   // LOGIN USER
 
-  function loginUser(stringifiedLoginUser) {
-    $.ajax({
-      url: `/api/auth`,
-      method: "POST",
-      data: {
-        email: $("#loginEmail").val().trim(),
-        password: $("#loginPassword").val().trim()
-      }, 
-    }).then((response)=>{
-      console.log(response);
-      let passKey = response.token
-      localStorage.setItem("passKey", passKey);
-      $.ajax({
-        url:`/newItem`,
-        method: "GET",
-        headers: {
-          "x-auth-token": passkey
-        }
-      }).then((response)=>{
-        window.location.replace("/newItem")
-      })
-      // safeUser = response.id
-      // localStorage.setItem("safeUser", safeUser);
-    })
-    
-  }
-
-  loginBtn.on("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const loginUserInfo = {
-      email: $("#loginEmail").val().trim(),
-      password: $("#loginPassword").val().trim(),
-    };
-    let stringifiedLoginUser = JSON.stringify(loginUserInfo);
-    loginUser();
-  })
-
+  // function loginUser(stringifiedLoginUser) {
+  //   $.ajax({
+  //     url: `/api/auth`,
+  //     method: "POST",
+  //     data: {
+  //       email: $("#loginEmail").val().trim(),
+  //       password: $("#loginPassword").val().trim()
+  //     }, 
+  //   }).then((response)=>{
+  //     console.log(response);
+  //     let passKey = response.token
+  //     localStorage.setItem("passKey", passKey);
+  //     $.ajax({
+  //       url:`/newItem`,
+  //       method: "GET",
+  //       headers: {
+  //         "x-auth-token": passkey
+  //       }
+  //     }).then((response)=>{
+  //       window.location.replace("/newItem")
+  //     })
+  //     // safeUser = response.id
+  //     // localStorage.setItem("safeUser", safeUser);
+  //   })
+  // }
+  // loginBtn.on("click", function (event) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   const loginUserInfo = {
+  //     email: $("#loginEmail").val().trim(),
+  //     password: $("#loginPassword").val().trim(),
+  //   };
+  //   let stringifiedLoginUser = JSON.stringify(loginUserInfo);
+  //   loginUser();
+  // })
   // newUserBtn.on("click", function (event) {
   //   event.preventDefault();
   //   const newUserInfo = {
@@ -217,23 +104,22 @@ function newUserCreate(stringifiedUser)  {
 
 
   // TAKE NEW USER TO ITEM CREATE PAGE
+  // newUserItemBtn.on("click", (event)=>{
+  //   event.preventDefault();
+  //   newUserItemPage();
+  // })
 
-  newUserItemBtn.on("click", (event)=>{
-    event.preventDefault();
-    newUserItemPage();
-  })
-
-  function newUserItemPage(){
-    $.ajax({
-      url:`/newItem`,
-      method: "GET",
-      headers: {
-        "x-auth-token": passkey
-      }
-    }).then((response)=>{
-      window.location.replace("/newItem")
-    })
-  }
+  // function newUserItemPage(){
+  //   $.ajax({
+  //     url:`/newItem`,
+  //     method: "GET",
+  //     headers: {
+  //       "x-auth-token": passkey
+  //     }
+  //   }).then((response)=>{
+  //     window.location.replace("/newItem")
+  //   })
+  // }
 
   // ADDING ITEM TO MASTER INVENTORY 
   function newItemCreate(stringifiedItem){

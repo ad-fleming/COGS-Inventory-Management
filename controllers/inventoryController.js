@@ -3,16 +3,11 @@ const router = express.Router();
 const db = require ("../models");
 
 // IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
-router.get("/inventory", (req,res)=>{
+router.get("/inventory", (req, res)=>{
     db.Inventory.findAll()
     .then((inventories)=>{
         res.json({inventories})
     })
-})
-
-router.get("/mainInventory", auth, (req,res)=>{
-    console.log(req.user);
-    res.render("mainInventory")
 })
 
 // VIEW MASTER INVENTORY WITH ITEMS
