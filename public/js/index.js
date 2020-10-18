@@ -106,12 +106,11 @@ function newUserCreate(stringifiedUser)  {
 
   // ADDING ITEM TO INITIAL INVENTORY
   function newItemCreate(stringifiedItem) {
-    console.log("creating new item")
     postedItem = $.ajax({
       url: "/api/items/",
       headers: {
         "x-auth-token": passkey
-      }
+      },
       method: "POST",
       data: {
         unit_name: $("#name-of-item").val().trim(),
@@ -131,20 +130,20 @@ function newUserCreate(stringifiedUser)  {
     return postedItem
   }
 
-  async function getInventoryId(safeUser) {
-    console.log("did getInventoryId happen?")
-    console.log(safeUser)
-    try {
-      const inventory = await $.ajax({
-        url: `/user/${safeUser}/inventory/?date=0001-01-01`,
-        method: "GET"
-      })
-      console.log(inventory)
-      return inventory
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // async function getInventoryId(safeUser) {
+  //   console.log("did getInventoryId happen?")
+  //   console.log(safeUser)
+  //   try {
+  //     const inventory = await $.ajax({
+  //       url: `/user/${safeUser}/inventory/?date=0001-01-01`,
+  //       method: "GET"
+  //     })
+  //     console.log(inventory)
+  //     return inventory
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   // CLICK EVENTS
 
@@ -186,13 +185,11 @@ function newUserCreate(stringifiedUser)  {
       itemsPerUnit: $("#items-per-unit").val().trim(),
       itemCountType: $("#item-count-type").val().trim(),
       itemCountPar: $("#item-count-par").val().trim(),
-      UserId: safeUser
     };
     console.log(newItemInfo);
     let stringifiedItem = JSON.stringify(newItemInfo);
     newItemCreate(stringifiedItem);
-    getInventoryId(safeUser);
-  })
+    })
 
   $("#updateButton").on("click", function (event) {
     event.preventDefault();
