@@ -53,9 +53,7 @@ router.get("/test", auth, (req,res)=>{
         //     unit_par: inventories.Items.unit_par,
         //     unit_price: inventories.Items.unit_price,
         // }
-        res.render("mainInventory", {
-            inventories
-        });
+        res.json(inventories);
     }).catch((err)=>{
         console.log(err)
     })
