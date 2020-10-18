@@ -18,6 +18,11 @@ router.get("/inventory", (req,res)=>{
     })
 })
 
+router.get("/mainInventory", auth, (req,res)=>{
+    console.log(req.user);
+    res.render("mainInventory")
+})
+
 // VIEW MASTER INVENTORY WITH ITEMS
 router.get("/test", auth, (req,res)=>{
     console.log(req.user);
