@@ -1,6 +1,3 @@
-// const db = require("../../models");
-// const { query } = require("express");
-
 $(document ).ready(function() {
     console.log( "ready!" );
 
@@ -11,8 +8,6 @@ const loginBtn = $("#loginButton")
 const addItemBtn = $("#add-item-button");
 const newUserItemBtn =  $("#newUserCreateItems");
 const mainInventoryBtn = $("#finished-item")
-const rowTopTarget = $("#row-top-target")
-const rowLowTarget = $("#row-low-target")
 const cardTextTop = $("#card-text-top")
 const mainSheetNav  = $("#main-sheet-nav");
 
