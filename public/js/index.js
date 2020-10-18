@@ -68,13 +68,13 @@ function newUserCreate(stringifiedUser)  {
       let passKey = response.token
       localStorage.setItem("passKey", passKey);
       $.ajax({
-        url:`/test`,
+        url:`/newItem`,
         method: "GET",
         headers: {
           "x-auth-token": passkey
         }
       }).then((response)=>{
-        console.log(response);
+        window.location.replace("/newItem")
       })
       // safeUser = response.id
       // localStorage.setItem("safeUser", safeUser);
@@ -84,6 +84,7 @@ function newUserCreate(stringifiedUser)  {
 
   loginBtn.on("click", function (event) {
     event.preventDefault();
+    event.stopPropagation();
     const loginUserInfo = {
       email: $("#loginEmail").val().trim(),
       password: $("#loginPassword").val().trim(),
@@ -107,11 +108,18 @@ function newUserCreate(stringifiedUser)  {
   // ADDING ITEM TO INITIAL INVENTORY
   function newItemCreate(stringifiedItem) {
     postedItem = $.ajax({
+<<<<<<< HEAD
       url: "/api/items/",
       headers: {
         "x-auth-token": passkey
       },
+=======
+      url: "/api/addToMaster",
+>>>>>>> 38c3de55eb08f9a5ad07f867bf7e5a8b3914ec89
       method: "POST",
+      headers:{
+        "x-auth-token": passkey
+      },
       data: {
         unit_name: $("#name-of-item").val().trim(),
         unit_category: $("#category").val().trim(),
@@ -189,7 +197,13 @@ function newUserCreate(stringifiedUser)  {
     console.log(newItemInfo);
     let stringifiedItem = JSON.stringify(newItemInfo);
     newItemCreate(stringifiedItem);
+<<<<<<< HEAD
     })
+=======
+
+  })
+>>>>>>> 38c3de55eb08f9a5ad07f867bf7e5a8b3914ec89
+
 
   $("#updateButton").on("click", function (event) {
     event.preventDefault();

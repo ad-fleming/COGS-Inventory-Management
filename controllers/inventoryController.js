@@ -9,13 +9,29 @@ const jwtSecret = "tesT_sEcrET";
 
 
 
-// testing authentication
+
+// IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
+router.get("/inventory", (req,res)=>{
+    db.Inventory.findAll()
+    .then((inventories)=>{
+        res.json({inventories})
+    })
+})
+
+// VIEW MASTER INVENTORY WITH ITEMS
 router.get("/test", auth, (req,res)=>{
     console.log(req.user);
     db.Inventory.findAll({
         where:{
-            UserId: req.user.id
-        }
+            UserId: req.user.id,
+            inventory_date: "0001-01-01"
+        }, 
+        include: [
+            {
+              model: db.Item  
+            }
+        ]
+
     }).then((inventories)=>{
         res.json({inventories})
     })
