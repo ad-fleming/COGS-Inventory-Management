@@ -18,13 +18,20 @@ router.get("/inventory", (req,res)=>{
     })
 })
 
-
+// VIEW MASTER INVENTORY WITH ITEMS
 router.get("/test", auth, (req,res)=>{
     console.log(req.user);
     db.Inventory.findAll({
         where:{
-            UserId: req.user.id
-        }
+            UserId: req.user.id,
+            inventory_date: "0001-01-01"
+        }, 
+        include: [
+            {
+              model: db.Item  
+            }
+        ]
+
     }).then((inventories)=>{
         res.json({inventories})
     })
