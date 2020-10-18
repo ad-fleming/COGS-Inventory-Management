@@ -17,7 +17,22 @@ let passkey = localStorage.getItem("passKey")
 
 // global functions
 
-// Did it work?
+function goToMainInventory()    {
+  $.ajax({
+      url: "/test",
+      method: "GET",
+      headers: {
+          "x-auth-token": passKey
+      },
+  }).then((response) =>   {
+  window.location.replace("/mainInventory")
+  })
+}
+
+// MAIN INVENTORY BUTTON
+mainInventoryBtn.on("click", function(event)  {
+    goToMainInventory();
+})
 
 // CREATE A NEW USER & // INITIAL INVENTORIES
 function newUserCreate(stringifiedUser)  {
@@ -217,7 +232,6 @@ function newUserCreate(stringifiedUser)  {
 
   $("#updateButton").on("click", function (event) {
     event.preventDefault();
-
     var updateForm = {
       Unit_Distributor: $("#distributor").val().trim(),
       Unit_Par: $("#unit-par").val().trim(),
