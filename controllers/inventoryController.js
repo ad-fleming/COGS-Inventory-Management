@@ -11,12 +11,22 @@ const jwtSecret = "tesT_sEcrET";
 
 
 // IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
-router.get("/inventory", [auth], (req,res)=>{
+router.get("/inventory",auth, (req,res)=>{
     db.Inventory.findAll()
     .then((inventories)=>{
         res.json({inventories})
     })
 })
+
+
+// router.get("/test/:id", auth, (req,res)=>{
+//     db.Inventory.findAll({
+//         where:{
+//             id: req.user
+//         }
+//     })
+// })
+
 
 // IF WE WANT TO DISPLAY of a user
 router.get("/user/:userId/inventory", (req, res) => {

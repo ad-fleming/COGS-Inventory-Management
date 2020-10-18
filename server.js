@@ -9,6 +9,7 @@ const inventoryController = require("./controllers/inventoryController");
 const authController = require("./controllers/authController");
 const session = require("express-session")
 const auth = require("./middleware/auth")
+// const cookieParser = require ("cookie-parser");
 // Sets up the Express APP 
 // =======================
 
@@ -26,7 +27,6 @@ app.use(express.json());
 app.use(express.static("public"));
 
 
-
 // Include Express-handlebars as the default templating engine
 app.engine("handlebars", exphbs({
     defaultLayout: "main",
@@ -34,11 +34,13 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-app.use(session({
-  secret: "thanksphil",
-  resave: true,
-  saveUninitialized: true
-}));
+// app.use(cookieParser);
+
+// app.use(session({
+//   secret: "thanksphil",
+//   resave: true,
+//   saveUninitialized: true
+// }));
 
 // ROUTES WILL GO HERE
 // *******************
