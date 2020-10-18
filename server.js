@@ -25,6 +25,8 @@ app.use(express.json());
 // Static Directory
 app.use(express.static("public"));
 
+
+
 // Include Express-handlebars as the default templating engine
 app.engine("handlebars", exphbs({
     defaultLayout: "main",

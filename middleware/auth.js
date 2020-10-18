@@ -6,14 +6,16 @@ const jwtSecret = "tesT_sEcrET"
 // This function grabs the token that is being sent from the Frontend and authenticates it
 
 
-
 function auth(req, res, next){
+    console.log("this is hitting")
     const token = req.header('x-auth-token');
+    console.log(token);
 
     // CHECK FOR TOKEN
     if(!token){
+        console.log("inside if check")
         // IF NO TOKEN, RETURN YOU DON'T HAVE CORRECT PERMISSIONS (UNAUTHORIZED STATUS)
-        res.status(401).json({msg: "No token present, authorization denied"})
+        return res.status(401).json({msg: "No token present, authorization denied"})
     }
 
     try{
@@ -23,7 +25,7 @@ function auth(req, res, next){
         req.user = decoded;
         next();
     } catch(e){ //<--- catch (e)xception
-        res.status(400).json({msg: "Token is not valid"})
+        return res.status(400).json({msg: "Token is not valid"})
     }
 }
 

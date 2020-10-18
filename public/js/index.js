@@ -67,8 +67,8 @@ function newUserCreate(stringifiedUser)  {
       console.log(response);
       let passKey = response.token
       localStorage.setItem("passKey", passKey);
-      safeUser = response.id
-      localStorage.setItem("safeUser", safeUser);
+      // safeUser = response.id
+      // localStorage.setItem("safeUser", safeUser);
     })
     
   }

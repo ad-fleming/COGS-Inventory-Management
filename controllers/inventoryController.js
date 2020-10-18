@@ -8,8 +8,10 @@ const auth = require ("../middleware/auth")
 const jwtSecret = "tesT_sEcrET";
 
 
+
+
 // IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
-router.get("/inventory", (req,res)=>{
+router.get("/inventory", [auth], (req,res)=>{
     db.Inventory.findAll()
     .then((inventories)=>{
         res.json({inventories})
