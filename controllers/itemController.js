@@ -135,9 +135,9 @@ router.get("/api/items/name/:unit_name", (req,res)=>{
 })
 
 // Add an Item to Master Inventory
-router.post("/api/addToMain", (req,res)=>{
+router.post("/api/addToMain", (req,res) =>{
     db.Item.create({
-        unit_name: req.body.unit_name.trim(),
+            unit_name: req.body.unit_name.trim(),
             unit_category: req.body.unit_category,
             unit_distributor: req.body.unit_distributor,
             unit_price: req.body.unit_price,

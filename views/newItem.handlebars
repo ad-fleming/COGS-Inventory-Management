@@ -1,15 +1,12 @@
-<div class="row center-content">
-    <div class="col s12 l12">
-        <div class="card grey darken-4 section">
             <div class="card-content white-text">
                 <span class="card-title">
-                    <h2>COGS</h2>
-                </span>
+                    <h2>COGS</h2> </span>
                 <p class="section" id="card-text-top">Please enter in the details of the new item you'd like to add to your inventory.</p>
             </div>
+            
+            <div class="row"> 
             <form class="white-text logo-push" id="add-item-form">
                 <div class="row" id="row-top-target">
-
                     <div class="col s6 l6">
                         <p>Name of Item:</p>
                         <input class="white-text" type="text" id="name-of-item">
@@ -30,27 +27,20 @@
                         <input class="white-text" type="text"  id="item-count-type">
                         <p>Item Count Par:</p>
                         <input class="white-text" type="number"  id="item-count-par">
-                        
                     </div>
-                    
                 </div>
-            </form>
-            <div class="row" id="row-low-target">
-                <div class="col s5 l5 section"></div>
-                <div class="col s4 l4">
-                    <button class="ui button lime accent-2 right l12" id="add-item-button">
-                        <p class="black-font">Add Item</p>
+                    <button class="ui button lime accent-2 right l6 button-right-margin" id="add-item-button">
+                        <p class="black-font">Add More Items</p>
                     </button>
-                </div>
-                <div class="col s3 l3">
-                    <button class="ui button lime accent-2 right l12" type="#" id="finished-item">
-                        <p class="black-font">Finished</p>
-                    </button>
-                </div>
-                <div class="col s1 l1"></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="col s2 hide-on-small-only"> </div>
-</div>
+                    <a href="mainsheet"></a>
+                    <button class="ui button lime accent-2 right l6 button-right-margin" type="#" id="add-item-complete">
+                      <p class="black-font">Complete</p>
+                    </button>
+            </form>
+   
+
+                </div>
+
+
+<script src="/js/newItemForm.js"></script>
