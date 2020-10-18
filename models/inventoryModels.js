@@ -18,3 +18,5 @@ module.exports = function(sequelize, Datatypes){
     };
     return Inventory;
 }
+
+// For better or worse
