@@ -68,13 +68,13 @@ function newUserCreate(stringifiedUser)  {
       let passKey = response.token
       localStorage.setItem("passKey", passKey);
       $.ajax({
-        url:`/test`,
+        url:`/newItem`,
         method: "GET",
         headers: {
           "x-auth-token": passkey
         }
       }).then((response)=>{
-        console.log(response);
+        window.location.replace("/newItem")
       })
       // safeUser = response.id
       // localStorage.setItem("safeUser", safeUser);
@@ -84,6 +84,7 @@ function newUserCreate(stringifiedUser)  {
 
   loginBtn.on("click", function (event) {
     event.preventDefault();
+    event.stopPropagation();
     const loginUserInfo = {
       email: $("#loginEmail").val().trim(),
       password: $("#loginPassword").val().trim(),
@@ -108,11 +109,11 @@ function newUserCreate(stringifiedUser)  {
   function newItemCreate(stringifiedItem) {
     console.log("creating new item")
     postedItem = $.ajax({
-      url: "/api/items/",
-      headers: {
-        "x-auth-token": passkey
-      }
+      url: "/api/addToMaster",
       method: "POST",
+      headers:{
+        "x-auth-token": passkey
+      },
       data: {
         unit_name: $("#name-of-item").val().trim(),
         unit_category: $("#category").val().trim(),
@@ -186,13 +187,13 @@ function newUserCreate(stringifiedUser)  {
       itemsPerUnit: $("#items-per-unit").val().trim(),
       itemCountType: $("#item-count-type").val().trim(),
       itemCountPar: $("#item-count-par").val().trim(),
-      UserId: safeUser
     };
     console.log(newItemInfo);
     let stringifiedItem = JSON.stringify(newItemInfo);
     newItemCreate(stringifiedItem);
-    getInventoryId(safeUser);
+
   })
+
 
   $("#updateButton").on("click", function (event) {
     event.preventDefault();

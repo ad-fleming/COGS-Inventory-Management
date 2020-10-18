@@ -7,8 +7,8 @@ const itemController = require("./controllers/itemController");
 const userController = require("./controllers/userController");
 const inventoryController = require("./controllers/inventoryController");
 const authController = require("./controllers/authController");
-const session = require("express-session")
-const auth = require("./middleware/auth")
+const session = require("express-session");
+const auth = require("./middleware/auth");
 // const cookieParser = require ("cookie-parser");
 // Sets up the Express APP 
 // =======================
@@ -59,11 +59,9 @@ app.get("/newUser", (req, res) =>  {
   res.render("newUser");
 });
 
-// app.get("/newItem", (req, res) =>  {
-  
-//   console.log(req.session);
-//   res.render("newItem", {id: req.session.userId});
-// });
+app.get("/newItem", (req, res) =>  {
+  res.render("newItem");
+});
 
 app.get("/login", (req, res) =>  {
   res.render("login");

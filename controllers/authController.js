@@ -10,7 +10,6 @@ const jwtSecret = "tesT_sEcrET";
 // ==============================================================================
 router.post('/api/auth', (req,res)=>{
     const {email, password} = req.body;
-    console.log(req.body);
     // Validation -check database for matching email and password
     if(!email || !password){
         return res.status(400).json({msg: "Please enter all fields"})
