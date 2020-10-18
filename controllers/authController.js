@@ -22,7 +22,7 @@ router.post('/api/auth', (req,res)=>{
         }
     }) //<--TODO: THIS MIGHT HAVE TO BE CHANGED TO WHERE email: req.body.email
     .then(user =>{
-        console.log(user + "Line 25 authController")
+        console.log(user)
         if(!user) return res.status(400).json({msg: "User does not exist"})
         // Validate Password
         // below compares user-typed password to hashed password, returns promise

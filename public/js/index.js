@@ -64,18 +64,22 @@ function newUserCreate(stringifiedUser)  {
         password: $("#loginPassword").val().trim()
       }, 
     }).then((response)=>{
-      console.log(response + "line 73 INDEX.JS");
+      console.log(response);
+      let passKey = response.token
+      localStorage.setItem("passKey", passKey);
+      safeUser = response.id
+      localStorage.setItem("safeUser", safeUser);
     })
     
   }
 
   loginBtn.on("click", function (event) {
     event.preventDefault();
-    // const loginUserInfo = {
-    //   email: $("#loginEmail").val().trim(),
-    //   password: $("#loginPassword").val().trim(),
-    // };
-    // let stringifiedLoginUser = JSON.stringify(loginUserInfo);
+    const loginUserInfo = {
+      email: $("#loginEmail").val().trim(),
+      password: $("#loginPassword").val().trim(),
+    };
+    let stringifiedLoginUser = JSON.stringify(loginUserInfo);
     loginUser();
   })
 
