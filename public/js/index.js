@@ -19,31 +19,23 @@ let passkey = localStorage.getItem("passKey")
 
 // global functions
 
-function goToMainInventory()    {
-  passkey = localStorage.getItem("passKey")
+// MAIN INVENTORY BUTTON
+
+function getMainInventory (){
   $.ajax({
     url:`/test`,
     method: "GET",
     headers: {
       "x-auth-token": passkey
-    },
-  }).then((response) =>   {
-    console.log(response);
-  //   $.ajax({
-  //     url: `/mainInventory`,
-  //     headers:{
-  //       "x-auth-token": passkey
-  //     },
-  //     method: "Get",
-  // }).then((response)=>{
-  //   window.location.replace("/mainInventory")
-  // })
+    }
+  }).then((response)=>{
+    console.log(response)
   })
 }
 
-// MAIN INVENTORY BUTTON
+
 mainInventoryBtn.on("click", function(event)  {
-    goToMainInventory();
+getMainInventory();
 })
 
 // CREATE A NEW USER & // INITIAL INVENTORIES
@@ -60,7 +52,7 @@ function newUserCreate(stringifiedUser)  {
   }).then((response) =>  {
     window.location.replace(`/users/welcome/${response.user.id}`)
     let passKey = response.token
-    safeUser = response.user.id;
+    let safeUser = response.user.id;
     localStorage.setItem("safeUser", safeUser);
     localStorage.setItem("passKey", passKey);
     $.ajax({
@@ -72,7 +64,7 @@ function newUserCreate(stringifiedUser)  {
             id: safeUser
           },
         }).then(function (data) {
-          console.log(data)
+          console.log(data + "line 60 INDEX.js")
         }).catch((err) => {
           console.log(err)
         })
@@ -92,7 +84,7 @@ function newUserCreate(stringifiedUser)  {
         password: $("#loginPassword").val().trim()
       }, 
     }).then((response)=>{
-      console.log(response);
+      console.log(response + "line 80 INDEX.js");
       let passKey = response.token
       localStorage.setItem("passKey", passKey);
       $.ajax({
@@ -174,7 +166,7 @@ function newUserCreate(stringifiedUser)  {
     }).then((response) => {
       window.location.reload();
     }).catch((err) => {
-      console.log(err)
+      console.log(err + "LINE 162 INDEX JS")
     })
     return postedItem
   }
@@ -235,7 +227,7 @@ function newUserCreate(stringifiedUser)  {
       itemCountType: $("#item-count-type").val().trim(),
       itemCountPar: $("#item-count-par").val().trim(),
     };
-    console.log(newItemInfo);
+    console.log(newItemInfo + "LINE 223 INDEX JS");
     let stringifiedItem = JSON.stringify(newItemInfo);
     newItemCreate(stringifiedItem);
 
@@ -258,7 +250,7 @@ function newUserCreate(stringifiedUser)  {
 
     };
 
-    console.log(updateForm);
+    console.log(updateForm + "LINE 246 INDEX jS");
 
   })
 

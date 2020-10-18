@@ -37,7 +37,6 @@ router.post('/api/auth', (req,res)=>{
                     if(err) throw err;
                     // If no Error send the token
                     // req.session.userId = user.id;
-                    req.headers['authorization']=token;
                     res.json({
                         token, //<----same as token: token in ES6
                         user: {
