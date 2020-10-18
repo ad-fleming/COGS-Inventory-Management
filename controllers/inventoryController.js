@@ -1,32 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const db = require ("../models");
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
-const auth = require ("../middleware/auth")
-const jwtSecret = "tesT_sEcrET";
-
-
-
 
 // IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
-router.get("/inventory", (req,res)=>{
+router.get("/inventory", (req, res)=>{
     db.Inventory.findAll()
     .then((inventories)=>{
         res.json({inventories})
     })
 })
 
-router.get("/mainInventory", auth, (req,res)=>{
-    console.log(req.user);
-    res.render("mainInventory")
-})
-
 // VIEW MASTER INVENTORY WITH ITEMS
 router.get("/test", auth, (req,res)=>{
     console.log(req.user + "line 28 inventoryController");
-    db.Inventory.findOne({
+    db.Inventory.findAll({
         where:{
             UserId: req.user.id,
             inventory_date: "0001-01-01"
@@ -53,11 +40,7 @@ router.get("/test", auth, (req,res)=>{
         //     unit_par: inventories.Items.unit_par,
         //     unit_price: inventories.Items.unit_price,
         // }
-        res.render("mainInventory", {
-            inventories
-        });
-    }).catch((err)=>{
-        console.log(err)
+        res.render("mainInventory", {inventories});
     })
 })
 

@@ -1,50 +1,22 @@
-// const db = require("../../models");
-// const { query } = require("express");
-
 $(document ).ready(function() {
     console.log( "ready!" );
 
 // global button targetting
-const newUserBtn = $("#submitButton");
+const newUserBtn = $("#user-create-button");
 const newItemFrm = $("#new-item-form");
 const loginBtn = $("#loginButton")
 const addItemBtn = $("#add-item-button");
 const newUserItemBtn =  $("#newUserCreateItems");
 const mainInventoryBtn = $("#finished-item")
+const cardTextTop = $("#card-text-top")
+const mainSheetNav  = $("#main-sheet-nav");
 
 
 // local storage access
 let safeUser = localStorage.getItem("safeUser");
 let passkey = localStorage.getItem("passKey")
 
-// global functions
-
-function goToMainInventory()    {
-  passkey = localStorage.getItem("passKey")
-  $.ajax({
-    url:`/test`,
-    method: "GET",
-    headers: {
-      "x-auth-token": passkey
-    },
-  }).then((response) =>   {
-    console.log(response);
-  //   $.ajax({
-  //     url: `/mainInventory`,
-  //     headers:{
-  //       "x-auth-token": passkey
-  //     },
-  //     method: "Get",
-  // }).then((response)=>{
-  //   window.location.replace("/mainInventory")
-  // })
-  })
-}
-
-// MAIN INVENTORY BUTTON
-mainInventoryBtn.on("click", function(event)  {
-    goToMainInventory();
-})
+// Global Functions
 
 // CREATE A NEW USER & // INITIAL INVENTORIES
 function newUserCreate(stringifiedUser)  {
@@ -83,44 +55,41 @@ function newUserCreate(stringifiedUser)  {
 
   // LOGIN USER
 
-  function loginUser(stringifiedLoginUser) {
-    $.ajax({
-      url: `/api/auth`,
-      method: "POST",
-      data: {
-        email: $("#loginEmail").val().trim(),
-        password: $("#loginPassword").val().trim()
-      }, 
-    }).then((response)=>{
-      console.log(response);
-      let passKey = response.token
-      localStorage.setItem("passKey", passKey);
-      $.ajax({
-        url:`/newItem`,
-        method: "GET",
-        headers: {
-          "x-auth-token": passkey
-        }
-      }).then((response)=>{
-        window.location.replace("/newItem")
-      })
-      // safeUser = response.id
-      // localStorage.setItem("safeUser", safeUser);
-    })
-    
-  }
-
-  loginBtn.on("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const loginUserInfo = {
-      email: $("#loginEmail").val().trim(),
-      password: $("#loginPassword").val().trim(),
-    };
-    let stringifiedLoginUser = JSON.stringify(loginUserInfo);
-    loginUser();
-  })
-
+  // function loginUser(stringifiedLoginUser) {
+  //   $.ajax({
+  //     url: `/api/auth`,
+  //     method: "POST",
+  //     data: {
+  //       email: $("#loginEmail").val().trim(),
+  //       password: $("#loginPassword").val().trim()
+  //     }, 
+  //   }).then((response)=>{
+  //     console.log(response);
+  //     let passKey = response.token
+  //     localStorage.setItem("passKey", passKey);
+  //     $.ajax({
+  //       url:`/newItem`,
+  //       method: "GET",
+  //       headers: {
+  //         "x-auth-token": passkey
+  //       }
+  //     }).then((response)=>{
+  //       window.location.replace("/newItem")
+  //     })
+  //     // safeUser = response.id
+  //     // localStorage.setItem("safeUser", safeUser);
+  //   })
+  // }
+  // loginBtn.on("click", function (event) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   const loginUserInfo = {
+  //     email: $("#loginEmail").val().trim(),
+  //     password: $("#loginPassword").val().trim(),
+  //   };
+  //   let stringifiedLoginUser = JSON.stringify(loginUserInfo);
+  //   loginUser();
+  // })
   // newUserBtn.on("click", function (event) {
   //   event.preventDefault();
   //   const newUserInfo = {
@@ -135,23 +104,22 @@ function newUserCreate(stringifiedUser)  {
 
 
   // TAKE NEW USER TO ITEM CREATE PAGE
+  // newUserItemBtn.on("click", (event)=>{
+  //   event.preventDefault();
+  //   newUserItemPage();
+  // })
 
-  newUserItemBtn.on("click", (event)=>{
-    event.preventDefault();
-    newUserItemPage();
-  })
-
-  function newUserItemPage(){
-    $.ajax({
-      url:`/newItem`,
-      method: "GET",
-      headers: {
-        "x-auth-token": passkey
-      }
-    }).then((response)=>{
-      window.location.replace("/newItem")
-    })
-  }
+  // function newUserItemPage(){
+  //   $.ajax({
+  //     url:`/newItem`,
+  //     method: "GET",
+  //     headers: {
+  //       "x-auth-token": passkey
+  //     }
+  //   }).then((response)=>{
+  //     window.location.replace("/newItem")
+  //   })
+  // }
 
   // ADDING ITEM TO MASTER INVENTORY 
   function newItemCreate(stringifiedItem){

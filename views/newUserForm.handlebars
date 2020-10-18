@@ -1,38 +1,29 @@
-<input type="hidden" name="" data-attribute="{{id}}" value="{{id}}">
-<div class="row center-content">
-    <div class="col s1 hide-on-small-only"> </div>
-    <div class="col s12 m8">
-      <div class="card grey darken-4 section">
-        <div class="card-content white-text">
-          <span class="card-title"><h2>COGS</h2></span>
-          <p class="section">Please enter in your account information below.</p>
-        </div>
-        <form class="white-text logo-push" id="login-form">
-            <p>Name:</p>
-            <input class="white-text" type="text" id="name">
-            <p>Business Name:</p>
-            <input class="white-text" type="text" id="account-name">
-            <p>Email:</p>
-            <input class="white-text" type="text" id="email">
-            <p>Password:</p>
-            <input class="white-text" type="text" id="password">
-               </form>
-              <div class="row"> 
-                  <div class="col s4 l4 section"> </div>
-                  <div class="col s4 l4">
-                  <a href="login">
-                    <button class="ui button lime accent-2 right l12" ><p class="black-font">Login</p></button>
-                  </div></a>
-                  
-              <div class="col s4 l4"> 
-                  <button class="ui button lime accent-2 right l12" type= "submit"  id="submitButton">
-                    <p class="black-font">Create</p>
-                    </button>
-                  </div>
-               <div class="col s1 l1"></div>   
-             </div>
-          </div>
+      <div class="card-content white-text">
+        <span class="card-title"><h2>COGS</h2></span>
+        <p class="section">Please enter in your account information below.</p>
+      </div>
+      
+      <div class="row"> 
+      <form class="white-text logo-push" id="login-form" >
+          <p>Name:</p>
+          <input class="white-text" type="text" id="name">
+          <p>Business Name:</p>
+          <input class="white-text" type="text" id="account-name">
+          <p>Email:</p>
+          <input class="white-text" type="text" id="email">
+          <p>Password:</p>
+          <input class="white-text" type="text" id="password">
+              </form>
+          
+          <button class="ui button lime accent-2 right l12 button-right-margin" type= "submit"  id="user-create-button">
+          <p class="black-font">Create</p>
+          </button>
+
+          <a href="login">
+          <button class="ui button lime accent-2 right l12 button-right-margin" ><p class="black-font">Login</p>
+          </button>
+          </a>
+          
           </div>
 
-    <div class="col s2 hide-on-small-only"> </div>
-  </div>
+          <script src="/js/newUserForm.js"></script>

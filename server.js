@@ -3,12 +3,9 @@ const express = require("express");
 const exphbs= require("express-handlebars");
 const handlebars = require ("handlebars");
 const {allowInsecurePrototypeAccess} = require("@handlebars/allow-prototype-access");
-const itemController = require("./controllers/itemController");
+// const itemController = require("./controllers/itemController");
 const userController = require("./controllers/userController");
-const inventoryController = require("./controllers/inventoryController");
-const authController = require("./controllers/authController");
-const session = require("express-session");
-const auth = require("./middleware/auth");
+// const inventoryController = require("./controllers/inventoryController");
 // const cookieParser = require ("cookie-parser");
 // Sets up the Express APP 
 // =======================
@@ -26,21 +23,12 @@ app.use(express.json());
 // Static Directory
 app.use(express.static("public"));
 
-
 // Include Express-handlebars as the default templating engine
 app.engine("handlebars", exphbs({
     defaultLayout: "main",
     handlebars: allowInsecurePrototypeAccess(handlebars),
 }));
 app.set("view engine", "handlebars");
-
-// app.use(cookieParser);
-
-// app.use(session({
-//   secret: "thanksphil",
-//   resave: true,
-//   saveUninitialized: true
-// }));
 
 // ROUTES WILL GO HERE
 // *******************
@@ -54,11 +42,6 @@ app.get("/newUserForm", (req, res) =>  {
   res.render("newUserForm");
 });
 
-app.get("/newUser", (req, res) =>  {
-  console.log(req.session)
-  res.render("newUser");
-});
-
 app.get("/newItem", (req, res) =>  {
   res.render("newItem");
 });
@@ -67,14 +50,24 @@ app.get("/login", (req, res) =>  {
   res.render("login");
 });
 
-// app.get("/mainInventory",auth, (req,res)=>{
-//   res.render("mainInventory")
-// })
+app.get("/mainSheet", (req, res) =>  {
+  res.render("mainSheet");
+});
+
+app.get("/newInventory", (req, res) =>  {
+  res.render("newInventory");
+});
+
+app.get("/previousInventory", (req, res)  =>  {
+  res.render("previousInventory")
+})
+
+
 
 app.use(userController);
-app.use(itemController);
-app.use(inventoryController);
-app.use(authController);
+// app.use(itemController);
+// app.use(inventoryController);
+// app.use(authController);
 
 // API
 app.get("/api/config",(req, res)  =>  {
