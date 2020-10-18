@@ -9,7 +9,6 @@ const jwtSecret = "tesT_sEcrET";
 
 
 
-<<<<<<< HEAD
 
 // IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
 router.get("/inventory", (req,res)=>{
@@ -20,9 +19,6 @@ router.get("/inventory", (req,res)=>{
 })
 
 // VIEW MASTER INVENTORY WITH ITEMS
-=======
-// testing authentication
->>>>>>> d5b02350d377633fdabc84bd5c8cb0dedf357634
 router.get("/test", auth, (req,res)=>{
     console.log(req.user);
     db.Inventory.findAll({
