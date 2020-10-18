@@ -25,7 +25,7 @@ router.get("/mainInventory", auth, (req,res)=>{
 
 // VIEW MASTER INVENTORY WITH ITEMS
 router.get("/test", auth, (req,res)=>{
-    console.log(req.user);
+    console.log(req.user + "line 28 inventoryController");
     db.Inventory.findAll({
         where:{
             UserId: req.user.id,
@@ -37,7 +37,7 @@ router.get("/test", auth, (req,res)=>{
             }
         ]
     }).then((inventories)=>{
-        console.log(inventories)
+        console.log(inventories + "line 40 inventoryController")
         // let mainInventory = {
         //     id: inventories.id,
         //     inventory_date: inventories.inventory_date,

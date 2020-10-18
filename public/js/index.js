@@ -29,6 +29,15 @@ function goToMainInventory()    {
     },
   }).then((response) =>   {
     console.log(response);
+    $.ajax({
+      url: `/mainInventory`,
+      headers:{
+        "x-auth-token": passkey
+      },
+      method: "Get",
+  }).then((response)=>{
+    window.location.replace("/mainInventory")
+  })
   })
 }
 
@@ -36,7 +45,6 @@ function goToMainInventory()    {
 mainInventoryBtn.on("click", function(event)  {
     event.stopPropagation();
     goToMainInventory();
-    window.location.replace("/test");
 })
 
 // CREATE A NEW USER & // INITIAL INVENTORIES
