@@ -144,7 +144,7 @@ router.post("/api/users", (req, res)    =>  {
                     newUser.save() //<--- TODO:Can we even do this or do we need to do an db.User.update?
                         .then(user=>{
                             jwt.sign(
-                                {id: user.id}, //<---- payload
+                                {id: user.id, account_name: user.account_name, email: user.email, name: user.name}, //<---- payload
                                 jwtSecret,
                                 {expiresIn: "1h"}, //<--- token lasts for an hour
                                 (err,token)=>{ //<--- call back
