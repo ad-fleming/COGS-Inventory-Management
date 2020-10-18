@@ -31,7 +31,7 @@ router.post('/api/auth', (req,res)=>{
             if(!isMatch) return res.status(400).json({msg: "Invalid Credentials"})
             // If it matches, we send token and user
             jwt.sign(
-                {id: user.id, account_name: user.account_name, email: user.email, name: user.name}, //<--- Token payload
+                {id: user.id, account_name: user.account_name, email: user.email, name: user.name, date: "0001-01-01"}, //<--- Token payload
                 jwtSecret,
                 {expiresIn: "1h"}, //<---Token will expire in 1 hour, after which user will be logged out (forbidden from page)
                 (err, token) =>{ //<---call back function for async
