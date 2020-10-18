@@ -22,7 +22,7 @@ router.post('/api/auth', (req,res)=>{
         }
     }) //<--TODO: THIS MIGHT HAVE TO BE CHANGED TO WHERE email: req.body.email
     .then(user =>{
-        console.log(user)
+        // console.log(user)
         if(!user) return res.status(400).json({msg: "User does not exist"})
         // Validate Password
         // below compares user-typed password to hashed password, returns promise
@@ -38,6 +38,7 @@ router.post('/api/auth', (req,res)=>{
                     if(err) throw err;
                     // If no Error send the token
                     // req.session.userId = user.id;
+                    req.headers['authorization']=token;
                     res.json({
                         token, //<----same as token: token in ES6
                         user: {
