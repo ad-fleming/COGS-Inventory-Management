@@ -9,7 +9,7 @@ const newUserBtn = $("#submitButton");
 const newItemFrm = $("#new-item-form");
 const loginBtn = $("#loginButton")
 const addItemBtn = $("#add-item-button");
-const mainInventoryBtn = $("#newUserCreateItem")
+const newUserItemBtn =  $("#newUserCreateItems")
 
 // local storage access
 let safeUser = localStorage.getItem("safeUser");
@@ -121,8 +121,28 @@ function newUserCreate(stringifiedUser)  {
   //   newUserCreate(stringifiedUser);
   // })
 
-  // ADDING ITEM TO INITIAL INVENTORY
-  function newItemCreate(stringifiedItem) {
+
+  // TAKE NEW USER TO ITEM CREATE PAGE
+
+  newUserItemBtn.on("click", (event)=>{
+    event.preventDefault();
+    newUserItemPage();
+  })
+
+  function newUserItemPage(){
+    $.ajax({
+      url:`/newItem`,
+      method: "GET",
+      headers: {
+        "x-auth-token": passkey
+      }
+    }).then((response)=>{
+      window.location.replace("/newItem")
+    })
+  }
+
+  // ADDING ITEM TO MASTER INVENTORY 
+  function newItemCreate(stringifiedItem){
     postedItem = $.ajax({
       url: "/api/addToMaster",
       method: "POST",
