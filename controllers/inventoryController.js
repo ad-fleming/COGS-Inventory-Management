@@ -24,7 +24,7 @@ router.get("/inventory", (req,res)=>{
 // })
 
 // VIEW MASTER INVENTORY WITH ITEMS
-router.get("/test", auth, (req,res)=>{
+router.get("/mainInventory", auth, (req,res)=>{
     db.Inventory.findOne({
         where: {
             inventory_date: "0001-01-01",
@@ -36,7 +36,7 @@ router.get("/test", auth, (req,res)=>{
                 InventoryId : masterInventory.id
             }
         }).then((masterInventoryItems)=>{
-            res.render("mainInventory", {masterInventory})
+            res.render("mainInventory",{masterInventoryItems})
         }).catch((err)=>{
             console.log(err);
             res.json({msg: "Still don't know"})
