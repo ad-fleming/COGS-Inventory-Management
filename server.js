@@ -58,6 +58,10 @@ app.get("/newInventory", (req, res) =>  {
   res.render("newInventory");
 });
 
+app.get("/previousInventory", (req, res)  =>  {
+  res.render("previousInventory")
+})
+
 
 
 // app.use(userController);
