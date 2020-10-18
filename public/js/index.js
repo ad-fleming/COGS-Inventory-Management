@@ -29,7 +29,7 @@ function getMainInventory (){
       "x-auth-token": passkey
     }
   }).then((response)=>{
-    window.location.replace(`/mainInventory`)
+    window.location.replace(`/mainInventory/${safeUser}`)
   })
 }
 

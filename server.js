@@ -67,26 +67,25 @@ app.get("/login", (req, res) =>  {
   res.render("login");
 });
 
-// app.get("/mainInventory/:id",(req,res)=>{
-//   res.render("mainInventory");
+app.get("/mainInventory/:id",(req,res)=>{
 
-//   // db.Inventory.findOne({
-//   //   UserId: req.params.id
-//   // }).then((masterInventory)=>{
-//   //   db.Item.findAll({
-//   //     where:{
-//   //       InventoryId: masterInventory.id
-//   //     }
-//   //   }).then((masterInventoryItems)=>{
-//   //     res.render("mainInventory", {masterInventoryItems})
-//   //   }).catch((err)=>{
-//   //     console.log(err)
-//   //   })
-//   // }).catch((err)=>{
-//   //   console.log(err)
-//   // })
+  db.Inventory.findOne({
+    id: req.params.id
+  }).then((masterInventory)=>{
+    db.Item.findAll({
+      where:{
+        InventoryId: masterInventory.id
+      }
+    }).then((masterInventoryItems)=>{
+      res.render("mainInventory", {masterInventoryItems})
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }).catch((err)=>{
+    console.log(err)
+  })
   
-// })
+})
 
 app.use(userController);
 app.use(itemController);

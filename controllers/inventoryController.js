@@ -24,7 +24,7 @@ router.get("/inventory", (req,res)=>{
 // })
 
 // VIEW MASTER INVENTORY WITH ITEMS
-router.get("/mainInventory", auth, (req,res)=>{
+router.get("/test", auth, (req,res)=>{
     db.Inventory.findOne({
         where: {
             inventory_date: "0001-01-01",
