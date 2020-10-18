@@ -9,7 +9,9 @@ const newUserBtn = $("#submitButton");
 const newItemFrm = $("#new-item-form");
 const loginBtn = $("#loginButton")
 const addItemBtn = $("#add-item-button");
-const newUserItemBtn =  $("#newUserCreateItems")
+const newUserItemBtn =  $("#newUserCreateItems");
+const mainInventoryBtn = $("#finished-item")
+
 
 // local storage access
 let safeUser = localStorage.getItem("safeUser");
@@ -18,20 +20,23 @@ let passkey = localStorage.getItem("passKey")
 // global functions
 
 function goToMainInventory()    {
+  passkey = localStorage.getItem("passKey")
   $.ajax({
-      url: "/test",
-      method: "GET",
-      headers: {
-          "x-auth-token": passKey
-      },
+    url:`/test`,
+    method: "GET",
+    headers: {
+      "x-auth-token": passkey
+    },
   }).then((response) =>   {
-  window.location.replace("/mainInventory")
+    console.log(response);
   })
 }
 
 // MAIN INVENTORY BUTTON
 mainInventoryBtn.on("click", function(event)  {
+    event.stopPropagation();
     goToMainInventory();
+    window.location.replace("/test");
 })
 
 // CREATE A NEW USER & // INITIAL INVENTORIES

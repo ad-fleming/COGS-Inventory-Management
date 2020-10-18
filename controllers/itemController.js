@@ -61,23 +61,23 @@ router.get("/newItem", (req, res) =>  {
 // })
 
 // NEW INVENTORY with EMPTY UNIT, ITEM and VALUE fields
-// router.get("/newInventory", (req,res)=>{
-//     db.Item.findAll({
-//         where: {
-//             InventoryId: 1  //ID MUST BE TARGETTED
-//         },
-//         include:[
-//             {
-//                 model: db.Inventory, 
-//             }        ]
-//     })
-//     .then((newInventory)=>{
-//         // res.json(weeklyInventoryItems)
-//         res.render("newInventory",{
-//             newInventory
-//         })
-//     })
-// })
+router.get("/newInventory/", (req,res)=>{
+    db.Item.findAll({
+        where: {
+            InventoryId: 1  //ID MUST BE TARGETTED
+        },
+        include:[
+            {
+                model: db.Inventory, 
+            }        ]
+    })
+    .then((newInventory)=>{
+        // res.json(weeklyInventoryItems)
+        res.render("newInventory",{
+            newInventory
+        })
+    })
+})
 
 // Find a specific item by name
 // router.get("/api/items/name/:unit_name", (req,res)=>{
