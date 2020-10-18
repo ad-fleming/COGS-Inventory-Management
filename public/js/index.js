@@ -2,56 +2,14 @@ $(document ).ready(function() {
     console.log( "ready!" );
 
 // global button targetting
-const newUserBtn = $("#user-create-button");
-const newItemFrm = $("#new-item-form");
-const loginBtn = $("#loginButton")
-const addItemBtn = $("#add-item-button");
-const newUserItemBtn =  $("#newUserCreateItems");
+const loginBtn = $("#loginButton");
 const mainInventoryBtn = $("#finished-item")
-const cardTextTop = $("#card-text-top")
-const mainSheetNav  = $("#main-sheet-nav");
-
 
 // local storage access
-let safeUser = localStorage.getItem("safeUser");
-let passkey = localStorage.getItem("passKey")
+// let safeUser = localStorage.getItem("safeUser");
+// let passkey = localStorage.getItem("passKey")
 
 // Global Functions
-
-// CREATE A NEW USER & // INITIAL INVENTORIES
-function newUserCreate(stringifiedUser)  {
- {$.ajax({
-    url: "/api/users",
-    method: "POST",
-    data: {
-      account_name: $("#account-name").val().trim(),  
-      name: $("#name").val().trim(),
-      password: $("#password").val().trim(),
-      email: $("#email").val().trim(),
-    },  
-  }).then((response) =>  {
-    window.location.replace(`/users/welcome/${response.user.id}`)
-    let passKey = response.token
-    safeUser = response.user.id;
-    localStorage.setItem("safeUser", safeUser);
-    localStorage.setItem("passKey", passKey);
-    $.ajax({
-          url: `/api/inventory`,
-          method: "POST",
-          data: {
-            UserId: safeUser,
-            inventory_date: "0001-01-01",
-            id: safeUser
-          },
-        }).then(function (data) {
-          console.log(data)
-        }).catch((err) => {
-          console.log(err)
-        })
-
-      })
-    }
-  }
 
   // LOGIN USER
 
@@ -162,20 +120,7 @@ function newUserCreate(stringifiedUser)  {
   //   }
   // }
 
-  // CLICK EVENTS
-
-  // Create New User // Tied to NewUserForm.handlebars
-  newUserBtn.on("click", function (event) {
-    event.preventDefault();
-    const newUserInfo = {
-      account_name: $("#account-name").val().trim(),
-      email: $("#email").val().trim(),
-      name: $("#name").val().trim(),
-      password: $("#password").val().trim(),
-    };
-    let stringifiedUser = JSON.stringify(newUserInfo);
-    newUserCreate(stringifiedUser);
-  })
+// CLICK EVENTS
 
 // I'm HERE ====================================
   loginBtn.on("click",(event)=>{
@@ -185,29 +130,11 @@ function newUserCreate(stringifiedUser)  {
     //   password: $("#loginPassword").val().trim()
     // }
     // let stringifiedUserToLogin = JSON.stringify(userToLoginInfo);
-    
     // loginUser(stringifiedUserToLogin);
     loginUser();
   })
 
-  // NEW ITEM CREATE
-  addItemBtn.on("click", function (event) {
-    event.preventDefault();
-    var newItemInfo = {
-      productName: $("#name-of-item").val().trim(),
-      productCategory: $("#category").val().trim(),
-      productDistributor: $("#distributor").val().trim(),
-      unitPrice: $("#unit-price").val().trim(),
-      unitPar: $("#unit-par").val().trim(),
-      itemsPerUnit: $("#items-per-unit").val().trim(),
-      itemCountType: $("#item-count-type").val().trim(),
-      itemCountPar: $("#item-count-par").val().trim(),
-    };
-    console.log(newItemInfo);
-    let stringifiedItem = JSON.stringify(newItemInfo);
-    newItemCreate(stringifiedItem);
 
-  })
 
 
   $("#updateButton").on("click", function (event) {

@@ -258,21 +258,21 @@ router.delete("/api/items/:id", (req, res)=>{
 
 
 // Add an Item to Master Inventory
-// router.post("/api/addToMain", (req,res)=>{
-//     db.Item.create({
-//         unit_name: req.body.unit_name.trim(),
-//             unit_category: req.body.unit_category,
-//             unit_distributor: req.body.unit_distributor,
-//             unit_price: req.body.unit_price,
-//             unit_par: req.body.unit_par,
-//             items_per_unit: req.body.items_per_unit,
-//             item_count_type: req.body.item_count_type,
-//             item_count_par: req.body.item_count_par,
-//             unit_count: req.body.unit_count,
-//             item_count: req.body.item_count,
-//             total_value: req.body.total_value,
-//     })
-// })  
+router.post("/api/addToMain", (req,res) =>{
+    db.Item.create({
+            unit_name: req.body.unit_name.trim(),
+            unit_category: req.body.unit_category,
+            unit_distributor: req.body.unit_distributor,
+            unit_price: req.body.unit_price,
+            unit_par: req.body.unit_par,
+            items_per_unit: req.body.items_per_unit,
+            item_count_type: req.body.item_count_type,
+            item_count_par: req.body.item_count_par,
+            unit_count: req.body.unit_count,
+            item_count: req.body.item_count,
+            total_value: req.body.total_value,
+    })
+})  
     
 // router.get("/masterInventoryItems", (req, res)=>{
 //     db.Item.findAll({

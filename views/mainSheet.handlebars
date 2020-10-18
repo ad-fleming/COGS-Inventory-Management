@@ -9,7 +9,7 @@
         </div>
 
         <div class="row"> 
-            <form class="white-text logo-push">    
+            <form class="white-text logo-push">
             {{#each mainInventory}}
             {{!-- <p>Item Id:</p>  --}}
             <h3>{{unit_name}}   -  {{unit_category}} </h3>
@@ -36,11 +36,14 @@
         {{/each}}
          </form>
               </div>
-              <div class="row"> 
-              <div class="col s6 l9 section"> </div>
-              <div class="col s3 l3"> 
+              <div class="row">    
+                          
               <button class="ui button lime accent-2 right button-right-margin" type= "submit" id="updateInventory">
               <p class="black-font">Update Inventory</p>
               </button>
-        </div>
-    </div>
+
+            <a href="/newitem"  <button class="ui button lime accent-2 right button-right-margin">
+              <p class="black-font">Add New Items</p>
+              </button> </a>
+
+              </div>
