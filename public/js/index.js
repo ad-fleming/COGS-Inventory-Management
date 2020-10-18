@@ -14,6 +14,7 @@ const mainInventoryBtn = $("#finished-item")
 const rowTopTarget = $("#row-top-target")
 const rowLowTarget = $("#row-low-target")
 const cardTextTop = $("#card-text-top")
+const mainSheetNav  = $("#main-sheet-nav");
 
 
 // local storage access
@@ -23,6 +24,7 @@ let passkey = localStorage.getItem("passKey")
 // global functions
 
 function goToMainInventory()    {
+  console.log("is this happening?")
   passkey = localStorage.getItem("passKey")
   $.ajax({
     url:`/test`,
@@ -43,6 +45,7 @@ function goToMainInventory()    {
     rowTopTarget.append(mainItemForm)
     
     if (mainItemsArray)  {
+      
       for(var i = 0; i < mainItemsArray.length; i++)  {
       let itemName = $("<h4>");
       itemName.text(mainItemsArray[i].unit_name + " - " + mainItemsArray[i].unit_category);
@@ -124,6 +127,10 @@ function goToMainInventory()    {
 // MAIN INVENTORY BUTTON
 mainInventoryBtn.on("click", function(event)  {
     goToMainInventory();
+})
+
+mainSheetNav.on("click", function(event)  {
+  goToMainInventory();
 })
 
 // CREATE A NEW USER & // INITIAL INVENTORIES
