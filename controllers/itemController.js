@@ -182,8 +182,45 @@ router.get("/api/items/name/:unit_name", (req,res)=>{
     })
 })
 // everything is not up to date.
-// CREATE A NEW ITEM
-router.post("/api/items", (req, res)    =>  {
+
+
+
+// CREATE A NEW Master Inventory ITEM
+router.post("/api/addToMaster",auth, (req,res)=>{
+    
+    db.Inventory.findOne({
+        where: {
+            inventory_date: "0001-01-01",
+            UserId: req.user.id
+        }
+    }).then((masterInventory)=>{
+        const newItem = {
+            unit_name: req.body.unit_name.trim(),
+            unit_category: req.body.unit_category,
+            unit_distributor: req.body.unit_distributor,
+            unit_price: req.body.unit_price,
+            unit_par: req.body.unit_par,
+            items_per_unit: req.body.items_per_unit,
+            item_count_type: req.body.item_count_type,
+            item_count_par: req.body.item_count_par,
+            unit_count: req.body.unit_count,
+            item_count: req.body.item_count,
+            total_value: req.body.total_value,
+            InventoryId: masterInventory.id
+        }
+        db.Item.create(newItem)
+            .then((newItem)=>{
+                console.log(newItem);
+                res.json(newItem)
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+    })
+})
+
+
+router.post("/api/items/:id", (req, res)    =>  {
     const newItem = {
         unit_name: req.body.unit_name.trim(),
         unit_category: req.body.unit_category,
@@ -196,6 +233,7 @@ router.post("/api/items", (req, res)    =>  {
         unit_count: req.body.unit_count,
         item_count: req.body.item_count,
         total_value: req.body.total_value,
+        InventoryId: req.params.id
     }
     db.Item.create(newItem)
         .then((newItem)=>{

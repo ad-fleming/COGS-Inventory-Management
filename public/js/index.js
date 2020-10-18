@@ -109,7 +109,7 @@ function newUserCreate(stringifiedUser)  {
   function newItemCreate(stringifiedItem) {
     console.log("creating new item")
     postedItem = $.ajax({
-      url: "/api/items/",
+      url: "/api/addToMaster",
       method: "POST",
       headers:{
         "x-auth-token": passkey
@@ -188,21 +188,13 @@ function newUserCreate(stringifiedUser)  {
       itemsPerUnit: $("#items-per-unit").val().trim(),
       itemCountType: $("#item-count-type").val().trim(),
       itemCountPar: $("#item-count-par").val().trim(),
-      UserId: safeUser
     };
     console.log(newItemInfo);
     let stringifiedItem = JSON.stringify(newItemInfo);
     newItemCreate(stringifiedItem);
-    getInventoryId(safeUser);
+
   })
 
-  $("#finished").on("click", function (event) {
-    event.preventDefault();
-    var Finished = {
-      Finished: $("#finished")
-    };
-    console.log(Finished);
-  })
 
   $("#updateButton").on("click", function (event) {
     event.preventDefault();
