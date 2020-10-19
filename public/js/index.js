@@ -112,17 +112,17 @@ function newUserCreate(stringifiedUser)  {
     loginUser();
   })
 
-  // newUserBtn.on("click", function (event) {
-  //   event.preventDefault();
-  //   const newUserInfo = {
-  //     account_name: $("#account-name").val().trim(),
-  //     email: $("#email").val().trim(),
-  //     name: $("#name").val().trim(),
-  //     password: $("#password").val().trim(),
-  //   };
-  //   let stringifiedUser = JSON.stringify(newUserInfo);
-  //   newUserCreate(stringifiedUser);
-  // })
+  newUserBtn.on("click", function (event) {
+    event.preventDefault();
+    const newUserInfo = {
+      account_name: $("#account-name").val().trim(),
+      email: $("#email").val().trim(),
+      name: $("#name").val().trim(),
+      password: $("#password").val().trim(),
+    };
+    let stringifiedUser = JSON.stringify(newUserInfo);
+    newUserCreate(stringifiedUser);
+  })
 
 
   // TAKE NEW USER TO ITEM CREATE PAGE
