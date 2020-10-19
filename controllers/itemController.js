@@ -76,6 +76,8 @@ router.get("/newInventory/", (req,res)=>{
         res.render("newInventory",{
             newInventory
         })
+    }).cath((err)=>{
+        console.log(err);
     })
 })
 
@@ -173,6 +175,8 @@ router.post("/api/addToMaster",auth, (req,res)=>{
             .catch((err)=>{
                 console.log(err);
             })
+    }).catch((err)=>{
+        console.log(err)
     })
 })
 

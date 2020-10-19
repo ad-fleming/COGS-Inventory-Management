@@ -6,7 +6,8 @@ const {allowInsecurePrototypeAccess} = require("@handlebars/allow-prototype-acce
 const itemController = require("./controllers/itemController");
 const userController = require("./controllers/userController");
 const inventoryController = require("./controllers/inventoryController");
-const authController = require("./controllers/authController")
+const authController = require("./controllers/authController");
+const auth = require("./middleware/auth");
 // const cookieParser = require ("cookie-parser");
 // Sets up the Express APP 
 // =======================
@@ -51,6 +52,37 @@ app.get("/login", (req, res) =>  {
   res.render("login");
 });
 
+
+
+
+
+// app.get("/mainInventory", auth, (req,res)=>{
+//   db.Inventory.findOne({
+//       where: {
+//           inventory_date: "0001-01-01",
+//           UserId: req.user.id
+//       }
+//   }).then((masterInventory)=>{
+//       let UserId = masterInventory.UserId
+//       db.Item.findAll({
+//           where:{
+//               InventoryId : masterInventory.id
+//           }
+//       }).then((masterInventoryItems)=>{
+//           res.render("mainInventory",{
+//               masterInventoryItems
+//           })
+//       }).catch((err)=>{
+//           console.log(err);
+//           res.json({msg: "Still don't know"})
+//       })
+      
+//   })
+// });  
+
+// app.get("/mainInventory", (req,res)=>{
+//   res.render('mainInventory')
+// })
 app.get("/mainInventory/:id",(req,res)=>{
   db.Inventory.findOne({
     id: req.params.id
@@ -101,4 +133,6 @@ db.sequelize.sync().then(function(){
     app.listen(PORT, function(){
       console.log(`Server listening on http://localhost:${PORT}`)
     });
+  }).catch((err)=>{
+    console.log(err);
   });
