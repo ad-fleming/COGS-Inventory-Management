@@ -30,7 +30,8 @@ function getMainInventory (){
       "x-auth-token": passkey
     }
   }).then((response)=>{
-    window.location.replace(`/mainInventory/${response.UserId}`)
+    // window.location.replace(`/mainInventory/${response.UserId}`)
+    console.log(response);
   })
 }
 
