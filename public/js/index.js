@@ -23,15 +23,15 @@ let passkey = localStorage.getItem("passKey")
 // MAIN INVENTORY BUTTON
 
 function getMainInventory (){
-$.ajax({
-  url:`/test`,
-  method: "GET",
-  headers: {
-    "x-auth-token": passkey
-  }
-}).then((response)=>{
-  window.location.replace(`/mainInventory/${response.UserId}`)
-})
+  $.ajax({
+    url:`/test`,
+    method: "GET",
+    headers: {
+      "x-auth-token": passkey
+    }
+  }).then((response)=>{
+    window.location.replace(`/mainInventory/${response.UserId}`)
+  })
 }
 
 
