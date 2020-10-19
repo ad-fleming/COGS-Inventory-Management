@@ -30,6 +30,8 @@ function getMainInventory (){
       "x-auth-token": passkey
     }
   }).then((response)=>{
+  }).catch((err)=>{
+    console.log(err)
   })
 }
 
@@ -69,6 +71,8 @@ function newUserCreate(stringifiedUser)  {
         console.log(err)
       })
 
+    }).catch((err)=>{
+      console.log(err)
     })
   }
 }
@@ -95,9 +99,13 @@ function loginUser(stringifiedLoginUser) {
       }
     }).then((response)=>{
       window.location.replace("/newItem")
+    }).catch((err)=>{
+      console.log(err);
     })
     // safeUser = response.id
     // localStorage.setItem("safeUser", safeUser);
+  }).catch((err)=>{
+    console.log(err);
   })
   
 }
@@ -142,6 +150,8 @@ function newUserItemPage(){
     }
   }).then((response)=>{
     window.location.replace("/newItem")
+  }).catch((err){
+    console.log(err)
   })
 }
 
