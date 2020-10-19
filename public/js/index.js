@@ -1,5 +1,6 @@
 // const db = require("../../models");
 // const { query } = require("express");
+// Trying to push
 
 $(document ).ready(function() {
     console.log( "ready!" );
