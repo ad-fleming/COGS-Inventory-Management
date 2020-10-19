@@ -9,6 +9,10 @@ const inventoryController = require("./controllers/inventoryController");
 const authController = require("./controllers/authController");
 const auth = require("./middleware/auth");
 // const cookieParser = require ("cookie-parser");
+
+// Is this logging as a change?
+
+
 // Sets up the Express APP 
 // =======================
 
