@@ -1,64 +1,72 @@
 const express = require("express");
 const router = express.Router();
 const db = require ("../models");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-// View for category display
-router.get("/categoryDisplay/:id", (req,res)=>{
-    
+const auth = require ("../middleware/auth")
+const jwtSecret = "tesT_sEcrET";
+
+
+
+
+// IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
+router.get("/inventory", (req,res)=>{
+    db.Inventory.findAll()
+    .then((inventories)=>{
+        res.json({inventories})
+    })
 })
 
-
-
-
-// DELETE INVENTORY BY ID
-router.delete("/api/inventory/:id", (req,res)=>{
-    db.Inventory.destroy({
-        where:{
-            id: req.params.id
-        }
-    }).then((inventory)=>{
-        res.json(inventory)
-    }).catch((err)=>{
-        console.log(err)
-        res.json({
-            message: "Issue deleting Inventory",
-            success: false
-        })
-    })
-});
-
+// router.get("/mainInventory", auth, (req,res)=>{
+//     console.log(req.user);
+//     res.render("mainInventory")
+// })
 
 // VIEW MASTER INVENTORY WITH ITEMS
-router.get("/mainInventory", auth, (req,res)=>{
-    db.Inventory.findAll({
-        where:{
-            id: 1
-        }, 
-        include: [
-            {
-              model: db.Item  
+router.get("/test", auth, (req,res)=>{
+    db.Inventory.findOne({
+        where: {
+            inventory_date: "0001-01-01",
+            UserId: req.user.id
+        }
+    }).then((masterInventory)=>{
+        let UserId = masterInventory.UserId
+        db.Item.findAll({
+            where:{
+                InventoryId : masterInventory.id
             }
-        ]
-    }).then((inventories)=>{
-        console.log(inventories + "line 40 inventoryController")
-        // let mainInventory = {
-        //     id: inventories.id,
-        //     inventory_date: inventories.inventory_date,
-        //     ItemId: inventories.Items.id,
-        //     itemCount: inventories.Items.item_count,
-        //     item_count_par: inventories.Items.item_count_par,
-        //     item_count_type: inventories.Items.item_count_type,
-        //     items_per_unit: inventories.Items.items_per_unit,
-        //     total_value:inventories.Items.total_value,
-        //     unit_category: inventories.Items.unit_category,
-        //     unit_distributor: inventories.Items.unit_distributor,
-        //     unit_name: inventories.Items.unit_name,
-        //     unit_par: inventories.Items.unit_par,
-        //     unit_price: inventories.Items.unit_price,
+        }).then((masterInventoryItems)=>{
+            res.json({
+                UserId,
+                masterInventoryItems
+            })
+        }).catch((err)=>{
+            console.log(err);
+            res.json({msg: "Still don't know"})
+        })
+        // const mainInventory = {
+        //     unit_name: masterInventory.unit_name.trim(),
+        //     unit_category: masterInventory.unit_category,
+        //     unit_distributor: masterInventory.unit_distributor,
+        //     unit_price: masterInventory.unit_price,
+        //     unit_par: masterInventory.unit_par,
+        //     items_per_unit: masterInventory.items_per_unit,
+        //     item_count_type: masterInventory.item_count_type,
+        //     item_count_par: masterInventory.item_count_par,
+        //     unit_count: masterInventory.unit_count,
+        //     item_count: masterInventory.item_count,
+        //     total_value: masterInventory.total_value,
+        //     InventoryId: masterInventory.id
         // }
-        res.render("mainInventory", {inventories});
+        
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.json({msg: "don't even know"})
     })
 })
+
 
 
 // IF WE WANT TO DISPLAY 
@@ -133,11 +141,11 @@ router.get("/api/inventory/user/:id", (req,res)=>{
         }
     })
     .then((userInventory)=>{
-        console.log(userInventory);
+        console.log(userInventory + "LINE 135 INVENTORY CONTROLLER");
         res.json(userInventory);
     })
     .catch((err)=>{
-        console.log(err);
+        console.log(err + "LINE 139 INVENTORY CONTROLLER");
     })
 })
 
@@ -150,7 +158,7 @@ router.post ("/api/inventory", (req,res)=>{
     
     db.Inventory.create(newInventory)
     .then((inventory)=>{
-        console.log(inventory);
+        console.log(inventory + "LINE 152 INVENTORY CONTROLLER");
         res.json(inventory);
     })
     .catch((err)=>{
@@ -167,13 +175,13 @@ router.put("/api/inventory", (req,res)=>{
                 id: req.body.id
             }
         }).then((updatedInventory)=>{
-            console.log(updatedInventory);
+            console.log(updatedInventory + "LINE 169 INVENTORY CONTROLLER");
             res.json({
                 message: "Successfully updated inventory",
                 success: true
             })
         }).catch((err)=>{
-            console.log(err);
+            console.log(err + "LINE 175");
             res.json({
                 message: "Issue updating inventory",
                 success: false
@@ -182,6 +190,21 @@ router.put("/api/inventory", (req,res)=>{
 })
 
 
+router.delete("/api/inventory/:id", (req,res)=>{
+    db.Inventory.destroy({
+        where:{
+            id: req.params.id
+        }
+    }).then((inventory)=>{
+        res.json(inventory)
+    }).catch((err)=>{
+        console.log(err + "LINE 192")
+        res.json({
+            message: "Issue deleting Inventory",
+            success: false
+        })
+    })
+});
 
 
 
