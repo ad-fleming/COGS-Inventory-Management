@@ -1,31 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const db = require ("../models");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-// View for category display
-router.get("/categoryDisplay/:id", (req,res)=>{
-    
-})
-
-
+const auth = require ("../middleware/auth")
+const jwtSecret = "tesT_sEcrET";
 
 
-// DELETE INVENTORY BY ID
-router.delete("/api/inventory/:id", (req,res)=>{
-    db.Inventory.destroy({
-        where:{
-            id: req.params.id
-        }
-    }).then((inventory)=>{
-        res.json(inventory)
-    }).catch((err)=>{
-        console.log(err)
-        res.json({
-            message: "Issue deleting Inventory",
-            success: false
-        })
+
+
+// IF WE WANT TO DISPLAY ALL INVENTORIES IN THE MAIN INVENTORY TABLE (FOR ALL USERS)
+router.get("/inventory", (req,res)=>{
+    db.Inventory.findAll()
+    .then((inventories)=>{
+        res.json({inventories})
     })
-});
+})
 
 // router.get("/mainInventory", auth, (req,res)=>{
 //     console.log(req.user);
@@ -40,13 +31,16 @@ router.get("/test", auth, (req,res)=>{
             UserId: req.user.id
         }
     }).then((masterInventory)=>{
+        let UserId = masterInventory.UserId
         db.Item.findAll({
             where:{
                 InventoryId : masterInventory.id
             }
         }).then((masterInventoryItems)=>{
-            res.render("mainInventory",{masterInventoryItems})
-            res.redirect("/mainInventory")
+            res.json({
+                UserId,
+                masterInventoryItems
+            })
         }).catch((err)=>{
             console.log(err);
             res.json({msg: "Still don't know"})
