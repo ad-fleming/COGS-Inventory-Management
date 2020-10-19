@@ -24,13 +24,12 @@ let passkey = localStorage.getItem("passKey")
 
 function getMainInventory (){
   $.ajax({
-    url:`/test`,
+    url:`/mainInventory`,
     method: "GET",
     headers: {
       "x-auth-token": passkey
     }
   }).then((response)=>{
-    window.location.replace(`/mainInventory/${response.UserId}`)
   })
 }
 

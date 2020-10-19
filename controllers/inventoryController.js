@@ -37,9 +37,8 @@ router.get("/test", auth, (req,res)=>{
                 InventoryId : masterInventory.id
             }
         }).then((masterInventoryItems)=>{
-            res.json({
-                UserId,
-                masterInventoryItems
+            res.render("mainInventory",{
+                unit_name: "test"
             })
         }).catch((err)=>{
             console.log(err);
