@@ -23,13 +23,15 @@ let passkey = localStorage.getItem("passKey")
 // MAIN INVENTORY BUTTON
 
 function getMainInventory (){
+  passkey = localStorage.getItem("passKey");
   $.ajax({
-    url:`/mainInventory`,
+    url:`/test`,
     method: "GET",
     headers: {
       "x-auth-token": passkey
     }
   }).then((response)=>{
+    window.location.replace(`/mainInventory/${response.UserId}`)
   }).catch((err)=>{
     console.log(err)
   })
@@ -150,7 +152,7 @@ function newUserItemPage(){
     }
   }).then((response)=>{
     window.location.replace("/newItem")
-  }).catch((err){
+  }).catch((err)=>{
     console.log(err)
   })
 }
