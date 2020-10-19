@@ -6,6 +6,7 @@ const {allowInsecurePrototypeAccess} = require("@handlebars/allow-prototype-acce
 const itemController = require("./controllers/itemController");
 const userController = require("./controllers/userController");
 const inventoryController = require("./controllers/inventoryController");
+const authController = require("./controllers/authController")
 // const cookieParser = require ("cookie-parser");
 // Sets up the Express APP 
 // =======================
