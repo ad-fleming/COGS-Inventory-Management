@@ -6,9 +6,7 @@ const {allowInsecurePrototypeAccess} = require("@handlebars/allow-prototype-acce
 const itemController = require("./controllers/itemController");
 const userController = require("./controllers/userController");
 const inventoryController = require("./controllers/inventoryController");
-const authController = require("./controllers/authController");
-const session = require("express-session");
-const auth = require("./middleware/auth");
+const authController = require("./controllers/authController")
 // const cookieParser = require ("cookie-parser");
 // Sets up the Express APP 
 // =======================
@@ -26,21 +24,12 @@ app.use(express.json());
 // Static Directory
 app.use(express.static("public"));
 
-
 // Include Express-handlebars as the default templating engine
 app.engine("handlebars", exphbs({
     defaultLayout: "main",
     handlebars: allowInsecurePrototypeAccess(handlebars),
 }));
 app.set("view engine", "handlebars");
-
-// app.use(cookieParser);
-
-// app.use(session({
-//   secret: "thanksphil",
-//   resave: true,
-//   saveUninitialized: true
-// }));
 
 // ROUTES WILL GO HERE
 // *******************
@@ -54,11 +43,6 @@ app.get("/newUserForm", (req, res) =>  {
   res.render("newUserForm");
 });
 
-app.get("/newUser", (req, res) =>  {
-  console.log(req.session)
-  res.render("newUser");
-});
-
 app.get("/newItem", (req, res) =>  {
   res.render("newItem");
 });
@@ -67,25 +51,36 @@ app.get("/login", (req, res) =>  {
   res.render("login");
 });
 
-// app.get("/mainInventory/:id",(req,res)=>{
+app.get("/mainInventory/:id",(req,res)=>{
+  db.Inventory.findOne({
+    id: req.params.id
+  }).then((masterInventory)=>{
+    db.Item.findAll({
+      where:{
+        InventoryId: masterInventory.id
+      }
+    }).then((masterInventoryItems)=>{
+      console.log(masterInventoryItems)
+      const mainInventory = {
+        unit_name : masterInventoryItems.unit_name,
+        unit_category : masterInventoryItems.unit_category,
+        unit_distributor : masterInventoryItems.unit_distributor,
+        unit_price : masterInventoryItems.unit_price,
+        item_count_type : masterInventoryItems.item_count_type,
+        unit_par : masterInventoryItems.unit_par,
+        item_count_par : masterInventoryItems.item_count_par,
+        items_per_unit : masterInventoryItems.items_per_unit
+      }
 
-//   db.Inventory.findOne({
-//     id: req.params.id
-//   }).then((masterInventory)=>{
-//     db.Item.findAll({
-//       where:{
-//         InventoryId: masterInventory.id
-//       }
-//     }).then((masterInventoryItems)=>{
-//       res.render("mainInventory", {masterInventoryItems})
-//     }).catch((err)=>{
-//       console.log(err)
-//     })
-//   }).catch((err)=>{
-//     console.log(err)
-//   })
+      res.render("mainInventory", mainInventory)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }).catch((err)=>{
+    console.log(err)
+  })
   
-// })
+})
 
 app.use(userController);
 app.use(itemController);

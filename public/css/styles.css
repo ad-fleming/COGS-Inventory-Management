@@ -25,15 +25,14 @@ p {
 }
 
 .form-section{
-    font-size: 24px !important;
-    border-top: 5px solid yellow;
+    font-size: 18px !important;
+    border-top: 5px solid rgb(184, 184, 0);
     margin-top: 10px;
 }
 
 .form-text{
-    font-size: 24px !important;
-    font-weight: bold;
-    color: yellow !important;
+    font-size: 18px !important;
+    color: rgb(184, 184, 0) !important;
 }
 
 .black-font{

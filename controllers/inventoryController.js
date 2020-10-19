@@ -31,13 +31,16 @@ router.get("/test", auth, (req,res)=>{
             UserId: req.user.id
         }
     }).then((masterInventory)=>{
+        let UserId = masterInventory.UserId
         db.Item.findAll({
             where:{
                 InventoryId : masterInventory.id
             }
         }).then((masterInventoryItems)=>{
-            res.render("mainInventory",{masterInventoryItems})
-            res.redirect("/mainInventory")
+            res.json({
+                UserId,
+                masterInventoryItems
+            })
         }).catch((err)=>{
             console.log(err);
             res.json({msg: "Still don't know"})
