@@ -188,6 +188,7 @@ function newUserCreate(stringifiedUser)  {
   // }
 
   // CLICK EVENTS
+  // 
 
   // Create New User // Tied to NewUserForm.handlebars
   newUserBtn.on("click", function (event) {
