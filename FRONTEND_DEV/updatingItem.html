@@ -46,40 +46,39 @@
                   <span class="card-title"><h2>COGS</h2></span>
                 </div>
                 <form class="white-text logo-push" id="updating-item">    
-                    {{masterInventory.Inventory.inventory_date}}
-                    {{#each masterInventory}}
-                        {{!-- <p>Item Id:</p>  --}}
+                 
+                        <p>Item Id:</p>  
                         <div class="row">
                         <div class="col l12 s12">
                         <p class="white-text"  data-attribute=`{{id}}`> 
-                        {{unit_name}}: Unit Category: {{unit_category}}</p>
+                        </p>
                         <p>Unit Distributor:</p>
-                     <input class="white-text" type="text" id="distributor" placeholder=`{{unit_distributor}}`>
+                     <input class="white-text" type="text" id="distributor" >
                         <p>Unit Par:</p>
-                        <input class="white-text" type="number" id="unit-par" placeholder=`{{unit_par}}`>
+                        <input class="white-text" type="number" id="unit-par">
                         </div>
                         <div class="col s4 l4">
                         <p>Unit Price:</p>
-                        <input class="white-text" type="number" id= "unit-price" placeholder=`{{unit_price}}`>
+                        <input class="white-text" type="number" id= "unit-price" >
                         <p>Items Per Unit:</p>
-                        <input class="white-text" type="number" id="items-per-unit" placeholder=`{{items_per_unit}}`>
+                        <input class="white-text" type="number" id="items-per-unit" >
                         <p>Item Count Type:</p>
-                        <input class="white-text" type="text" id="item-count-type" placeholder=`{{item_count_type}}`>
+                        <input class="white-text" type="text" id="item-count-type" >
                         <p>Item Par:</p>
-                        <input class="white-text" type="number" id="item-par" placeholder=`{{item_count_par}}`>
+                        <input class="white-text" type="number" id="item-par" >
                         </div>
                         <div class="col s4 l4">
                         <p>Unit Count:</p>
-                        <input class="white-text" type="number" id="unit-count" placeholder=`{{unit_count}}`>
+                        <input class="white-text" type="number" id="unit-count" >
                         <p>Item Count:</p>
-                        <input class="white-text" type="number" id="item-count" placeholder=`{{item_count}}`>
+                        <input class="white-text" type="number" id="item-count" >
                         <p>Total Value:</p>
-                        <input class="white-text" type="number" id="total-value" placeholder=`{{total_value}}`>
+                        <input class="white-text" type="number" id="total-value" >
                         <p>Inventory Id:</p>
-                        <input class="white-text" type="number" id="inventory-id" placeholder=`{{InventoryId}}`>
+                        <input class="white-text" type="number" id="inventory-id" >
                         </div>
                         </div>
-                        {{/each}}
+                        
                     </form>
                           <div class="row"> 
                               <div class="col s6 section"> </div>
