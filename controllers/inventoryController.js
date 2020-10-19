@@ -15,6 +15,8 @@ router.get("/inventory", (req,res)=>{
     db.Inventory.findAll()
     .then((inventories)=>{
         res.json({inventories})
+    }).catch((err)=>{
+        console.log(err)
     })
 })
 
@@ -80,6 +82,8 @@ router.get("/user/:userId/inventory", (req, res) => {
             }
         }).then((inventories) => {
             res.json(inventories);
+        }).catch((err)=>{
+            console.log(err)
         })
     }
     db.Inventory.findAll({
@@ -88,7 +92,9 @@ router.get("/user/:userId/inventory", (req, res) => {
         }
     }).then((inventories) => {
         res.json(inventories);
-    });
+    }).catch((err)=>{
+        console.log(err)
+    })
 })
 
 // FOR DISPLAYING ALL INVENTORIES OF A GIVEN USER
@@ -99,6 +105,8 @@ router.get("/inventory/user/:id", (req,res)=>{
         }
     }).then((inventories)=>{
         res.render("#", {inventories})
+    }).catch((err)=>{
+        console.log(err)
     })
 })
 

@@ -28,6 +28,8 @@ router.get("/users/email/:email", function(req, res) {
         }
     }).then((user) =>   {
         res.json(user)
+    }).catch((err)=>{
+        console.log(err)
     })
 })
 
@@ -76,6 +78,8 @@ router.get("/user/edit/:id",    (req, res)  =>  {
         }
     }).then((user)=>{
         res.render("#", {user})
+    }).catch((err)=>{
+        console.log(err);
     })
 })
 
@@ -110,6 +114,8 @@ router.get("/api/users/:id", (req,res)=>{
             message:"found specific user",
             success: true,
         })
+    }).catch((err)=>{
+        console.log(err);
     })
 })
 
@@ -159,9 +165,13 @@ router.post("/api/users", (req, res)    =>  {
                                     })
                                 }
                             )
+                        }).catch((err)=>{
+                            console.log(err)
                         })
                 })
             })
+        }).catch((err)=>{
+            console.log(err)
         })
 
 })
@@ -176,6 +186,8 @@ router.put("/api/users/", (req, res) =>  {
     })
     .then(function(dbUser)  {
         res.json(dbUser)
+    }).catch((err)=>{
+        console.log(err)
     })
 })
 

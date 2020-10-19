@@ -23,6 +23,7 @@ let passkey = localStorage.getItem("passKey")
 // MAIN INVENTORY BUTTON
 
 function getMainInventory (){
+  passkey = localStorage.getItem("passKey");
   $.ajax({
     url:`/test`,
     method: "GET",
@@ -31,6 +32,8 @@ function getMainInventory (){
     }
   }).then((response)=>{
     window.location.replace(`/mainInventory/${response.UserId}`)
+  }).catch((err)=>{
+    console.log(err)
   })
 }
 
@@ -70,6 +73,8 @@ function newUserCreate(stringifiedUser)  {
         console.log(err)
       })
 
+    }).catch((err)=>{
+      console.log(err)
     })
   }
 }
@@ -96,9 +101,13 @@ function loginUser(stringifiedLoginUser) {
       }
     }).then((response)=>{
       window.location.replace("/newItem")
+    }).catch((err)=>{
+      console.log(err);
     })
     // safeUser = response.id
     // localStorage.setItem("safeUser", safeUser);
+  }).catch((err)=>{
+    console.log(err);
   })
   
 }
@@ -143,6 +152,8 @@ function newUserItemPage(){
     }
   }).then((response)=>{
     window.location.replace("/newItem")
+  }).catch((err)=>{
+    console.log(err)
   })
 }
 
