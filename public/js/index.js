@@ -1,17 +1,9 @@
-// const db = require("../../models");
-// const { query } = require("express");
-
 $(document ).ready(function() {
     console.log( "ready!" );
 
 // global button targetting
-const newUserBtn = $("#submitButton");
-const newItemFrm = $("#new-item-form");
-const loginBtn = $("#loginButton")
-const addItemBtn = $("#add-item-button");
-const newUserItemBtn =  $("#newUserCreateItems");
+const loginBtn = $("#loginButton");
 const mainInventoryBtn = $("#finished-item")
-
 
 // local storage access
 let safeUser = localStorage.getItem("safeUser");
@@ -126,23 +118,22 @@ function newUserCreate(stringifiedUser)  {
 
 
   // TAKE NEW USER TO ITEM CREATE PAGE
+  // newUserItemBtn.on("click", (event)=>{
+  //   event.preventDefault();
+  //   newUserItemPage();
+  // })
 
-  newUserItemBtn.on("click", (event)=>{
-    event.preventDefault();
-    newUserItemPage();
-  })
-
-  function newUserItemPage(){
-    $.ajax({
-      url:`/newItem`,
-      method: "GET",
-      headers: {
-        "x-auth-token": passkey
-      }
-    }).then((response)=>{
-      window.location.replace("/newItem")
-    })
-  }
+  // function newUserItemPage(){
+  //   $.ajax({
+  //     url:`/newItem`,
+  //     method: "GET",
+  //     headers: {
+  //       "x-auth-token": passkey
+  //     }
+  //   }).then((response)=>{
+  //     window.location.replace("/newItem")
+  //   })
+  // }
 
   // ADDING ITEM TO MASTER INVENTORY 
   function newItemCreate(stringifiedItem){
@@ -185,20 +176,7 @@ function newUserCreate(stringifiedUser)  {
   //   }
   // }
 
-  // CLICK EVENTS
-
-  // Create New User // Tied to NewUserForm.handlebars
-  newUserBtn.on("click", function (event) {
-    event.preventDefault();
-    const newUserInfo = {
-      account_name: $("#account-name").val().trim(),
-      email: $("#email").val().trim(),
-      name: $("#name").val().trim(),
-      password: $("#password").val().trim(),
-    };
-    let stringifiedUser = JSON.stringify(newUserInfo);
-    newUserCreate(stringifiedUser);
-  })
+// CLICK EVENTS
 
 // I'm HERE ====================================
   loginBtn.on("click",(event)=>{
@@ -208,7 +186,6 @@ function newUserCreate(stringifiedUser)  {
     //   password: $("#loginPassword").val().trim()
     // }
     // let stringifiedUserToLogin = JSON.stringify(userToLoginInfo);
-    
     // loginUser(stringifiedUserToLogin);
     loginUser();
   })
@@ -229,9 +206,6 @@ function newUserCreate(stringifiedUser)  {
     console.log(newItemInfo + "LINE 223 INDEX JS");
     let stringifiedItem = JSON.stringify(newItemInfo);
     newItemCreate(stringifiedItem);
-
-  })
-
 
   $("#updateButton").on("click", function (event) {
     event.preventDefault();
@@ -263,10 +237,6 @@ function newUserCreate(stringifiedUser)  {
   //   console.log(Finalize);
 
   // })
-
-
-
-
 
 })
 

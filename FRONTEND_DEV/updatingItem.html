@@ -15,10 +15,21 @@
     <div class="nav-wrapper grey darken-4 white-text">
       <a href="#" class="brand-logo logo-push">COGS</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">ABOUT</a></li>
-        <li><a href="badges.html">INVENTORY</a></li>
-        <li><a href="collapsible.html">COGS</a></li>
-        <li><a href="collapsible.html">ACCOUNT</a></li>
+        <li><a href="login.html">ABOUT</a></li>
+        <li><a href="categories.html">INVENTORY</a></li>
+        <li><a href="newItemForm.html">COGS</a></li>
+        <li><a href="index.html">ACCOUNT</a></li>
+      </ul>
+    </div>
+  </nav>
+  <nav>
+    <div class="nav-wrapper grey darken-4 white-text hide-on-med-and-up" id="nav-mobile">
+      <a href="#" class="brand-logo logo-push">Categories</a>
+      <ul id="nav-mobile" class="bottom hide-on-med-and-up">
+        <li><a href="login.html">ABOUT</a></li>
+        <li><a href="categories.html">INVENTORY</a></li>
+        <li><a href="newItemForm.html">COGS</a></li>
+        <li><a href="index.html">ACCOUNT</a></li>
       </ul>
     </div>
   </nav>
@@ -33,44 +44,41 @@
               <div class="card grey darken-4 section">
                 <div class="card-content white-text">
                   <span class="card-title"><h2>COGS</h2></span>
-                  <p class="section">The world is an uncertain place, but your inventory and sales tracking doesn't have to be, regardless of your size. COGS is a business inventory management system that will meet you exactly where you are and deliver results!</p>
-                  <p class="section">Use our customizable inventory database to help your business thrive.</p>
                 </div>
                 <form class="white-text logo-push" id="updating-item">    
-                    {{masterInventory.Inventory.inventory_date}}
-                    {{#each masterInventory}}
-                        {{!-- <p>Item Id:</p>  --}}
+                 
+                        <p>Item Id:</p>  
                         <div class="row">
                         <div class="col l12 s12">
                         <p class="white-text"  data-attribute=`{{id}}`> 
-                        {{unit_name}}: Unit Category: {{unit_category}}</p>
+                        </p>
                         <p>Unit Distributor:</p>
-                     <input class="white-text" type="text" id="distributor" placeholder=`{{unit_distributor}}`>
+                     <input class="white-text" type="text" id="distributor" >
                         <p>Unit Par:</p>
-                        <input class="white-text" type="number" id="unit-par" placeholder=`{{unit_par}}`>
+                        <input class="white-text" type="number" id="unit-par">
                         </div>
                         <div class="col s4 l4">
                         <p>Unit Price:</p>
-                        <input class="white-text" type="number" id= "unit-price" placeholder=`{{unit_price}}`>
+                        <input class="white-text" type="number" id= "unit-price" >
                         <p>Items Per Unit:</p>
-                        <input class="white-text" type="number" id="items-per-unit" placeholder=`{{items_per_unit}}`>
+                        <input class="white-text" type="number" id="items-per-unit" >
                         <p>Item Count Type:</p>
-                        <input class="white-text" type="text" id="item-count-type" placeholder=`{{item_count_type}}`>
+                        <input class="white-text" type="text" id="item-count-type" >
                         <p>Item Par:</p>
-                        <input class="white-text" type="number" id="item-par" placeholder=`{{item_count_par}}`>
+                        <input class="white-text" type="number" id="item-par" >
                         </div>
                         <div class="col s4 l4">
                         <p>Unit Count:</p>
-                        <input class="white-text" type="number" id="unit-count" placeholder=`{{unit_count}}`>
+                        <input class="white-text" type="number" id="unit-count" >
                         <p>Item Count:</p>
-                        <input class="white-text" type="number" id="item-count" placeholder=`{{item_count}}`>
+                        <input class="white-text" type="number" id="item-count" >
                         <p>Total Value:</p>
-                        <input class="white-text" type="number" id="total-value" placeholder=`{{total_value}}`>
+                        <input class="white-text" type="number" id="total-value" >
                         <p>Inventory Id:</p>
-                        <input class="white-text" type="number" id="inventory-id" placeholder=`{{InventoryId}}`>
+                        <input class="white-text" type="number" id="inventory-id" >
                         </div>
                         </div>
-                        {{/each}}
+                        
                     </form>
                           <div class="row"> 
                               <div class="col s6 section"> </div>
