@@ -35,25 +35,9 @@ router.get("/test", auth, (req,res)=>{
         include:[{model: db.Item}]
     }).then((masterInventoryItems)=>{
         // let UserId = masterInventory.UserId
-        // var masterInventoryItems = [];
-        // masterInventory.Items.forEach(function(item) {
-        //     masterInventoryItems.push({
-        //         id: item.id,
-        //         unit_name: item.unit_name,
-        //         item_count: item.item_count,
-        //         item_count_par: item.item_count_par,
-        //         item_count_type: item.item_count_type,
-        //         item_per_unit: item.items_per_unit,
-        //         total_value: item.total_value,
-        //         unit_category: item.unit_category,
-        //         unit_count: item.unit_count,
-        //         unit_distributor: item.unit_distributor,
-        //         unit_name: item.unit_name,
-        //         unit_par: item.unit_par,
-        //         unit_price: item.unit_price
-        //     });
-        // })
-        res.render("mainInventory", {masterInventoryItems})
+        res.json({
+            masterInventoryItems
+        })
     })
     .catch((err)=>{
         console.log(err);
