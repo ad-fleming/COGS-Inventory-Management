@@ -84,39 +84,40 @@ app.get("/login", (req, res) =>  {
 //   })
 // });  
 
-// app.get("/mainInventory", (req,res)=>{
-//   res.render('mainInventory')
-// })
-app.get("/mainInventory/:id",(req,res)=>{
-  db.Inventory.findOne({
-    id: req.params.id
-  }).then((masterInventory)=>{
-    db.Item.findAll({
-      where:{
-        InventoryId: masterInventory.id
-      }
-    }).then((masterInventoryItems)=>{
-      console.log(masterInventoryItems)
-      const mainInventory = {
-        unit_name : masterInventoryItems.unit_name,
-        unit_category : masterInventoryItems.unit_category,
-        unit_distributor : masterInventoryItems.unit_distributor,
-        unit_price : masterInventoryItems.unit_price,
-        item_count_type : masterInventoryItems.item_count_type,
-        unit_par : masterInventoryItems.unit_par,
-        item_count_par : masterInventoryItems.item_count_par,
-        items_per_unit : masterInventoryItems.items_per_unit
-      }
-
-      res.render("mainInventory", mainInventory)
-    }).catch((err)=>{
-      console.log(err)
-    })
-  }).catch((err)=>{
-    console.log(err)
-  })
-  
+app.get("/mainInventory", (req,res)=>{
+  res.render('mainInventory')
 })
+// app.get("/mainInventory/:id",(req,res)=>{
+//   db.Inventory.findOne({
+//     id: req.params.id,
+//     include: []
+//   }).then((masterInventory)=>{
+//     db.Item.findAll({
+//       where:{
+//         InventoryId: masterInventory.id,
+//       }
+//     }).then((masterInventoryItems)=>{
+//       console.log(masterInventoryItems)
+//       const mainInventory = {
+//         unit_name : masterInventoryItems.unit_name,
+//         unit_category : masterInventoryItems.unit_category,
+//         unit_distributor : masterInventoryItems.unit_distributor,
+//         unit_price : masterInventoryItems.unit_price,
+//         item_count_type : masterInventoryItems.item_count_type,
+//         unit_par : masterInventoryItems.unit_par,
+//         item_count_par : masterInventoryItems.item_count_par,
+//         items_per_unit : masterInventoryItems.items_per_unit
+//       }
+//       // res.json(mainInventory)
+//       res.render("mainInventory", mainInventory)
+//     }).catch((err)=>{
+//       console.log(err)
+//     })
+//   }).catch((err)=>{
+//     console.log(err)
+//   })
+  
+// })
 
 app.use(userController);
 app.use(itemController);

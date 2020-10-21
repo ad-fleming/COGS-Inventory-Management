@@ -30,38 +30,30 @@ router.get("/test", auth, (req,res)=>{
     db.Inventory.findOne({
         where: {
             inventory_date: "0001-01-01",
-            UserId: req.user.id
-        }
-    }).then((masterInventory)=>{
-        let UserId = masterInventory.UserId
-        db.Item.findAll({
-            where:{
-                InventoryId : masterInventory.id
-            }
-        }).then((masterInventoryItems)=>{
-            res.json({
-                UserId,
-                masterInventoryItems
-            })
-        }).catch((err)=>{
-            console.log(err);
-            res.json({msg: "Still don't know"})
-        })
-        // const mainInventory = {
-        //     unit_name: masterInventory.unit_name.trim(),
-        //     unit_category: masterInventory.unit_category,
-        //     unit_distributor: masterInventory.unit_distributor,
-        //     unit_price: masterInventory.unit_price,
-        //     unit_par: masterInventory.unit_par,
-        //     items_per_unit: masterInventory.items_per_unit,
-        //     item_count_type: masterInventory.item_count_type,
-        //     item_count_par: masterInventory.item_count_par,
-        //     unit_count: masterInventory.unit_count,
-        //     item_count: masterInventory.item_count,
-        //     total_value: masterInventory.total_value,
-        //     InventoryId: masterInventory.id
-        // }
-        
+            UserId: req.user.id, 
+        },
+        include:[{model: db.Item}]
+    }).then((masterInventoryItems)=>{
+        // let UserId = masterInventory.UserId
+        // var masterInventoryItems = [];
+        // masterInventory.Items.forEach(function(item) {
+        //     masterInventoryItems.push({
+        //         id: item.id,
+        //         unit_name: item.unit_name,
+        //         item_count: item.item_count,
+        //         item_count_par: item.item_count_par,
+        //         item_count_type: item.item_count_type,
+        //         item_per_unit: item.items_per_unit,
+        //         total_value: item.total_value,
+        //         unit_category: item.unit_category,
+        //         unit_count: item.unit_count,
+        //         unit_distributor: item.unit_distributor,
+        //         unit_name: item.unit_name,
+        //         unit_par: item.unit_par,
+        //         unit_price: item.unit_price
+        //     });
+        // })
+        res.render("mainInventory", {masterInventoryItems})
     })
     .catch((err)=>{
         console.log(err);

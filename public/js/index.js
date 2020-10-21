@@ -29,9 +29,10 @@ function getMainInventory (){
     method: "GET",
     headers: {
       "x-auth-token": passkey
-    }
+    },
   }).then((response)=>{
-    window.location.replace(`/mainInventory/${response.UserId}`)
+    console.log(response)
+    // window.location.replace(`/mainInventory/${response.UserId}`)
   }).catch((err)=>{
     console.log(err)
   })
