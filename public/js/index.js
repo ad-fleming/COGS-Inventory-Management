@@ -24,22 +24,26 @@ let passkey = localStorage.getItem("passKey")
 
 function getMainInventory (){
   passkey = localStorage.getItem("passKey");
-  $.ajax({
-    url:`/test`,
-    method: "GET",
-    headers: {
-      "x-auth-token": passkey
-    }
-  }).then((response)=>{
-    window.location.replace(`/mainInventory/${response.UserId}`)
-  }).catch((err)=>{
-    console.log(err)
-  })
+
+    $.ajax({
+      url:`/test`,
+      method: "GET",
+      headers: {
+        "x-auth-token": passkey
+      }
+    }).then((response)=>{
+      console.log(response)
+      UserId = response.masterInventoryItems.UserId
+      window.location.replace(`/mainInventory/${UserId}`)
+    }).catch((err)=>{console.log(err)})
+    // window.location.replace(`/mainInventory/${response.UserId}`)
 }
 
 
 mainInventoryBtn.on("click", function(event)  {
+event.preventDefault();
 getMainInventory();
+
 })
 
 // CREATE A NEW USER & // INITIAL INVENTORIES
